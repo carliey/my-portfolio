@@ -212,6 +212,7 @@ const projects = [
       },
     ],
     image: naf_awc,
+    source_code_link: "https://github.com/itcentralng/awc-portal",
     project_link: "https://awc.airforce.mil.ng/",
   },
   {
@@ -220,20 +221,20 @@ const projects = [
       "A school management system that manages k-12 schools activities from student enrollment to result compilation",
     tags: [
       {
-        name: "nextjs",
+        name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "mui",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "redux-toolkit",
         color: "pink-text-gradient",
       },
     ],
     image: schoola_src,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/schoolaltd/web-src",
     project_link: "https://schoola-src.netlify.app/",
   },
   {
@@ -245,16 +246,12 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "mui",
         color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
       },
     ],
     image: schoola_landing,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/schoolaltd/web-schoola-website",
     project_link: "https://schoola.app/",
   },
   {
@@ -263,20 +260,20 @@ const projects = [
       "The learning management web application of the schoola edtech company",
     tags: [
       {
-        name: "nextjs",
+        name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "mui",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "redux-toolkit",
         color: "pink-text-gradient",
       },
     ],
     image: schoola_lms,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://github.com/schoolaltd/web-src",
     project_link: "https://schoola.app/",
   },
 ];

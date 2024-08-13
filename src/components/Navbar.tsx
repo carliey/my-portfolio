@@ -7,6 +7,8 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  setScrolled;
+  active;
 
   return (
     <nav
@@ -31,7 +33,7 @@ const Navbar = () => {
           </p>
         </Link>
 
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        {/* <ul className="list-none hidden sm:flex flex-row gap-10">
           {["home", "cv"].map((nav, i) => (
             <li
               key={i}
@@ -43,7 +45,7 @@ const Navbar = () => {
               <a href={`#${nav}`}>{nav}</a>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
@@ -58,7 +60,7 @@ const Navbar = () => {
               !toggle ? "hidden" : "flex"
             } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
           >
-            <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
+            {/* <ul className="list-none flex justify-end items-start flex-1 flex-col gap-4">
               {["home", "cv"].map((nav, i) => (
                 <li
                   key={i}
@@ -69,11 +71,11 @@ const Navbar = () => {
                     setToggle(!toggle);
                     setActive(nav);
                   }}
-                >
-                  {/* <a href={`#${nav.id}`}>{nav.title}</a> */}
-                </li>
+                > */}
+            {/* <a href={`#${nav.id}`}>{nav.title}</a> */}
+            {/* </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>

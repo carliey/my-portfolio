@@ -1,9 +1,5 @@
-import React from 'react'
-
 const Tech = () => {
-  return (
-    <div>Tech</div>
-  )
-}
+  return <div>Tech</div>;
+};
 
-export default Tech
+export default Tech;

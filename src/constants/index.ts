@@ -15,15 +15,19 @@ import {
   git,
   figma,
   docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
   threejs,
 } from "../assets";
+
+import naf_awc from "../assets/projects/naf_awc.png";
+import schoola_src from "../assets/projects/schoola_src.png";
+import schoola_lms from "../assets/projects/schoola_lms.png";
+import schoola_landing from "../assets/projects/schoola_landing.png";
+import schoola_curri from "../assets/projects/schoola_curri.png";
+
+import dialogue from "../assets/company/dialogue.png";
+import it_central from "../assets/company/it_central.png";
+import schoola from "../assets/company/schoola.svg";
+import krpc from "../assets/company/krpc.png";
 
 export const navLinks = [
   {
@@ -118,8 +122,8 @@ const experiences = [
   {
     title: "Web Development tutor(contract)",
     company_name: "Dialogue Academy Kaduna",
-    icon: starbucks,
-    iconBg: "#383E56",
+    icon: dialogue,
+    iconBg: "white",
     date: "May 2024 - July 2024",
     points: [
       "Participated as a tutor in a pilot program introduced to adopt Web development into the school's curriculum.",
@@ -128,8 +132,8 @@ const experiences = [
   {
     title: "Frontend Lead",
     company_name: "Schoola",
-    icon: tesla,
-    iconBg: "#E6DEDD",
+    icon: schoola,
+    iconBg: "white",
     date: "September 2022 - Present",
     points: [
       "Developing and maintaining Ed-tech web applications using React.js.",
@@ -141,12 +145,12 @@ const experiences = [
   {
     title: "Frontend Developer",
     company_name: "iT Central",
-    icon: shopify,
-    iconBg: "#383E56",
+    icon: it_central,
+    iconBg: "#0E5FAF",
     date: "Jan 2022 - Present",
     points: [
       "Providing mentorship and guidance to junior developers, fostering a collaborative and supportive learning environment within the team.",
-      "Tutoring in web development bootcamp hosted by the company",
+      "Tutoring in web development bootcamps hosted by the company",
       "Developing and maintaining web applications for clients using React.js.",
       "Collaborating with cross-functional teams including designers, product managers, other developers and clients to create high-quality products.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
@@ -154,59 +158,30 @@ const experiences = [
     ],
   },
   {
-    title: "Intern",
+    title: "IT Support Intern",
     company_name: "Petroleum Products Marketing Company Kaduna",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
+    icon: krpc,
+    iconBg: "white",
+    date: "March 2017 - March 2019",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Provided IT technical support, promptly addressing software and hardware issues raised by staff.",
+      "Conducted quarterly inventory checks of computer resources allocated to various offices, ensuring optimal resource allocation and maintenance",
     ],
-  },
-];
-
-const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Curri AI",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "An ed tech platform that gives teachers the ability to generate lesson plans, lesson notes and questions 45x faster",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "mui",
         color: "green-text-gradient",
       },
       {
@@ -214,34 +189,35 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: schoola_curri,
+    source_code_link: "",
+    project_link: "https://curri.schoola.app",
   },
   {
-    name: "Job IT",
+    name: "NAF Air warfare center",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "Landing page, and a school management system for the Nigerian airforce Air Warfare Center",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: "mui",
         color: "green-text-gradient",
       },
       {
-        name: "scss",
+        name: "redux",
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    image: naf_awc,
+    project_link: "https://awc.airforce.mil.ng/",
   },
   {
-    name: "Trip Guide",
+    name: "Schoola SRC",
     description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "A school management system that manages k-12 schools activities from student enrollment to result compilation",
     tags: [
       {
         name: "nextjs",
@@ -256,9 +232,53 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: tripguide,
+    image: schoola_src,
     source_code_link: "https://github.com/",
+    project_link: "https://schoola-src.netlify.app/",
+  },
+  {
+    name: "Schoola Landing Page",
+    description: "The main landing page of the Schoola company",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "supabase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "css",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: schoola_landing,
+    source_code_link: "https://github.com/",
+    project_link: "https://schoola.app/",
+  },
+  {
+    name: "Schoola LMS",
+    description:
+      "The learning management web application of the schoola edtech company",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "supabase",
+        color: "green-text-gradient",
+      },
+      {
+        name: "css",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: schoola_lms,
+    source_code_link: "https://github.com/",
+    project_link: "https://schoola.app/",
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, experiences, projects };

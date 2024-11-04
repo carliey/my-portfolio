@@ -1,8 +1,4 @@
 import {
-  mobile,
-  backend,
-  creator,
-  web,
   javascript,
   typescript,
   html,
@@ -17,6 +13,11 @@ import {
   docker,
   threejs,
 } from "../assets";
+
+import react from "../assets/react.png";
+import reactnative from "../assets/reactnative.png";
+import express from "../assets/express.png";
+import teach from "../assets/teach.png";
 
 import naf_awc from "../assets/projects/naf_awc.png";
 import schoola_src from "../assets/projects/schoola_src.png";
@@ -47,19 +48,19 @@ export const navLinks = [
 const services = [
   {
     title: "Reactjs Developer",
-    icon: web,
+    icon: react,
   },
   {
     title: "React Native Developer",
-    icon: mobile,
+    icon: reactnative,
   },
   {
     title: "ExpressJs Developer",
-    icon: backend,
+    icon: express,
   },
   {
     title: "Tutor",
-    icon: creator,
+    icon: teach,
   },
 ];
 

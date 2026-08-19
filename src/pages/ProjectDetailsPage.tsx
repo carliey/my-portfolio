@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "../components";
 import { projects } from "../constants";
-import { ExternalLinkIcon, GitHubIcon } from "../components/SocialIcons";
+import { ExternalLinkIcon } from "../components/SocialIcons";
 
 const ProjectDetailsPage = () => {
   const { id } = useParams<{ id: string }>();

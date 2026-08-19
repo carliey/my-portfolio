@@ -14,7 +14,6 @@ import {
   threejs,
   mobile,
   backend,
-  simplifi_app,
   travel_plus,
   dinki_app,
   simplifi_1,

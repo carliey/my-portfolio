@@ -4,12 +4,13 @@ import { motion } from "framer-motion";
 import { Navbar } from "../components";
 import { projects } from "../constants";
 import { styles } from "../style";
-import { ExternalLinkIcon, GitHubIcon } from "../components/SocialIcons";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState<"all" | "web" | "mobile">("all");
+  const [activeFilter, setActiveFilter] = useState<"all" | "web" | "mobile">(
+    "all"
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -50,7 +51,8 @@ const ProjectsPage = () => {
           <p className={styles.sectionSubText}>Portfolio Showcase</p>
           <h1 className={styles.sectionHeadText}>All Projects.</h1>
           <p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-            Explore web and mobile applications delivered across ed-tech, finance, logistics, and enterprise domains.
+            Explore web and mobile applications delivered across ed-tech,
+            finance, logistics, and enterprise domains.
           </p>
         </motion.div>
 
@@ -123,27 +125,6 @@ const ProjectsPage = () => {
                     className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-
-                  <div className="absolute top-3 right-3 flex justify-end gap-2 z-10" onClick={(e) => e.stopPropagation()}>
-                    {project.source_code_link && (
-                      <button
-                        onClick={() => window.open(project.source_code_link, "_blank")}
-                        title="View Source Code"
-                        className="black-gradient w-9 h-9 rounded-full flex justify-center items-center cursor-pointer border border-white/20 hover:scale-110 hover:border-[#915EFF] transition-all"
-                      >
-                        <GitHubIcon className="w-4 h-4 text-white" />
-                      </button>
-                    )}
-                    {project.project_link && (
-                      <button
-                        onClick={() => window.open(project.project_link, "_blank")}
-                        title="Visit Live Application"
-                        className="black-gradient w-9 h-9 rounded-full flex justify-center items-center cursor-pointer border border-white/20 hover:scale-110 hover:border-[#00cea8] transition-all"
-                      >
-                        <ExternalLinkIcon className="w-4 h-4 text-white" />
-                      </button>
-                    )}
-                  </div>
                 </div>
 
                 <div className="mt-4">
@@ -163,23 +144,14 @@ const ProjectsPage = () => {
               </div>
 
               <div>
-                <div className="mt-4 flex flex-wrap gap-2 pt-3 border-t border-white/5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={`${project.name}-${tag.name}`}
-                      className={`text-[12px] font-medium px-2.5 py-0.5 rounded-md bg-black-100/50 border border-white/5 ${tag.color}`}
-                    >
-                      #{tag.name}
-                    </span>
-                  ))}
-                </div>
-
                 <button
                   onClick={() => navigate(`/projects/${project.id}`)}
-                  className="mt-4 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
+                  className="mt-6 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
                 >
                   <span>View Project Details</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  <span className="group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
                 </button>
               </div>
             </motion.div>
@@ -188,7 +160,9 @@ const ProjectsPage = () => {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-20 bg-tertiary/30 rounded-3xl border border-white/10 mt-10">
-            <h3 className="text-white text-xl font-bold">No matching projects found</h3>
+            <h3 className="text-white text-xl font-bold">
+              No matching projects found
+            </h3>
             <p className="text-secondary text-sm mt-2">
               Try adjusting your search query or selecting a different filter.
             </p>

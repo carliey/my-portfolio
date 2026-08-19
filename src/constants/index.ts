@@ -17,6 +17,10 @@ import {
   simplifi_app,
   travel_plus,
   dinki_app,
+  simplifi_1,
+  simplifi_2,
+  simplifi_3,
+  simplifi_4,
 } from "../assets";
 
 import react from "../assets/react.png";
@@ -37,9 +41,9 @@ import krpc from "../assets/company/krpc.png";
 
 export const personalInfo = {
   name: "Muhammed Ladan",
-  role: "Software Developer (React, React Native, Node.js)",
+  role: "Software Engineer (React, React Native, Node.js)",
   summary:
-    "Software developer with 4+ years of experience building scalable web and mobile applications using React, React Native, and Node.js. Proven track record leading frontend development, mentoring developers, and delivering production-grade systems including LMS platforms and AI-powered tools.",
+    "Software Engineer with 4+ years of experience building scalable web and mobile applications using React, React Native, and Node.js. Proven track record leading frontend development, mentoring developers, and delivering production-grade systems including LMS platforms and AI-powered tools.",
   email: "mdcarliey@gmail.com",
   phone: "+2347036215851",
   location: "Nigeria",
@@ -173,7 +177,7 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Software Developer & Senior Partner",
+    title: "Software Engineer & Senior Partner",
     company_name: "IT CENTRAL LIMITED",
     icon: it_central,
     iconBg: "#0E5FAF",
@@ -279,9 +283,7 @@ const projects: ProjectItem[] = [
       "Empowers 3,000+ teachers across schools",
       "Seamless integration with Schoola Edtech ecosystem",
     ],
-    tags: [
-      { name: "web-app", color: "blue-text-gradient" },
-    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: schoola_curri,
     screenshots: [schoola_curri, schoola_landing],
     source_code_link: "",
@@ -303,11 +305,9 @@ const projects: ProjectItem[] = [
       "Instant peer-to-peer transfers & payment receipts",
       "Managed Play Store and App Store release pipelines",
     ],
-    tags: [
-      { name: "mobile-app", color: "green-text-gradient" },
-    ],
-    image: simplifi_app,
-    screenshots: [simplifi_app],
+    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+    image: simplifi_1,
+    screenshots: [simplifi_1, simplifi_2, simplifi_3, simplifi_4],
     source_code_link: "",
     project_link: "",
   },
@@ -327,9 +327,7 @@ const projects: ProjectItem[] = [
       "Push notifications for trip status updates",
       "Managed Play Store releases & production stability",
     ],
-    tags: [
-      { name: "mobile-app", color: "green-text-gradient" },
-    ],
+    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
     image: travel_plus,
     screenshots: [travel_plus],
     source_code_link: "",
@@ -351,9 +349,7 @@ const projects: ProjectItem[] = [
       "Play Store release management & continuous delivery",
       "Comprehensive unit & integration test coverage",
     ],
-    tags: [
-      { name: "mobile-app", color: "green-text-gradient" },
-    ],
+    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
     image: dinki_app,
     screenshots: [dinki_app],
     source_code_link: "",
@@ -375,9 +371,7 @@ const projects: ProjectItem[] = [
       "Responsive user interface & state management",
       "High performance & enterprise-grade security standards",
     ],
-    tags: [
-      { name: "web-app", color: "blue-text-gradient" },
-    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: naf_awc,
     screenshots: [naf_awc],
     source_code_link: "https://github.com/itcentralng/awc-portal",
@@ -399,9 +393,7 @@ const projects: ProjectItem[] = [
       "High-speed data grid & multi-level search filters",
       "Synchronized state management & clean web UI",
     ],
-    tags: [
-      { name: "web-app", color: "blue-text-gradient" },
-    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: schoola_src,
     screenshots: [schoola_src, schoola_lms],
     source_code_link: "https://github.com/schoolaltd/web-src",
@@ -422,9 +414,7 @@ const projects: ProjectItem[] = [
       "Interactive solution demos & lead capture forms",
       "Fast page load speed & modern visual aesthetic",
     ],
-    tags: [
-      { name: "web-app", color: "blue-text-gradient" },
-    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: schoola_landing,
     screenshots: [schoola_landing],
     source_code_link: "https://github.com/schoolaltd/web-schoola-website",
@@ -445,9 +435,7 @@ const projects: ProjectItem[] = [
       "Automated quiz scoring & student performance analytics",
       "Modular web interface & frontend state management",
     ],
-    tags: [
-      { name: "web-app", color: "blue-text-gradient" },
-    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: schoola_lms,
     screenshots: [schoola_lms],
     source_code_link: "https://github.com/schoolaltd/web-src",
@@ -455,9 +443,4 @@ const projects: ProjectItem[] = [
   },
 ];
 
-export {
-  services,
-  technologies,
-  experiences,
-  projects,
-};
+export { services, technologies, experiences, projects };

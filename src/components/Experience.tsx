@@ -36,9 +36,7 @@ const ExperienceCard = ({ experience }: any) => {
         <h3 className="text-white text-[22px] font-bold tracking-wide">
           {experience.title}
         </h3>
-        <p
-          className="text-[#00cea8] text-[15px] font-semibold tracking-wider mt-1"
-        >
+        <p className="text-[#00cea8] text-[15px] font-semibold tracking-wider mt-1">
           {experience.company_name}
         </p>
       </div>
@@ -61,12 +59,10 @@ const Experience = () => {
   return (
     <>
       <motion.div variants={textVariant(0.1)}>
-        <p className={`${styles.sectionSubText}`}>
+        {/* <p className={`${styles.sectionSubText}`}>
           What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText}`}>
-          Work Experience.
-        </h2>
+        </p> */}
+        <h2 className={`${styles.sectionHeadText}`}>Work Experience.</h2>
       </motion.div>
 
       <div className="mt-12 flex flex-col">

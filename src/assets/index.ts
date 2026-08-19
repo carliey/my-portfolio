@@ -34,6 +34,11 @@ import simplifi_app from "./projects/simplifi_app.svg";
 import travel_plus from "./projects/travel_plus.svg";
 import dinki_app from "./projects/dinki_app.svg";
 
+import simplifi_1 from "./projects/simplifi/simplfi screeshot app.png";
+import simplifi_2 from "./projects/simplifi/simplfi screeshot app (1).png";
+import simplifi_3 from "./projects/simplifi/simplfi screeshot app (2).png";
+import simplifi_4 from "./projects/simplifi/simplfi screeshot app (3).png";
+
 export {
   logo,
   backend,
@@ -66,4 +71,8 @@ export {
   simplifi_app,
   travel_plus,
   dinki_app,
+  simplifi_1,
+  simplifi_2,
+  simplifi_3,
+  simplifi_4,
 };

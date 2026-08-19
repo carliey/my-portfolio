@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "../components";
@@ -8,19 +8,25 @@ import { ExternalLinkIcon, GitHubIcon } from "../components/SocialIcons";
 const ProjectDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
+  const [activeImage, setActiveImage] = useState<string>("");
 
   const projectIndex = projects.findIndex((p) => p.id === id);
   const project = projects[projectIndex];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (project) {
+      setActiveImage(project.image);
+    }
+  }, [id, project]);
 
   if (!project) {
     return (
       <div className="bg-primary min-h-screen flex flex-col justify-center items-center px-6 text-center">
         <h2 className="text-white text-3xl font-bold">Project Not Found</h2>
-        <p className="text-secondary mt-2">The requested project details page could not be located.</p>
+        <p className="text-secondary mt-2">
+          The requested project details page could not be located.
+        </p>
         <button
           onClick={() => navigate("/projects")}
           className="mt-6 px-6 py-3 rounded-xl bg-[#915EFF] text-white font-bold"
@@ -31,7 +37,8 @@ const ProjectDetailsPage = () => {
     );
   }
 
-  const prevProject = projects[projectIndex - 1] || projects[projects.length - 1];
+  const prevProject =
+    projects[projectIndex - 1] || projects[projects.length - 1];
   const nextProject = projects[projectIndex + 1] || projects[0];
 
   return (
@@ -89,17 +96,7 @@ const ProjectDetailsPage = () => {
                 <span>Visit Live Application</span>
               </a>
             )}
-            {project.source_code_link && (
-              <a
-                href={project.source_code_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-tertiary hover:bg-[#232631] text-white border border-white/10 font-bold px-7 py-3.5 rounded-xl shadow-md hover:scale-105 transition-all flex items-center gap-2.5"
-              >
-                <GitHubIcon className="w-5 h-5" />
-                <span>View Source Code</span>
-              </a>
-            )}
+
             <button
               onClick={() => navigate("/projects")}
               className="bg-black-100 hover:bg-tertiary text-secondary hover:text-white border border-white/10 px-6 py-3.5 rounded-xl font-medium transition-all"
@@ -114,13 +111,39 @@ const ProjectDetailsPage = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-12 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-tertiary p-3 sm:p-4"
+          className="mt-12 rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-tertiary p-3 sm:p-4 space-y-4"
         >
           <img
-            src={project.image}
+            src={activeImage || project.image}
             alt={project.name}
-            className="w-full max-h-[550px] object-cover rounded-2xl"
+            className="w-full max-h-[550px] object-contain rounded-2xl bg-black-100/50"
           />
+
+          {/* Screenshots Gallery Thumbnails */}
+          {project.screenshots && project.screenshots.length > 1 && (
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <span className="text-xs font-bold text-secondary uppercase tracking-wider mr-2">
+                Screenshots Gallery:
+              </span>
+              {project.screenshots.map((imgSrc, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveImage(imgSrc)}
+                  className={`relative w-20 h-14 rounded-xl overflow-hidden border-2 transition-all ${
+                    (activeImage || project.image) === imgSrc
+                      ? "border-[#915EFF] scale-105 shadow-md shadow-[#915EFF]/40"
+                      : "border-white/10 hover:border-white/40 opacity-70 hover:opacity-100"
+                  }`}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={`Screenshot ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </motion.div>
 
         {/* Detailed Breakdown Grid */}
@@ -178,12 +201,18 @@ const ProjectDetailsPage = () => {
 
               <div className="pt-4 border-t border-white/10 space-y-3">
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-secondary font-medium">Platform Category</span>
-                  <span className="text-white font-semibold">{project.category}</span>
+                  <span className="text-secondary font-medium">
+                    Platform Category
+                  </span>
+                  <span className="text-white font-semibold">
+                    {project.category}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
                   <span className="text-secondary font-medium">Status</span>
-                  <span className="text-[#00cea8] font-semibold">Production Ready</span>
+                  <span className="text-[#00cea8] font-semibold">
+                    Production Ready
+                  </span>
                 </div>
               </div>
             </div>

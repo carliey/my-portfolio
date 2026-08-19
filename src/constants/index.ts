@@ -48,31 +48,31 @@ export const personalInfo = {
 export const socialLinks = [
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/muhammed-ladan",
+    url: "https://www.linkedin.com/in/muhammed-ladan-1a1086173/",
     platform: "linkedin",
     color: "#0A66C2",
   },
   {
     name: "GitHub",
-    url: "https://github.com/mdcarliey",
+    url: "https://github.com/carliey",
     platform: "github",
     color: "#ffffff",
   },
   {
     name: "TikTok",
-    url: "https://www.tiktok.com/@mdcarliey",
+    url: "https://www.tiktok.com/@carliey_",
     platform: "tiktok",
     color: "#ff0050",
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/mdcarliey",
+    url: "https://www.instagram.com/carliey_",
     platform: "instagram",
     color: "#E4405F",
   },
   {
     name: "YouTube",
-    url: "https://www.youtube.com/@mdcarliey",
+    url: "https://www.youtube.com/@carliey",
     platform: "youtube",
     color: "#FF0000",
   },

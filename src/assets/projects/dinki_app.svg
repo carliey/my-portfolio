@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#120c1f"/>
+      <stop offset="50%" stop-color="#1b122e"/>
+      <stop offset="100%" stop-color="#0a0612"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#bf61ff"/>
+      <stop offset="100%" stop-color="#915eff"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="500" rx="20" fill="url(#bgGrad3)"/>
+  <circle cx="350" cy="250" r="170" fill="#bf61ff" opacity="0.12" filter="blur(40px)"/>
+  
+  <!-- App Mockup Shell -->
+  <rect x="250" y="40" width="300" height="420" rx="30" fill="#171026" stroke="#372854" stroke-width="4"/>
+  <rect x="340" y="52" width="120" height="18" rx="9" fill="#050816"/>
+  
+  <!-- Dashboard Widgets -->
+  <text x="275" y="98" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold">Dinki App Mobile</text>
+  <text x="275" y="116" fill="#aaa6c3" font-family="sans-serif" font-size="11">Cross-platform REST API Platform</text>
+  
+  <!-- Feature Grid -->
+  <rect x="275" y="135" width="115" height="90" rx="12" fill="#221738" stroke="#3b2b5c" stroke-width="1"/>
+  <circle cx="305" cy="165" r="14" fill="#915eff" opacity="0.2"/>
+  <text x="305" y="170" fill="#bf61ff" font-family="sans-serif" font-size="14" text-anchor="middle">⚡</text>
+  <text x="290" y="198" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">20+ Features</text>
+  <text x="290" y="212" fill="#aaa6c3" font-family="sans-serif" font-size="10">Active Releases</text>
+  
+  <rect x="410" y="135" width="115" height="90" rx="12" fill="#221738" stroke="#3b2b5c" stroke-width="1"/>
+  <circle cx="440" cy="165" r="14" fill="#00cea8" opacity="0.2"/>
+  <text x="440" y="170" fill="#00cea8" font-family="sans-serif" font-size="14" text-anchor="middle">☁</text>
+  <text x="425" y="198" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold">AWS CI/CD</text>
+  <text x="425" y="212" fill="#aaa6c3" font-family="sans-serif" font-size="10">Automated Pipeline</text>
+  
+  <!-- Backend Metrics Graph -->
+  <rect x="275" y="240" width="250" height="180" rx="14" fill="#1f1433"/>
+  <text x="295" y="268" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">API & Deployment Health</text>
+  
+  <path d="M 295 380 Q 330 330 365 350 T 435 300 T 505 320" fill="none" stroke="url(#purpleGlow)" stroke-width="3"/>
+  <circle cx="505" cy="320" r="5" fill="#bf61ff"/>
+  
+  <rect x="295" y="390" width="210" height="16" rx="4" fill="#2d1c4a"/>
+  <rect x="295" y="390" width="170" height="16" rx="4" fill="url(#purpleGlow)"/>
+  <text x="400" y="402" fill="#ffffff" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Node.js Express Engine 98% Uptime</text>
+</svg>

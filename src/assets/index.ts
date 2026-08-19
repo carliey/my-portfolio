@@ -30,6 +30,10 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
+import simplifi_app from "./projects/simplifi_app.svg";
+import travel_plus from "./projects/travel_plus.svg";
+import dinki_app from "./projects/dinki_app.svg";
+
 export {
   logo,
   backend,
@@ -59,4 +63,7 @@ export {
   carrent,
   jobit,
   tripguide,
+  simplifi_app,
+  travel_plus,
+  dinki_app,
 };

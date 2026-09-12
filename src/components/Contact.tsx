@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { personalInfo, socialLinks } from "../constants";
+import { track } from "../lib/analytics";
 import {
   TikTokIcon,
   LinkedInIcon,
@@ -45,9 +46,13 @@ const Contact = () => {
 
         <div className="text-center max-w-2xl mx-auto">
           <p className={styles.sectionSubText}>Get In Touch</p>
-          <h2 className={styles.sectionHeadText}>Let's Connect & Collaborate.</h2>
+          <h2 className={styles.sectionHeadText}>
+            Let's Connect & Collaborate.
+          </h2>
           <p className="text-secondary text-[16px] mt-4 leading-relaxed">
-            I'm always open to discussing web & mobile development projects, technical leadership, consulting, or general inquiries. Reach out to me via any of the channels below!
+            I'm always open to discussing web & mobile development projects,
+            technical leadership, consulting, or general inquiries. Reach out to
+            me via any of the channels below!
           </p>
         </div>
 
@@ -55,27 +60,37 @@ const Contact = () => {
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
           <a
             href={`mailto:${personalInfo.email}`}
+            onClick={() => track("contact_click", { method: "email" })}
             className="flex items-center gap-4 p-5 rounded-2xl bg-tertiary border border-white/5 hover:border-[#915EFF] hover:bg-tertiary/90 transition-all duration-300 group shadow-md"
           >
             <div className="w-14 h-14 rounded-2xl bg-[#915EFF]/20 flex items-center justify-center text-[#915EFF] group-hover:scale-110 transition-transform">
               <EmailIcon className="w-7 h-7" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-secondary font-medium">Direct Email</span>
-              <p className="text-white font-bold text-base mt-0.5">{personalInfo.email}</p>
+              <span className="text-xs text-secondary font-medium">
+                Direct Email
+              </span>
+              <p className="text-white font-bold text-base mt-0.5">
+                {personalInfo.email}
+              </p>
             </div>
           </a>
 
           <a
             href={`tel:${personalInfo.phone}`}
+            onClick={() => track("contact_click", { method: "phone" })}
             className="flex items-center gap-4 p-5 rounded-2xl bg-tertiary border border-white/5 hover:border-[#00cea8] hover:bg-tertiary/90 transition-all duration-300 group shadow-md"
           >
             <div className="w-14 h-14 rounded-2xl bg-[#00cea8]/20 flex items-center justify-center text-[#00cea8] group-hover:scale-110 transition-transform">
               <PhoneIcon className="w-7 h-7" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-secondary font-medium">Phone & WhatsApp</span>
-              <p className="text-white font-bold text-base mt-0.5">{personalInfo.phone}</p>
+              <span className="text-xs text-secondary font-medium">
+                Phone & WhatsApp
+              </span>
+              <p className="text-white font-bold text-base mt-0.5">
+                {personalInfo.phone}
+              </p>
             </div>
           </a>
         </div>
@@ -92,15 +107,26 @@ const Contact = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  track("social_click", {
+                    network: social.name,
+                    source: "contact",
+                  })
+                }
                 className="flex flex-col items-center justify-center gap-3 p-5 rounded-2xl bg-tertiary border border-white/5 hover:border-[#915EFF] hover:bg-tertiary/90 text-white transition-all duration-300 group shadow-md hover:-translate-y-1"
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
-                  style={{ backgroundColor: `${social.color}20`, color: social.color }}
+                  style={{
+                    backgroundColor: `${social.color}20`,
+                    color: social.color,
+                  }}
                 >
                   {getSocialIcon(social.platform)}
                 </div>
-                <span className="text-sm font-semibold tracking-wide">{social.name}</span>
+                <span className="text-sm font-semibold tracking-wide">
+                  {social.name}
+                </span>
               </a>
             ))}
           </div>

@@ -1,6 +1,7 @@
 import { styles } from "../style";
 import { motion } from "framer-motion";
 import TechTicker from "./TechTicker";
+import { track } from "../lib/analytics";
 
 const Hero = () => {
   return (
@@ -48,12 +49,16 @@ const Hero = () => {
           >
             <a
               href="#work"
+              onClick={() =>
+                track("cta_click", { label: "explore_experience" })
+              }
               className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/25 transition-colors"
             >
               Explore Experience
             </a>
             <a
               href="#contact"
+              onClick={() => track("cta_click", { label: "get_in_touch" })}
               className="bg-tertiary hover:bg-[#232631] text-white border border-white/10 font-bold px-7 py-3.5 rounded-xl shadow-md transition-all hover:scale-105"
             >
               Get In Touch

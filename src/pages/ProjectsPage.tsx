@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "../components";
 import { projects } from "../constants";
 import { styles } from "../style";
+import { track } from "../lib/analytics";
 
 const ProjectsPage = () => {
   const navigate = useNavigate();
@@ -15,6 +16,22 @@ const ProjectsPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Debounced so typing doesn't fire an event per keystroke.
+  useEffect(() => {
+    const term = searchTerm.trim();
+    if (term.length < 3) return;
+
+    const timeout = setTimeout(() => {
+      const matches = projects.filter((project) =>
+        project.name.toLowerCase().includes(term.toLowerCase()),
+      ).length;
+
+      track("search_used", { term, results: matches });
+    }, 800);
+
+    return () => clearTimeout(timeout);
+  }, [searchTerm]);
 
   const filteredProjects = projects.filter((project) => {
     const matchesSearch =
@@ -30,6 +47,15 @@ const ProjectsPage = () => {
 
   const webCount = projects.filter((p) => p.type === "web").length;
   const mobileCount = projects.filter((p) => p.type === "mobile").length;
+
+  const openProject = (project: (typeof projects)[number]) => {
+    track("project_card_click", {
+      id: project.id,
+      name: project.name,
+      source: "all_projects",
+    });
+    navigate(`/projects/${project.id}`);
+  };
 
   return (
     <div className="relative z-0 bg-primary min-h-screen">
@@ -61,7 +87,10 @@ const ProjectsPage = () => {
           {/* Category Filter Tabs: All, Web, Mobile */}
           <div className="flex items-center gap-2">
             <button
-              onClick={() => setActiveFilter("all")}
+              onClick={() => {
+                setActiveFilter("all");
+                track("filter_used", { filter: "all" });
+              }}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "all"
                   ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
@@ -71,7 +100,10 @@ const ProjectsPage = () => {
               All Projects ({projects.length})
             </button>
             <button
-              onClick={() => setActiveFilter("web")}
+              onClick={() => {
+                setActiveFilter("web");
+                track("filter_used", { filter: "web" });
+              }}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "web"
                   ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
@@ -81,7 +113,10 @@ const ProjectsPage = () => {
               Web Apps ({webCount})
             </button>
             <button
-              onClick={() => setActiveFilter("mobile")}
+              onClick={() => {
+                setActiveFilter("mobile");
+                track("filter_used", { filter: "mobile" });
+              }}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "mobile"
                   ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
@@ -116,7 +151,7 @@ const ProjectsPage = () => {
             >
               <div>
                 <div
-                  onClick={() => navigate(`/projects/${project.id}`)}
+                  onClick={() => openProject(project)}
                   className="relative w-full h-[220px] rounded-2xl overflow-hidden group cursor-pointer"
                 >
                   <img
@@ -132,7 +167,7 @@ const ProjectsPage = () => {
                     {project.category}
                   </span>
                   <h3
-                    onClick={() => navigate(`/projects/${project.id}`)}
+                    onClick={() => openProject(project)}
                     className="text-white font-bold text-[20px] tracking-wide mt-1 hover:text-[#915EFF] cursor-pointer transition-colors"
                   >
                     {project.name}
@@ -145,7 +180,7 @@ const ProjectsPage = () => {
 
               <div>
                 <button
-                  onClick={() => navigate(`/projects/${project.id}`)}
+                  onClick={() => openProject(project)}
                   className="mt-6 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
                 >
                   <span>View Project Details</span>

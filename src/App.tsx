@@ -1,8 +1,11 @@
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { About, Contact, Experience, Hero, Navbar, Works } from "./components";
 import { navLinks, personalInfo, socialLinks } from "./constants";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
+import { initAnalytics, track } from "./lib/analytics";
+import usePageView from "./hooks/usePageView";
 import {
   TikTokIcon,
   LinkedInIcon,
@@ -10,6 +13,12 @@ import {
   YouTubeIcon,
   GitHubIcon,
 } from "./components/SocialIcons";
+
+/** Captures a pageview for every client-side route change. */
+const AnalyticsTracker = () => {
+  usePageView();
+  return null;
+};
 
 const LandingPage = () => {
   const getSocialIcon = (platform: string) => {
@@ -34,7 +43,12 @@ const LandingPage = () => {
       {/* Floating Side Dot Navigation */}
       <div className="fixed top-[50%] -translate-y-1/2 right-4 z-40 hidden md:flex flex-col gap-4 bg-tertiary/40 backdrop-blur-md p-2.5 rounded-full border border-white/10 shadow-lg">
         {navLinks.map((nav) => (
-          <a key={nav.id} href={`#${nav.id}`} title={nav.title} className="group relative flex items-center justify-center">
+          <a
+            key={nav.id}
+            href={`#${nav.id}`}
+            title={nav.title}
+            className="group relative flex items-center justify-center"
+          >
             <div className="w-3 h-3 bg-secondary/50 group-hover:bg-[#915EFF] group-hover:scale-125 rounded-full transition-all duration-300" />
             <span className="absolute right-7 px-2.5 py-1 bg-black-100/90 text-white text-xs font-medium rounded-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none border border-white/10 shadow-md">
               {nav.title}
@@ -63,7 +77,11 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <p className="text-secondary text-sm font-medium text-center sm:text-left">
-              © {new Date().getFullYear()} <span className="text-white font-semibold">{personalInfo.name}</span>. All rights reserved.
+              © {new Date().getFullYear()}{" "}
+              <span className="text-white font-semibold">
+                {personalInfo.name}
+              </span>
+              . All rights reserved.
             </p>
           </div>
 
@@ -75,6 +93,12 @@ const LandingPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={social.name}
+                onClick={() =>
+                  track("social_click", {
+                    network: social.name,
+                    source: "footer",
+                  })
+                }
                 className="w-8 h-8 rounded-full bg-tertiary flex items-center justify-center text-secondary hover:text-white hover:bg-[#915EFF] transition-all duration-300 hover:scale-110"
               >
                 {getSocialIcon(social.platform)}
@@ -88,8 +112,13 @@ const LandingPage = () => {
 };
 
 function App() {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <BrowserRouter>
+      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/projects" element={<ProjectsPage />} />

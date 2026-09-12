@@ -395,8 +395,8 @@ const projects: ProjectItem[] = [
     tags: [{ name: "web-app", color: "blue-text-gradient" }],
     image: schoola_src,
     screenshots: [schoola_src, schoola_lms],
-    source_code_link: "https://github.com/schoolaltd/web-src",
-    project_link: "https://schoola-src.netlify.app/",
+    source_code_link: "",
+    project_link: "https://demo.schoola.app",
   },
   {
     id: "schoola-landing",

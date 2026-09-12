@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
+import { track } from "../lib/analytics";
 
 type Props = {
   index: number;
@@ -15,12 +16,17 @@ type Props = {
 const ProjectCard = ({ id, name, category, description, image }: Props) => {
   const navigate = useNavigate();
 
+  const openProject = () => {
+    track("project_card_click", { id, name, source: "home_featured" });
+    navigate(`/projects/${id}`);
+  };
+
   return (
     <div>
       <div className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full border border-white/10 hover:border-[#915EFF]/50 hover:shadow-xl hover:shadow-[#915EFF]/10 transition-all duration-300 flex flex-col justify-between h-full">
         <div>
           <div
-            onClick={() => navigate(`/projects/${id}`)}
+            onClick={openProject}
             className="relative w-full h-[230px] rounded-2xl overflow-hidden group cursor-pointer"
           >
             <img
@@ -37,7 +43,7 @@ const ProjectCard = ({ id, name, category, description, image }: Props) => {
               {category}
             </span>
             <h3
-              onClick={() => navigate(`/projects/${id}`)}
+              onClick={openProject}
               className="text-white font-bold text-[22px] tracking-wide mt-1 hover:text-[#915EFF] cursor-pointer transition-colors"
             >
               {name}
@@ -50,7 +56,7 @@ const ProjectCard = ({ id, name, category, description, image }: Props) => {
 
         <div>
           <button
-            onClick={() => navigate(`/projects/${id}`)}
+            onClick={openProject}
             className="mt-6 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
           >
             <span>View Full Details</span>
@@ -86,6 +92,7 @@ const Works = () => {
         <div className="mt-16 flex justify-center">
           <button
             onClick={() => {
+              track("cta_click", { label: "view_all_projects" });
               navigate("/projects");
               window.scrollTo(0, 0);
             }}

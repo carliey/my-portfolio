@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Navbar } from "../components";
 import { projects } from "../constants";
 import { ExternalLinkIcon } from "../components/SocialIcons";
+import { track } from "../lib/analytics";
 
 const ProjectDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,6 +18,11 @@ const ProjectDetailsPage = () => {
     window.scrollTo(0, 0);
     if (project) {
       setActiveImage(project.image);
+      track("project_view", {
+        id: project.id,
+        name: project.name,
+        category: project.category,
+      });
     }
   }, [id, project]);
 
@@ -90,6 +96,13 @@ const ProjectDetailsPage = () => {
                 href={project.project_link}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  track("outbound_click", {
+                    target: "live_app",
+                    project: project.id,
+                    url: project.project_link,
+                  })
+                }
                 className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-2.5"
               >
                 <ExternalLinkIcon className="w-5 h-5" />

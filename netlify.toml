@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA fallback: without this, deep links such as /projects/travelplus 404
+# because Netlify has no matching file on disk.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Netlify exposes the build context here so the client bundle can tell
+# production apart from previews (used to keep analytics data clean).
+[context.production.environment]
+  VITE_CONTEXT = "production"
+
+[context.deploy-preview.environment]
+  VITE_CONTEXT = "deploy-preview"
+
+[context.branch-deploy.environment]
+  VITE_CONTEXT = "branch-deploy"

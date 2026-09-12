@@ -18,8 +18,8 @@ const ServiceCard = ({ title, icon }: Props) => (
       speed: 400,
     }}
   >
-    <div className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:shadow-[#915EFF]/25 transition-all duration-300 group">
-      <div className="bg-tertiary/90 backdrop-blur-md rounded-[20px] py-6 px-8 min-h-[260px] flex justify-evenly items-center flex-col border border-white/5 group-hover:border-[#915EFF]/30 transition-colors">
+    <div className="w-full rounded-[20px] border border-white/10 shadow-card group hover:border-[#915EFF]/40 hover:shadow-[#915EFF]/15 transition-all duration-300">
+      <div className="bg-tertiary/90 backdrop-blur-md rounded-[19px] py-6 px-8 min-h-[260px] flex justify-evenly items-center flex-col">
         <div className="w-20 h-20 rounded-2xl bg-[#050816]/70 flex items-center justify-center p-4 border border-white/10 group-hover:scale-110 transition-transform duration-300">
           <img
             src={icon}
@@ -42,19 +42,16 @@ const About = () => {
       value: "4+",
       label: "Years Experience",
       detail: "Building scalable web & mobile products",
-      gradient: "from-[#915EFF] to-[#00cea8]",
     },
     {
       value: "8+",
       label: "Client Projects Delivered",
       detail: "Cross-platform mobile & web apps",
-      gradient: "from-[#00cea8] to-[#56ccf2]",
     },
     {
       value: "45+",
       label: "Interns & Students Mentored",
       detail: "Bootcamps & technical leadership",
-      gradient: "from-[#56ccf2] to-[#915EFF]",
     },
   ];
 
@@ -74,9 +71,7 @@ const About = () => {
           >
             <div className="flex flex-col justify-between h-full">
               <div>
-                <h4
-                  className={`text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient}`}
-                >
+                <h4 className="text-4xl lg:text-5xl font-black text-[#915EFF]">
                   {stat.value}
                 </h4>
                 <p className="text-white text-base font-bold mt-2 tracking-wide">

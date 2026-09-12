@@ -42,7 +42,7 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#915EFF] to-[#00cea8] flex items-center justify-center font-bold text-white shadow-md shadow-[#915EFF]/30 group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 rounded-full bg-[#915EFF] flex items-center justify-center font-bold text-white shadow-md shadow-[#915EFF]/30 group-hover:scale-105 transition-transform">
             ML
           </div>
           <div className="flex flex-col">
@@ -86,7 +86,7 @@ const Navbar = () => {
           <div
             className={`${
               !toggle ? "hidden" : "flex"
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[200px] z-50 rounded-2xl border border-white/10 shadow-2xl flex-col gap-4`}
+            } p-6 bg-tertiary absolute top-20 right-0 mx-4 my-2 min-w-[200px] z-50 rounded-2xl border border-white/10 shadow-2xl flex-col gap-4`}
           >
             <ul className="list-none flex flex-col gap-4">
               {navLinks.map((nav) => (

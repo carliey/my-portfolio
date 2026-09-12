@@ -9,7 +9,7 @@ const ProjectsPage = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState<"all" | "web" | "mobile">(
-    "all"
+    "all",
   );
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const ProjectsPage = () => {
               onClick={() => setActiveFilter("all")}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "all"
-                  ? "bg-gradient-to-r from-[#915EFF] to-[#00cea8] text-white shadow-md shadow-[#915EFF]/20"
+                  ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
                   : "bg-black-100/60 text-secondary hover:text-white border border-white/5"
               }`}
             >
@@ -74,7 +74,7 @@ const ProjectsPage = () => {
               onClick={() => setActiveFilter("web")}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "web"
-                  ? "bg-gradient-to-r from-[#915EFF] to-[#00cea8] text-white shadow-md shadow-[#915EFF]/20"
+                  ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
                   : "bg-black-100/60 text-secondary hover:text-white border border-white/5"
               }`}
             >
@@ -84,7 +84,7 @@ const ProjectsPage = () => {
               onClick={() => setActiveFilter("mobile")}
               className={`px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
                 activeFilter === "mobile"
-                  ? "bg-gradient-to-r from-[#915EFF] to-[#00cea8] text-white shadow-md shadow-[#915EFF]/20"
+                  ? "bg-[#915EFF] text-white shadow-md shadow-[#915EFF]/20"
                   : "bg-black-100/60 text-secondary hover:text-white border border-white/5"
               }`}
             >

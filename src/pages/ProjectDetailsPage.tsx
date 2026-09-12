@@ -90,7 +90,7 @@ const ProjectDetailsPage = () => {
                 href={project.project_link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#915EFF] to-[#00cea8] hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-2.5"
+                className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-2.5"
               >
                 <ExternalLinkIcon className="w-5 h-5" />
                 <span>Visit Live Application</span>

@@ -89,7 +89,7 @@ const Works = () => {
               navigate("/projects");
               window.scrollTo(0, 0);
             }}
-            className="bg-gradient-to-r from-[#915EFF] to-[#00cea8] hover:opacity-90 text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-xl shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-3 group"
+            className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-xl shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-3 group"
           >
             <span>View All Projects ({projects.length})</span>
             <span className="group-hover:translate-x-1.5 transition-transform text-lg">

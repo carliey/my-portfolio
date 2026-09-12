@@ -11,7 +11,7 @@ const Hero = () => {
         {/* Purple vertical line indicator */}
         <div className="flex flex-col justify-center items-center mt-3">
           <div className="w-5 h-5 rounded-full bg-[#915EFF] shadow-lg shadow-[#915EFF]/50" />
-          <div className="w-1 sm:h-72 h-44 violet-gradient" />
+          <div className="w-1 sm:h-72 h-44 bg-[#915EFF]/40" />
         </div>
 
         <div className="flex-1 max-w-4xl">
@@ -48,7 +48,7 @@ const Hero = () => {
           >
             <a
               href="#work"
-              className="bg-gradient-to-r from-[#915EFF] to-[#804dee] hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/25 transition-all hover:scale-105"
+              className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/25 transition-colors"
             >
               Explore Experience
             </a>

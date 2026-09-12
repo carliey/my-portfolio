@@ -1,6 +1,4 @@
 import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
-import { fadeIn, textVariant } from "../utils/motion";
 import { styles } from "../style";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
@@ -11,7 +9,7 @@ interface Props {
   icon: any;
 }
 
-const ServiceCard = ({ index, title, icon }: Props) => (
+const ServiceCard = ({ title, icon }: Props) => (
   <Tilt
     className="xs:w-[250px] w-full"
     options={{
@@ -20,10 +18,7 @@ const ServiceCard = ({ index, title, icon }: Props) => (
       speed: 400,
     }}
   >
-    <motion.div
-      variants={fadeIn("right", "spring", index * 0.2, 0.75)}
-      className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:shadow-[#915EFF]/25 transition-all duration-300 group"
-    >
+    <div className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card hover:shadow-[#915EFF]/25 transition-all duration-300 group">
       <div className="bg-tertiary/90 backdrop-blur-md rounded-[20px] py-6 px-8 min-h-[260px] flex justify-evenly items-center flex-col border border-white/5 group-hover:border-[#915EFF]/30 transition-colors">
         <div className="w-20 h-20 rounded-2xl bg-[#050816]/70 flex items-center justify-center p-4 border border-white/10 group-hover:scale-110 transition-transform duration-300">
           <img
@@ -37,7 +32,7 @@ const ServiceCard = ({ index, title, icon }: Props) => (
           {title}
         </h3>
       </div>
-    </motion.div>
+    </div>
   </Tilt>
 );
 
@@ -65,16 +60,13 @@ const About = () => {
 
   return (
     <>
-      <motion.div variants={textVariant(0.1)}>
+      <div>
         <p className={styles.sectionSubText}>What I Bring</p>
         <h2 className={styles.sectionHeadText}>Engineering Impact.</h2>
-      </motion.div>
+      </div>
 
       {/* Achievement Stats Grid */}
-      <motion.div
-        variants={fadeIn("up", "spring", 0.2, 0.75)}
-        className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl"
-      >
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
         {stats.map((stat, i) => (
           <div
             key={i}
@@ -82,7 +74,9 @@ const About = () => {
           >
             <div className="flex flex-col justify-between h-full">
               <div>
-                <h4 className={`text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient}`}>
+                <h4
+                  className={`text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${stat.gradient}`}
+                >
                   {stat.value}
                 </h4>
                 <p className="text-white text-base font-bold mt-2 tracking-wide">
@@ -95,12 +89,12 @@ const About = () => {
             </div>
           </div>
         ))}
-      </motion.div>
+      </div>
 
-      <motion.div variants={textVariant(0.3)} className="mt-16">
+      <div className="mt-16">
         <p className={styles.sectionSubText}>Specialization</p>
         <h3 className="text-white font-bold text-2xl">Core Services.</h3>
-      </motion.div>
+      </div>
 
       {/* Services Grid */}
       <div className="mt-8 flex flex-wrap gap-8 justify-center sm:justify-start">

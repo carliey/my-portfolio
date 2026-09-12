@@ -1,9 +1,7 @@
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
-import { fadeIn, textVariant } from "../utils/motion";
 
 type Props = {
   index: number;
@@ -14,18 +12,11 @@ type Props = {
   image: string;
 };
 
-const ProjectCard = ({
-  index,
-  id,
-  name,
-  category,
-  description,
-  image,
-}: Props) => {
+const ProjectCard = ({ id, name, category, description, image }: Props) => {
   const navigate = useNavigate();
 
   return (
-    <motion.div variants={fadeIn("up", "spring", index * 0.15, 0.75)}>
+    <div>
       <div className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full border border-white/10 hover:border-[#915EFF]/50 hover:shadow-xl hover:shadow-[#915EFF]/10 transition-all duration-300 flex flex-col justify-between h-full">
         <div>
           <div
@@ -69,7 +60,7 @@ const ProjectCard = ({
           </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -80,9 +71,9 @@ const Works = () => {
 
   return (
     <>
-      <motion.div variants={textVariant(0.1)}>
-        <h2 className={`${styles.sectionHeadText}`}>Projects.</h2>
-      </motion.div>
+      <div>
+        <h2 className={`${styles.sectionHeadText}`}></h2>
+      </div>
 
       <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
         {featuredProjects.map((project, index) => (

@@ -38,6 +38,10 @@ import it_central from "../assets/company/it_central.png";
 import schoola from "../assets/company/schoola.svg";
 import krpc from "../assets/company/krpc.png";
 
+import lumi_ai from "../assets/projects/lumi/lumi_ai.png";
+
+import nestjs from "../assets/nest_logo.svg";
+
 export const personalInfo = {
   name: "Muhammed Ladan",
   role: "Software Engineer (React, React Native, Node.js)",
@@ -143,6 +147,10 @@ const technologies = [
   {
     name: "Node JS",
     icon: nodejs,
+  },
+  {
+    name: "Nest JS",
+    icon: nestjs,
   },
   {
     name: "MongoDB",
@@ -398,6 +406,27 @@ const projects: ProjectItem[] = [
     source_code_link: "",
     project_link: "https://demo.schoola.app",
   },
+  {
+    id: "lumi-ai",
+    name: "Lumi AI",
+    category: "Web Application",
+    type: "web",
+    description:
+      "Lumi AI is an interative Learning assistant that help student learn faster.",
+    longDescription:
+      "Lumi doesn't just teach—it guides your child through complex topics using short, focused lessons designed to deepen understanding and improve critical thinking. Every interaction is purposeful; no fluff, no wasted time. Just smart questions that help your child think sharper, solve faster, and learn consistently.Every child is unique, so why shouldn't every lesson ",
+    features: [
+      "Voice-based interactive learning assistant for students",
+      "Chat based AI tutor for personalized learning experiences",
+      "Image support for assistance with homework and visual learning",
+    ],
+    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+    image: lumi_ai,
+    screenshots: [lumi_ai],
+    source_code_link: "",
+    project_link: "https://lumiai.hipreponline.com/",
+  },
+
   {
     id: "schoola-landing",
     name: "Schoola Landing Page",

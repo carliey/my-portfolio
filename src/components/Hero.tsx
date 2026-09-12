@@ -22,8 +22,8 @@ const Hero = () => {
             transition={{ duration: 0.7 }}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#915EFF]/15 border border-[#915EFF]/30 text-[#00cea8] text-xs sm:text-sm font-semibold mb-4 shadow-sm">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00cea8] animate-ping" />
-              <span>Available for Web & Mobile Engineering</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#00cea8]" />
+              <span>Available for collaboration</span>
             </div>
 
             <h1 className={`${styles.heroHeadText} text-white`}>

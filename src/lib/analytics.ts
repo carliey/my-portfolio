@@ -16,6 +16,26 @@ const isEnabled =
 
 let initialized = false;
 
+const shortLinkSources = {
+  tiktok: { utm_source: "tiktok", utm_medium: "social" },
+  instagram: { utm_source: "instagram", utm_medium: "social" },
+  facebook: { utm_source: "facebook", utm_medium: "social" },
+  portfolio: { utm_source: "other_portfolio", utm_medium: "referral" },
+  cv: { utm_source: "cv", utm_medium: "referral" },
+  email: { utm_source: "personal_outreach", utm_medium: "email" },
+} as const;
+
+const getShortLinkCampaign = () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("utm_source")) return {};
+
+  const source = Object.entries(shortLinkSources).find(
+    ([key]) => params.has(key) && params.get(key) === "",
+  );
+
+  return source ? { ...source[1], utm_campaign: "portfolio" } : {};
+};
+
 export const initAnalytics = () => {
   if (!isEnabled || initialized || !apiKey) return;
   initialized = true;
@@ -35,9 +55,11 @@ export const initAnalytics = () => {
 export const trackPageView = (path: string) => {
   if (!isEnabled) return;
 
+  initAnalytics();
   posthog.capture("$pageview", {
     path,
-    $current_url: `${window.location.origin}${path}`,
+    ...getShortLinkCampaign(),
+    $current_url: window.location.href,
   });
 };
 

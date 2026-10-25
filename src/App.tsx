@@ -1,10 +1,9 @@
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { About, Contact, Experience, Hero, Navbar, Works } from "./components";
 import { navLinks, personalInfo, socialLinks } from "./constants";
 import ProjectsPage from "./pages/ProjectsPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import { initAnalytics, track } from "./lib/analytics";
+import { track } from "./lib/analytics";
 import usePageView from "./hooks/usePageView";
 import {
   TikTokIcon,
@@ -112,10 +111,6 @@ const LandingPage = () => {
 };
 
 function App() {
-  useEffect(() => {
-    initAnalytics();
-  }, []);
-
   return (
     <BrowserRouter>
       <AnalyticsTracker />

@@ -39,7 +39,7 @@ const TechTicker: React.FC = () => {
   const duplicatedSkills = [...skillsList, ...skillsList];
 
   return (
-    <div className="w-full py-6 bg-tertiary/40 border-y border-white/10 overflow-hidden backdrop-blur-md relative z-20">
+    <div aria-label="Technical skills" className="w-full py-6 bg-tertiary/40 border-y border-white/10 overflow-hidden backdrop-blur-md relative z-20">
       {/* <div className="max-w-7xl mx-auto px-6 mb-3 flex items-center justify-between">
         <span className="text-xs uppercase tracking-widest font-bold text-secondary">
           Featured Technical Skillset
@@ -58,12 +58,15 @@ const TechTicker: React.FC = () => {
           {duplicatedSkills.map((skill, index) => (
             <div
               key={`${skill.name}-${index}`}
+              aria-hidden={index >= skillsList.length}
               className="flex items-center gap-3 px-4 py-2 rounded-xl bg-tertiary/80 border border-white/10 shadow-sm hover:border-[#915EFF] transition-all hover:scale-105 shrink-0 group cursor-default"
             >
               <div className="w-6 h-6 rounded-lg bg-black-100/60 p-1 flex items-center justify-center border border-white/5">
                 <img
                   src={skill.icon}
-                  alt={skill.name}
+                  alt=""
+                  width={24}
+                  height={24}
                   className="w-full h-full object-contain"
                 />
               </div>

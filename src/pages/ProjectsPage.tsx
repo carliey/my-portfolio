@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "../components";
 import { projects } from "../constants";
@@ -48,13 +48,12 @@ const ProjectsPage = () => {
   const webCount = projects.filter((p) => p.type === "web").length;
   const mobileCount = projects.filter((p) => p.type === "mobile").length;
 
-  const openProject = (project: (typeof projects)[number]) => {
+  const trackProjectOpen = (project: (typeof projects)[number]) => {
     track("project_card_click", {
       id: project.id,
       name: project.name,
       source: "all_projects",
     });
-    navigate(`/projects/${project.id}`);
   };
 
   return (
@@ -131,9 +130,12 @@ const ProjectsPage = () => {
           <div className="relative flex-1 max-w-md">
             <input
               type="text"
+              aria-label="Search projects"
+              name="project-search"
+              autoComplete="off"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Search projects..."
+              placeholder="Search projects…"
               className="w-full bg-black-100/80 text-white placeholder:text-secondary px-4 py-2.5 rounded-xl outline-none border border-white/10 focus:border-[#915EFF] text-sm transition-colors"
             />
           </div>
@@ -150,27 +152,35 @@ const ProjectsPage = () => {
               className="bg-tertiary p-5 rounded-2xl border border-white/10 hover:border-[#915EFF]/50 hover:shadow-xl hover:shadow-[#915EFF]/10 transition-all duration-300 flex flex-col justify-between h-full"
             >
               <div>
-                <div
-                  onClick={() => openProject(project)}
-                  className="relative w-full h-[220px] rounded-2xl overflow-hidden group cursor-pointer"
+                <Link
+                  to={`/projects/${project.id}`}
+                  onClick={() => trackProjectOpen(project)}
+                  className="relative block w-full h-[220px] rounded-2xl overflow-hidden group"
                 >
                   <img
                     src={project.image}
                     alt={project.name}
+                    width={640}
+                    height={400}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                </div>
+                </Link>
 
                 <div className="mt-4">
                   <span className="text-[11px] font-bold text-[#00cea8] uppercase tracking-wider">
                     {project.category}
                   </span>
-                  <h3
-                    onClick={() => openProject(project)}
-                    className="text-white font-bold text-[20px] tracking-wide mt-1 hover:text-[#915EFF] cursor-pointer transition-colors"
-                  >
-                    {project.name}
+                  <h3 className="text-white font-bold text-[20px] tracking-wide mt-1">
+                    <Link
+                      to={`/projects/${project.id}`}
+                      onClick={() => trackProjectOpen(project)}
+                      className="hover:text-[#b79bff] transition-colors"
+                    >
+                      {project.name}
+                    </Link>
                   </h3>
                   <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">
                     {project.description}
@@ -179,15 +189,16 @@ const ProjectsPage = () => {
               </div>
 
               <div>
-                <button
-                  onClick={() => openProject(project)}
+                <Link
+                  to={`/projects/${project.id}`}
+                  onClick={() => trackProjectOpen(project)}
                   className="mt-6 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
                 >
                   <span>View Project Details</span>
                   <span className="group-hover:translate-x-1 transition-transform">
                     →
                   </span>
-                </button>
+                </Link>
               </div>
             </motion.div>
           ))}

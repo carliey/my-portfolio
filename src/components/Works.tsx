@@ -1,112 +1,101 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { track } from "../lib/analytics";
 
-type Props = {
-  index: number;
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  image: string;
+const featuredWork: Record<string, { role: string; result: string }> = {
+  "curri-ai": {
+    role: "Frontend engineering",
+    result: "Used by 3,000+ teachers",
+  },
+  "dinki-app": {
+    role: "Mobile and backend development",
+    result: "20+ mobile features delivered",
+  },
+  "schoola-src": {
+    role: "Frontend lead",
+    result: "Supporting 150+ schools",
+  },
 };
 
-const ProjectCard = ({ id, name, category, description, image }: Props) => {
-  const navigate = useNavigate();
+const featuredProjects = projects.filter((project) => featuredWork[project.id]);
 
-  const openProject = () => {
-    track("project_card_click", { id, name, source: "home_featured" });
-    navigate(`/projects/${id}`);
-  };
-
-  return (
-    <div>
-      <div className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full border border-white/10 hover:border-[#915EFF]/50 hover:shadow-xl hover:shadow-[#915EFF]/10 transition-all duration-300 flex flex-col justify-between h-full">
-        <div>
-          <div
-            onClick={openProject}
-            className="relative w-full h-[230px] rounded-2xl overflow-hidden group cursor-pointer"
-          >
-            <img
-              src={image}
-              alt={name}
-              className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-          </div>
-
-          <div className="mt-4">
-            <span className="text-[11px] font-bold text-[#00cea8] uppercase tracking-wider">
-              {category}
-            </span>
-            <h3
-              onClick={openProject}
-              className="text-white font-bold text-[22px] tracking-wide mt-1 hover:text-[#915EFF] cursor-pointer transition-colors"
-            >
-              {name}
-            </h3>
-            <p className="mt-2 text-secondary text-[14px] leading-relaxed line-clamp-3">
-              {description}
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <button
-            onClick={openProject}
-            className="mt-6 w-full py-2.5 rounded-xl bg-black-100 hover:bg-[#915EFF] text-white text-xs font-semibold tracking-wider uppercase border border-white/10 hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 group"
-          >
-            <span>View Full Details</span>
-            <span className="group-hover:translate-x-1 transition-transform">
-              →
-            </span>
-          </button>
-        </div>
-      </div>
+const Works = () => (
+  <>
+    <div className="max-w-3xl">
+      <p className={styles.sectionSubText}>Selected Work</p>
+      <h2 className={styles.sectionHeadText}>Projects with real impact.</h2>
+      <p className="mt-4 text-secondary text-base sm:text-lg leading-relaxed">
+        A few products I helped bring to life, from AI tools for teachers to
+        mobile platforms and school systems.
+      </p>
     </div>
-  );
-};
 
-const Works = () => {
-  const navigate = useNavigate();
-  // Show a maximum of 6 projects on the landing page
-  const featuredProjects = projects.slice(0, 6);
-
-  return (
-    <>
-      <div>
-        <h2 className={`${styles.sectionHeadText}`}></h2>
-      </div>
-
-      <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 justify-items-center">
-        {featuredProjects.map((project, index) => (
-          <ProjectCard key={project.id} index={index} {...project} />
-        ))}
-      </div>
-
-      {/* View More Projects Button */}
-      {projects.length > 6 && (
-        <div className="mt-16 flex justify-center">
-          <button
-            onClick={() => {
-              track("cta_click", { label: "view_all_projects" });
-              navigate("/projects");
-              window.scrollTo(0, 0);
-            }}
-            className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold text-base px-8 py-3.5 rounded-2xl shadow-xl shadow-[#915EFF]/20 hover:scale-105 transition-all flex items-center gap-3 group"
-          >
-            <span>View All Projects ({projects.length})</span>
-            <span className="group-hover:translate-x-1.5 transition-transform text-lg">
-              →
+    <div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      {featuredProjects.map((project) => (
+        <Link
+          key={project.id}
+          to={`/projects/${project.id}`}
+          onClick={() =>
+            track("project_card_click", {
+              id: project.id,
+              name: project.name,
+              source: "home_featured",
+            })
+          }
+          className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-tertiary transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-[#915EFF]/60 hover:shadow-xl hover:shadow-[#915EFF]/10"
+        >
+          <div className="relative overflow-hidden">
+            <img
+              src={project.image}
+              alt={`${project.name} application preview`}
+              width={640}
+              height={400}
+              loading="lazy"
+              decoding="async"
+              className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-primary/85 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md">
+              {project.category}
             </span>
-          </button>
-        </div>
-      )}
-    </>
-  );
-};
+          </div>
+
+          <div className="flex flex-1 flex-col p-6">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#00cea8]">
+              {featuredWork[project.id].role}
+            </p>
+            <h3 className="mt-2 text-2xl font-bold text-white transition-colors group-hover:text-[#b79bff]">
+              {project.name}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-secondary line-clamp-3">
+              {project.description}
+            </p>
+            <div className="mt-auto pt-6">
+              <div className="border-t border-white/10 pt-4 flex items-center justify-between gap-3">
+                <span className="text-sm font-semibold text-white">
+                  {featuredWork[project.id].result}
+                </span>
+                <span aria-hidden="true" className="text-[#b79bff] text-xl transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </div>
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
+
+    <div className="mt-10 flex justify-start">
+      <Link
+        to="/projects"
+        onClick={() => track("cta_click", { label: "view_all_projects" })}
+        className="inline-flex items-center gap-3 rounded-xl border border-[#915EFF]/50 bg-[#915EFF]/15 px-6 py-3.5 font-semibold text-white transition-[background-color,border-color] hover:bg-[#915EFF]/30 hover:border-[#915EFF]"
+      >
+        View All Projects ({projects.length}) <span aria-hidden="true">→</span>
+      </Link>
+    </div>
+  </>
+);
 
 export default SectionWrapper({ Component: Works, idName: "projects" });

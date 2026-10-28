@@ -39,6 +39,7 @@ const LandingPage = () => {
 
   return (
     <div className="relative z-0 bg-primary min-h-screen">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       {/* Floating Side Dot Navigation */}
       <div className="fixed top-[50%] -translate-y-1/2 right-4 z-40 hidden md:flex flex-col gap-4 bg-tertiary/40 backdrop-blur-md p-2.5 rounded-full border border-white/10 shadow-lg">
         {navLinks.map((nav) => (
@@ -62,14 +63,15 @@ const LandingPage = () => {
         <Hero />
       </div>
 
-      {/* Portfolio Content Sections */}
-      <About />
-      <Experience />
-      <Works />
+      <main id="main-content">
+        <Works />
+        <About />
+        <Experience />
 
-      <div className="relative z-0">
-        <Contact />
-      </div>
+        <div className="relative z-0">
+          <Contact />
+        </div>
+      </main>
 
       {/* Footer */}
       <footer className="py-8 px-6 border-t border-white/10 bg-black-100/80 mt-20">

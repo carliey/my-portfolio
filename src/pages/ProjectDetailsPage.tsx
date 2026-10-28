@@ -129,6 +129,9 @@ const ProjectDetailsPage = () => {
           <img
             src={activeImage || project.image}
             alt={project.name}
+            width={1100}
+            height={550}
+            decoding="async"
             className="w-full max-h-[550px] object-contain rounded-2xl bg-black-100/50"
           />
 
@@ -151,6 +154,10 @@ const ProjectDetailsPage = () => {
                   <img
                     src={imgSrc}
                     alt={`Screenshot ${idx + 1}`}
+                    width={80}
+                    height={56}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
                 </button>

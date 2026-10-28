@@ -27,6 +27,10 @@ const ExperienceCard = ({ experience }: any) => {
           <img
             src={experience.icon}
             alt={experience.company_name}
+            width={48}
+            height={48}
+            loading="lazy"
+            decoding="async"
             className="w-[60%] h-[60%] object-contain"
           />
         </div>
@@ -41,7 +45,7 @@ const ExperienceCard = ({ experience }: any) => {
         </p>
       </div>
 
-      <ul className="mt-4 list-disc ml-5 space-y-2">
+      <ul className="mt-4 ml-5 hidden list-disc space-y-2 sm:block">
         {experience.points.map((point: any, index: any) => (
           <li
             key={`experience-point-${index}`}
@@ -51,6 +55,18 @@ const ExperienceCard = ({ experience }: any) => {
           </li>
         ))}
       </ul>
+      <details className="mt-4 rounded-xl border border-white/10 bg-primary/30 sm:hidden">
+        <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[#b79bff]">
+          Read work highlights
+        </summary>
+        <ul className="ml-5 space-y-2 px-4 pb-4 list-disc">
+          {experience.points.map((point: string, index: number) => (
+            <li key={index} className="text-[#dfd9ff] text-sm leading-relaxed">
+              {point}
+            </li>
+          ))}
+        </ul>
+      </details>
     </VerticalTimelineElement>
   );
 };

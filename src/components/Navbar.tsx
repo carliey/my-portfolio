@@ -46,8 +46,8 @@ const Navbar = () => {
             ML
           </div>
           <div className="flex flex-col">
-            <p className="text-white text-[18px] font-bold cursor-pointer flex items-center tracking-wide">
-              Muhammad Ladan
+            <p className="text-white text-[18px] font-bold flex items-center tracking-wide">
+              Muhammed Ladan
             </p>
             <span className="text-[12px] text-secondary font-light hidden sm:block">
               Software Engineer
@@ -59,16 +59,14 @@ const Navbar = () => {
         <div className="hidden lg:flex flex-row items-center gap-8">
           <ul className="list-none flex flex-row gap-8">
             {navLinks.map((nav) => (
-              <li
-                key={nav.id}
-                className={`${
-                  active === nav.title
-                    ? "text-white font-semibold"
-                    : "text-secondary"
-                } hover:text-white text-[16px] font-medium cursor-pointer transition-colors duration-200`}
-                onClick={() => setActive(nav.title)}
-              >
-                <a href={`/#${nav.id}`}>{nav.title}</a>
+              <li key={nav.id}>
+                <a
+                  href={`/#${nav.id}`}
+                  onClick={() => setActive(nav.title)}
+                  className={`${active === nav.title ? "text-white font-semibold" : "text-secondary"} hover:text-white text-[16px] font-medium transition-colors duration-200`}
+                >
+                  {nav.title}
+                </a>
               </li>
             ))}
           </ul>
@@ -76,33 +74,36 @@ const Navbar = () => {
 
         {/* Mobile Navigation Menu Toggle */}
         <div className="lg:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close : menu}
-            alt="menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
+          <button
+            type="button"
+            aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={toggle}
+            aria-controls="mobile-navigation"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-white hover:bg-white/10"
             onClick={() => setToggle(!toggle)}
-          />
+          >
+            <img src={toggle ? close : menu} alt="" aria-hidden="true" width="28" height="28" className="w-7 h-7 object-contain" />
+          </button>
 
           <div
+            id="mobile-navigation"
             className={`${
               !toggle ? "hidden" : "flex"
             } p-6 bg-tertiary absolute top-20 right-0 mx-4 my-2 min-w-[200px] z-50 rounded-2xl border border-white/10 shadow-2xl flex-col gap-4`}
           >
             <ul className="list-none flex flex-col gap-4">
               {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
-                    active === nav.title
-                      ? "text-white font-bold"
-                      : "text-secondary"
-                  } hover:text-white`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  <a href={`/#${nav.id}`}>{nav.title}</a>
+                <li key={nav.id}>
+                  <a
+                    href={`/#${nav.id}`}
+                    className={`block rounded-lg px-2 py-1 font-poppins font-medium text-[16px] ${active === nav.title ? "text-white font-bold" : "text-secondary"} hover:text-white hover:bg-white/10`}
+                    onClick={() => {
+                      setToggle(false);
+                      setActive(nav.title);
+                    }}
+                  >
+                    {nav.title}
+                  </a>
                 </li>
               ))}
             </ul>

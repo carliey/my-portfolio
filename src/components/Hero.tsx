@@ -27,16 +27,14 @@ const Hero = () => {
             </div>
 
             <h1 className={`${styles.heroHeadText} text-white`}>
-              Hi, I'm <span className="text-[#915EFF]">Muhammad</span>
+              Hi, I'm <span className="text-[#915EFF]">Muhammed</span>
             </h1>
             <p
               className={`${styles.heroSubText} mt-2 text-white-100 max-w-2xl`}
             >
-              Software Engineer specializing in{" "}
-              <span className="text-[#00cea8] font-semibold">React</span>,{" "}
-              <span className="text-[#915EFF] font-semibold">React Native</span>{" "}
-              & <span className="text-[#56ccf2] font-semibold">Node.js</span>{" "}
-              with 4+ years of experience building scalable web & mobile apps.
+              Have an idea for a web or mobile product? I'm a software engineer
+              who can help you shape it, build it, and launch it. Let's turn
+              what you're imagining into something people can use.
             </p>
           </motion.div>
 
@@ -48,20 +46,20 @@ const Hero = () => {
             className="mt-8 flex flex-wrap gap-4"
           >
             <a
-              href="#work"
+              href="#contact"
               onClick={() =>
-                track("cta_click", { label: "explore_experience" })
+                track("cta_click", { label: "lets_build_together" })
               }
               className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/25 transition-colors"
             >
-              Explore Experience
+              Let's Build Together
             </a>
             <a
-              href="#contact"
-              onClick={() => track("cta_click", { label: "get_in_touch" })}
+              href="#projects"
+              onClick={() => track("cta_click", { label: "view_projects" })}
               className="bg-tertiary hover:bg-[#232631] text-white border border-white/10 font-bold px-7 py-3.5 rounded-xl shadow-md transition-all hover:scale-105"
             >
-              Get In Touch
+              See My Work
             </a>
           </motion.div>
         </div>

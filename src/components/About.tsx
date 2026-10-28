@@ -1,39 +1,31 @@
-import { Tilt } from "react-tilt";
 import { styles } from "../style";
 import { services } from "../constants";
 import { SectionWrapper } from "../hoc";
 
 interface Props {
-  index: number;
   title: string;
-  icon: any;
+  icon: string;
 }
 
 const ServiceCard = ({ title, icon }: Props) => (
-  <Tilt
-    className="xs:w-[250px] w-full"
-    options={{
-      max: 25,
-      scale: 1.05,
-      speed: 400,
-    }}
-  >
-    <div className="w-full rounded-[20px] border border-white/10 shadow-card group hover:border-[#915EFF]/40 hover:shadow-[#915EFF]/15 transition-all duration-300">
-      <div className="bg-tertiary/90 backdrop-blur-md rounded-[19px] py-6 px-8 min-h-[260px] flex justify-evenly items-center flex-col">
-        <div className="w-20 h-20 rounded-2xl bg-[#050816]/70 flex items-center justify-center p-4 border border-white/10 group-hover:scale-110 transition-transform duration-300">
-          <img
-            src={icon}
-            alt={title}
-            className="w-full h-full object-contain"
-          />
-        </div>
-
-        <h3 className="text-white text-[18px] font-bold text-center leading-snug tracking-wide group-hover:text-[#915EFF] transition-colors">
-          {title}
-        </h3>
+  <div className="rounded-2xl border border-white/10 bg-tertiary/90 p-4 sm:p-6 transition-colors hover:border-[#915EFF]/40">
+    <div className="flex items-center gap-4 sm:min-h-[160px] sm:flex-col sm:justify-center sm:text-center">
+      <div className="h-12 w-12 shrink-0 rounded-xl border border-white/10 bg-[#050816]/70 p-2 sm:h-16 sm:w-16 sm:rounded-2xl sm:p-3">
+        <img
+          src={icon}
+          alt=""
+          width={64}
+          height={64}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-contain"
+        />
       </div>
+      <h3 className="text-white text-base sm:text-lg font-bold leading-snug">
+        {title}
+      </h3>
     </div>
-  </Tilt>
+  </div>
 );
 
 const About = () => {
@@ -71,9 +63,9 @@ const About = () => {
           >
             <div className="flex flex-col justify-between h-full">
               <div>
-                <h4 className="text-4xl lg:text-5xl font-black text-[#915EFF]">
+                <p className="text-4xl lg:text-5xl font-black text-[#915EFF]">
                   {stat.value}
-                </h4>
+                </p>
                 <p className="text-white text-base font-bold mt-2 tracking-wide">
                   {stat.label}
                 </p>
@@ -92,9 +84,9 @@ const About = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="mt-8 flex flex-wrap gap-8 justify-center sm:justify-start">
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {services.map((service) => (
+          <ServiceCard key={service.title} {...service} />
         ))}
       </div>
     </>

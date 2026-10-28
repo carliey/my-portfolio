@@ -87,16 +87,16 @@ export const socialLinks = [
 
 export const navLinks = [
   {
+    id: "projects",
+    title: "Projects",
+  },
+  {
     id: "about",
     title: "About",
   },
   {
     id: "work",
     title: "Experience",
-  },
-  {
-    id: "projects",
-    title: "Projects",
   },
   {
     id: "contact",

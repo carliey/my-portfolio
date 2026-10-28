@@ -4,12 +4,13 @@ import { SectionWrapper } from "../hoc";
 
 interface Props {
   title: string;
+  description: string;
   icon: string;
 }
 
-const ServiceCard = ({ title, icon }: Props) => (
+const ServiceCard = ({ title, description, icon }: Props) => (
   <div className="rounded-2xl border border-white/10 bg-tertiary/90 p-4 sm:p-6 transition-colors hover:border-[#915EFF]/40">
-    <div className="flex items-center gap-4 sm:min-h-[160px] sm:flex-col sm:justify-center sm:text-center">
+    <div className="flex items-center gap-4 sm:min-h-[180px] sm:flex-col sm:justify-center sm:text-center">
       <div className="h-12 w-12 shrink-0 rounded-xl border border-white/10 bg-[#050816]/70 p-2 sm:h-16 sm:w-16 sm:rounded-2xl sm:p-3">
         <img
           src={icon}
@@ -21,9 +22,14 @@ const ServiceCard = ({ title, icon }: Props) => (
           className="h-full w-full object-contain"
         />
       </div>
-      <h3 className="text-white text-base sm:text-lg font-bold leading-snug">
-        {title}
-      </h3>
+      <div>
+        <h4 className="text-white text-base sm:text-lg font-bold leading-snug">
+          {title}
+        </h4>
+        <p className="mt-2 text-secondary text-sm leading-relaxed">
+          {description}
+        </p>
+      </div>
     </div>
   </div>
 );
@@ -79,8 +85,7 @@ const About = () => {
       </div>
 
       <div className="mt-16">
-        <p className={styles.sectionSubText}>Specialization</p>
-        <h3 className="text-white font-bold text-2xl">Core Services.</h3>
+        <h3 className="text-white font-bold text-2xl">What I Can Build With You</h3>
       </div>
 
       {/* Services Grid */}

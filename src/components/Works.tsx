@@ -4,22 +4,7 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { track } from "../lib/analytics";
 
-const featuredWork: Record<string, { role: string; result: string }> = {
-  "curri-ai": {
-    role: "Frontend engineering",
-    result: "Used by 3,000+ teachers",
-  },
-  "dinki-app": {
-    role: "Mobile and backend development",
-    result: "20+ mobile features delivered",
-  },
-  "schoola-src": {
-    role: "Frontend lead",
-    result: "Supporting 150+ schools",
-  },
-};
-
-const featuredProjects = projects.filter((project) => featuredWork[project.id]);
+const featuredProjects = projects.filter((project) => project.role && project.result);
 
 const Works = () => (
   <>
@@ -63,7 +48,7 @@ const Works = () => (
 
           <div className="flex flex-1 flex-col p-6">
             <p className="text-xs font-semibold uppercase tracking-wider text-[#00cea8]">
-              {featuredWork[project.id].role}
+              {project.role}
             </p>
             <h3 className="mt-2 text-2xl font-bold text-white transition-colors group-hover:text-[#b79bff]">
               {project.name}
@@ -74,7 +59,7 @@ const Works = () => (
             <div className="mt-auto pt-6">
               <div className="border-t border-white/10 pt-4 flex items-center justify-between gap-3">
                 <span className="text-sm font-semibold text-white">
-                  {featuredWork[project.id].result}
+                  {project.result}
                 </span>
                 <span aria-hidden="true" className="text-[#b79bff] text-xl transition-transform group-hover:translate-x-1">
                   →

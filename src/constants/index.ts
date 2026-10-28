@@ -14,6 +14,8 @@ import {
   threejs,
   mobile,
   backend,
+  web,
+  creator,
   travel_plus,
   dinki_app,
   simplifi_1,
@@ -21,11 +23,6 @@ import {
   simplifi_3,
   simplifi_4,
 } from "../assets";
-
-import react from "../assets/react.png";
-import reactnative from "../assets/reactnative.png";
-import express from "../assets/express.png";
-import teach from "../assets/teach.png";
 
 import naf_awc from "../assets/projects/naf_awc.png";
 import schoola_src from "../assets/projects/schoola_src.png";
@@ -106,20 +103,24 @@ export const navLinks = [
 
 const services = [
   {
-    title: "React.js Web Developer",
-    icon: react,
+    title: "Web applications",
+    description: "Customer-facing products, dashboards, and internal tools.",
+    icon: web,
   },
   {
-    title: "React Native Mobile Developer",
-    icon: reactnative,
+    title: "Mobile applications",
+    description: "iOS and Android apps built around the people who use them.",
+    icon: mobile,
   },
   {
-    title: "Node.js / Express Backend Developer",
-    icon: express,
+    title: "Backends and integrations",
+    description: "APIs, data, and connected services that power your product.",
+    icon: backend,
   },
   {
-    title: "Tech Lead & Tutor",
-    icon: teach,
+    title: "Technical leadership",
+    description: "Clear direction and hands-on support to help teams ship.",
+    icon: creator,
   },
 ];
 
@@ -264,6 +265,8 @@ export interface ProjectItem {
   category: "Web Application" | "Mobile Application";
   type: "web" | "mobile";
   description: string;
+  role?: string;
+  result?: string;
   longDescription: string;
   features: string[];
   tags: { name: string; color: string }[];
@@ -281,13 +284,14 @@ const projects: ProjectItem[] = [
     type: "web",
     description:
       "An ed-tech platform that gives teachers the ability to generate lesson plans, lesson notes, and questions 45x faster. Used by over 3,000+ teachers.",
+    role: "Frontend engineering",
+    result: "Used by 3,000+ teachers",
     longDescription:
       "Curri AI is an ed-tech solution designed for teachers and educators. It enables teachers to generate comprehensive lesson notes, structured lesson plans, quizzes, and curriculum resources 45x faster than manual preparation.",
     features: [
       "Instant lesson plan & notes generation",
       "Customizable curriculum templates aligned with school standards",
       "Interactive quiz & assessment builder",
-      "Empowers 3,000+ teachers across schools",
       "Seamless integration with Schoola Edtech ecosystem",
     ],
     tags: [{ name: "web-app", color: "blue-text-gradient" }],
@@ -347,10 +351,11 @@ const projects: ProjectItem[] = [
     type: "mobile",
     description:
       "Full-stack mobile solution delivering 20+ user-facing features across iOS & Android with scalable APIs and automated cloud pipelines.",
+    role: "Mobile and backend development",
+    result: "20+ mobile features delivered",
     longDescription:
       "Dinki App is a versatile mobile application suite featuring over 20+ user-facing features. Powered by robust backend microservices and deployed seamlessly using automated cloud pipelines.",
     features: [
-      "Delivered 20+ user-facing mobile features across multiple release cycles",
       "Designed and built scalable backend APIs",
       "Automated CI/CD pipelines & cloud deployments",
       "Play Store release management & continuous delivery",
@@ -391,6 +396,8 @@ const projects: ProjectItem[] = [
     type: "web",
     description:
       "Enterprise K-12 school management system handling student records, attendance tracking, and report card generation across 150+ schools.",
+    role: "Frontend lead",
+    result: "Supporting 150+ schools",
     longDescription:
       "Schoola SRC is a comprehensive school administrative management platform serving over 150 schools. It automates 10+ core administrative modules including student enrollment, daily attendance logging, grade compilation, fee collection, and report card printing.",
     features: [
@@ -412,9 +419,9 @@ const projects: ProjectItem[] = [
     category: "Web Application",
     type: "web",
     description:
-      "Lumi AI is an interative Learning assistant that help student learn faster.",
+      "An interactive learning assistant that helps students learn through focused lessons, conversation, and visual support.",
     longDescription:
-      "Lumi doesn't just teach—it guides your child through complex topics using short, focused lessons designed to deepen understanding and improve critical thinking. Every interaction is purposeful; no fluff, no wasted time. Just smart questions that help your child think sharper, solve faster, and learn consistently.Every child is unique, so why shouldn't every lesson ",
+      "Lumi AI guides students through complex topics with short, focused lessons and interactive questions. Students can use voice, chat, and images to explore concepts and get help with homework.",
     features: [
       "Voice-based interactive learning assistant for students",
       "Chat based AI tutor for personalized learning experiences",

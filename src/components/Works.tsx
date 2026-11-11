@@ -12,8 +12,8 @@ const Works = () => (
       <p className={styles.sectionSubText}>Selected Work</p>
       <h2 className={styles.sectionHeadText}>Projects with real impact.</h2>
       <p className="mt-4 text-secondary text-base sm:text-lg leading-relaxed">
-        A few products I helped bring to life, from AI tools for teachers to
-        mobile platforms and school systems.
+        A few products I helped bring to life, from live-video mobile apps and
+        WhatsApp marketplace bots to AI workflows and school systems.
       </p>
     </div>
 
@@ -44,6 +44,11 @@ const Works = () => (
             <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-primary/85 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white backdrop-blur-md">
               {project.category}
             </span>
+            {project.statusBadge && (
+              <span className="absolute right-4 top-4 max-w-[46%] truncate rounded-full border border-[#00cea8]/40 bg-primary/90 px-2.5 py-1 text-[10px] font-semibold text-[#00cea8] backdrop-blur-md">
+                {project.statusBadge}
+              </span>
+            )}
           </div>
 
           <div className="flex flex-1 flex-col p-6">

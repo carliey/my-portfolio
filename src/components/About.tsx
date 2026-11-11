@@ -42,9 +42,9 @@ const About = () => {
       detail: "Building scalable web & mobile products",
     },
     {
-      value: "8+",
-      label: "Client Projects Delivered",
-      detail: "Cross-platform mobile & web apps",
+      value: "15+",
+      label: "Production Products Delivered",
+      detail: "Web portals, mobile apps & bots",
     },
     {
       value: "45+",
@@ -89,7 +89,7 @@ const About = () => {
       </div>
 
       {/* Services Grid */}
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {services.map((service) => (
           <ServiceCard key={service.title} {...service} />
         ))}

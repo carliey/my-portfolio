@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="hiprepBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#190e26"/>
+      <stop offset="55%" stop-color="#27143b"/>
+      <stop offset="100%" stop-color="#0d0816"/>
+    </linearGradient>
+    <linearGradient id="hiprepPink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#915EFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="20" fill="url(#hiprepBg)"/>
+  <circle cx="620" cy="200" r="170" fill="#ec4899" opacity="0.11"/>
+
+  <!-- Left Details -->
+  <rect x="46" y="46" width="218" height="28" rx="14" fill="#3a1746" stroke="#ec4899" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="155" y="64" fill="#f9a8d4" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">PRE-LAUNCH • MOBILE PLACEHOLDER</text>
+
+  <text x="46" y="124" fill="#ffffff" font-family="sans-serif" font-size="32" font-weight="800">HiPrep Mobile App</text>
+  <text x="46" y="152" fill="#d8b4fe" font-family="sans-serif" font-size="14">React Native (Expo Router) • Dual-Role EdTech App</text>
+
+  <rect x="46" y="186" width="330" height="64" rx="14" fill="#241338" stroke="#45246b" stroke-width="1"/>
+  <text x="66" y="212" fill="#f472b6" font-family="sans-serif" font-size="13" font-weight="bold">Parent Experience</text>
+  <text x="66" y="232" fill="#e2d9f3" font-family="sans-serif" font-size="11">Child profiles, tutor matching, booking cart &amp; OTP pay</text>
+
+  <rect x="46" y="266" width="330" height="64" rx="14" fill="#241338" stroke="#45246b" stroke-width="1"/>
+  <text x="66" y="292" fill="#b79bff" font-family="sans-serif" font-size="13" font-weight="bold">Tutor Experience</text>
+  <text x="66" y="312" fill="#e2d9f3" font-family="sans-serif" font-size="11">Multi-step onboarding, demo lesson, planner &amp; payouts</text>
+
+  <rect x="46" y="346" width="330" height="64" rx="14" fill="#241338" stroke="#45246b" stroke-width="1"/>
+  <text x="66" y="372" fill="#00cea8" font-family="sans-serif" font-size="13" font-weight="bold">Status: Built Pre-Launch</text>
+  <text x="66" y="392" fill="#e2d9f3" font-family="sans-serif" font-size="11">Completed app workflows prior to store launch pivot</text>
+
+  <!-- Right Dual Phone Cards -->
+  <rect x="435" y="42" width="305" height="416" rx="34" fill="#170d24" stroke="#4b296b" stroke-width="6"/>
+  <rect x="536" y="54" width="102" height="16" rx="8" fill="#050816"/>
+
+  <text x="464" y="96" fill="#ffffff" font-family="sans-serif" font-size="15" font-weight="bold">HiPrep Tutoring</text>
+  <rect x="464" y="114" width="118" height="32" rx="10" fill="url(#hiprepPink)"/>
+  <text x="523" y="134" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Parent Mode</text>
+  <rect x="592" y="114" width="118" height="32" rx="10" fill="#281640"/>
+  <text x="651" y="134" fill="#cbbbe6" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tutor Mode</text>
+
+  <rect x="464" y="164" width="246" height="84" rx="14" fill="#241338" stroke="#492770" stroke-width="1"/>
+  <text x="482" y="190" fill="#ffffff" font-family="sans-serif" font-size="13" font-weight="bold">Upcoming Session • Math 11+</text>
+  <text x="482" y="210" fill="#cbd5e1" font-family="sans-serif" font-size="11">Tue &amp; Thu • 4:30 PM • 2 hrs/week</text>
+  <rect x="482" y="220" width="94" height="16" rx="6" fill="#00cea8" opacity="0.2"/>
+  <text x="529" y="232" fill="#00cea8" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle">SCHEDULED</text>
+
+  <rect x="464" y="264" width="246" height="106" rx="14" fill="#241338" stroke="#492770" stroke-width="1"/>
+  <text x="482" y="290" fill="#f472b6" font-family="sans-serif" font-size="12" font-weight="bold">Tutor Onboarding Pipeline</text>
+  <text x="482" y="314" fill="#e2d9f3" font-family="sans-serif" font-size="11">✓ Personal Details &amp; Qualifications</text>
+  <text x="482" y="334" fill="#e2d9f3" font-family="sans-serif" font-size="11">✓ Demo Lesson &amp; Curriculum Notes</text>
+  <text x="482" y="354" fill="#e2d9f3" font-family="sans-serif" font-size="11">✓ Availability Planner &amp; Bank Payouts</text>
+
+  <rect x="464" y="388" width="246" height="40" rx="12" fill="url(#hiprepPink)"/>
+  <text x="587" y="412" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Book Program &amp; Checkout</text>
+</svg>
+

@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../components";
 import { projects } from "../constants";
-import { ExternalLinkIcon } from "../components/SocialIcons";
+import {
+  ExternalLinkIcon,
+  WhatsAppIcon,
+  PlayStoreIcon,
+  AppStoreIcon,
+} from "../components/SocialIcons";
 import { track } from "../lib/analytics";
 
 const ProjectDetailsPage = () => {
@@ -47,26 +52,145 @@ const ProjectDetailsPage = () => {
         </Link>
 
         <header className="mt-7 max-w-4xl">
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#00cea8]">{project.category}</p>
-          <h1 className="mt-3 text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">{project.name}</h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">{project.description}</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#00cea8]">
+              {project.category}
+            </p>
+            {project.statusBadge && (
+              <span className="rounded-full border border-[#00cea8]/40 bg-[#00cea8]/10 px-3 py-1 text-xs font-semibold text-[#00cea8]">
+                {project.statusBadge}
+              </span>
+            )}
+          </div>
+          <h1 className="mt-3 text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            {project.name}
+          </h1>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
+            {project.description}
+          </p>
 
-          {(project.project_link || project.source_code_link) && (
+          {(project.whatsapp_link ||
+            project.project_link ||
+            project.play_store_link ||
+            project.app_store_link ||
+            project.source_code_link) && (
             <div className="mt-6 flex flex-wrap gap-3">
+              {project.whatsapp_link && (
+                <a
+                  href={project.whatsapp_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "whatsapp_bot",
+                      project: project.id,
+                      url: project.whatsapp_link ?? "",
+                    })
+                  }
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-[#25D366] px-6 py-3 font-semibold text-[#04180d] transition-colors hover:bg-[#1ebe5b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366]"
+                >
+                  <WhatsAppIcon className="h-5 w-5" />
+                  Chat on WhatsApp ({project.whatsapp_number ?? "Open Bot"})
+                </a>
+              )}
               {project.project_link && (
-                <a href={project.project_link} target="_blank" rel="noopener noreferrer"
-                  onClick={() => track("outbound_click", { target: "live_app", project: project.id, url: project.project_link })}
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-[#915EFF] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#804dee] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">
-                  <ExternalLinkIcon className="h-5 w-5" />View live project
+                <a
+                  href={project.project_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "live_app",
+                      project: project.id,
+                      url: project.project_link,
+                    })
+                  }
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-[#915EFF] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#804dee] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
+                >
+                  <ExternalLinkIcon className="h-5 w-5" />
+                  View live project
+                </a>
+              )}
+              {project.play_store_link && (
+                <a
+                  href={project.play_store_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "play_store",
+                      project: project.id,
+                      url: project.play_store_link ?? "",
+                    })
+                  }
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
+                >
+                  <PlayStoreIcon className="h-5 w-5" />
+                  Google Play
+                </a>
+              )}
+              {project.app_store_link && (
+                <a
+                  href={project.app_store_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "app_store",
+                      project: project.id,
+                      url: project.app_store_link ?? "",
+                    })
+                  }
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
+                >
+                  <AppStoreIcon className="h-5 w-5" />
+                  App Store
                 </a>
               )}
               {project.source_code_link && (
-                <a href={project.source_code_link} target="_blank" rel="noopener noreferrer"
-                  onClick={() => track("outbound_click", { target: "source_code", project: project.id, url: project.source_code_link })}
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">
-                  <ExternalLinkIcon className="h-5 w-5" />View source code
+                <a
+                  href={project.source_code_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "source_code",
+                      project: project.id,
+                      url: project.source_code_link,
+                    })
+                  }
+                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
+                >
+                  <ExternalLinkIcon className="h-5 w-5" />
+                  View source code
                 </a>
               )}
+            </div>
+          )}
+
+          {project.whatsapp_link && project.whatsapp_number && (
+            <div className="mt-6 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 p-4 sm:p-5">
+              <p className="text-sm leading-relaxed text-white/90">
+                Try the chatbot directly on WhatsApp:{" "}
+                <a
+                  href={project.whatsapp_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() =>
+                    track("outbound_click", {
+                      target: "whatsapp_number_link",
+                      project: project.id,
+                      url: project.whatsapp_link ?? "",
+                    })
+                  }
+                  className="font-bold text-[#25D366] underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
+                >
+                  {project.whatsapp_number}
+                </a>{" "}
+                <span className="text-secondary">
+                  — tap to start listing inventory or searching products via chat.
+                </span>
+              </p>
             </div>
           )}
         </header>
@@ -74,9 +198,21 @@ const ProjectDetailsPage = () => {
         <section aria-label={`${project.name} images`} className="mt-10">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-tertiary p-3 sm:rounded-3xl sm:p-4">
             <div className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl bg-[#080914] sm:h-[380px] lg:h-[460px]">
-              <img src={activeImage} alt={`${project.name} preview ${activeImageIndex + 1} of ${screenshots.length}`}
-                width={1100} height={580} decoding="async" className="h-full w-full object-contain" />
+              <img
+                src={activeImage}
+                alt={`${project.name} preview ${activeImageIndex + 1} of ${screenshots.length}`}
+                width={1100}
+                height={580}
+                decoding="async"
+                {...({ fetchpriority: "high" } as Record<string, string>)}
+                className="h-full w-full object-contain"
+              />
             </div>
+            {project.isPlaceholderImage && activeImageIndex === 0 && (
+              <p className="pt-2.5 text-center text-xs text-secondary">
+                Concept preview placeholder — live product screenshots can be swapped in anytime.
+              </p>
+            )}
             {screenshots.length > 1 && (
                 <div className="flex flex-wrap justify-center gap-2 pt-3" role="group" aria-label="Choose project preview">
                   {screenshots.map((src, index) => (
@@ -89,6 +225,32 @@ const ProjectDetailsPage = () => {
                 </div>
             )}
           </div>
+        </section>
+
+        <section aria-labelledby="overview-heading" className="mt-12 max-w-4xl">
+          <h2 id="overview-heading" className="text-2xl font-bold text-white sm:text-3xl">
+            Overview
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">
+            {project.longDescription}
+          </p>
+          {project.tech_stack && project.tech_stack.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-secondary">
+                Technologies & Integrations
+              </h3>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {project.tech_stack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-lg border border-white/10 bg-tertiary px-3 py-1.5 text-xs font-medium text-white/90"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
 
         <section aria-labelledby="highlights-heading" className="mt-12 max-w-4xl">

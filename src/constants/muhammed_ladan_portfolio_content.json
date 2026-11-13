@@ -1,0 +1,1390 @@
+{
+  "schemaVersion": "1.0.0",
+  "site": {
+    "name": "Muhammed Ladan",
+    "url": "https://muhammedladan.website",
+    "positioning": "Full-Stack & Mobile Engineer | Product Development & Technical Leadership",
+    "contact": {
+      "email": "mdcarliey@gmail.com",
+      "phone": "+234 703 621 5851",
+      "location": "Nigeria"
+    },
+    "socials": {
+      "github": "https://github.com/carliey",
+      "linkedin": "https://www.linkedin.com/in/muhammed-ladan-1a1086173/",
+      "youtube": "https://youtube.com/@carliey",
+      "tiktok": "https://www.tiktok.com/@carliey_",
+      "instagram": "https://www.instagram.com/carliey_"
+    },
+    "navigation": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Contact",
+        "href": "/#contact"
+      }
+    ],
+    "globalActions": [
+      {
+        "label": "View Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Download CV",
+        "href": "/assets/muhammed-ladan-cv.pdf",
+        "assetRequired": true
+      }
+    ]
+  },
+  "contentRules": {
+    "voice": "Clear, confident, professional, specific and evidence-led.",
+    "attribution": "Distinguish the user's personal contribution from team-wide work and outcomes.",
+    "metrics": "Verify numerical claims and their definitions before publication.",
+    "status": "Clearly label live, pre-launch, predecessor and earlier-version projects.",
+    "collaborations": "Describe organisations as professional collaborations; do not imply employment, endorsement or formal partnership unless verified.",
+    "editorialFields": "Fields marked verify, pending or assetRequired are editorial tasks and should not be rendered as public copy."
+  },
+  "pages": [
+    {
+      "id": "home",
+      "path": "/",
+      "title": "Home",
+      "purpose": "A balanced, self-contained overview of professional identity, selected work, experience, capabilities, collaborations, leadership and contact details.",
+      "sections": [
+        {
+          "id": "hero",
+          "order": 1,
+          "type": "hero",
+          "content": {
+            "eyebrow": "Full-Stack & Mobile Engineer",
+            "headline": "Have an idea for a web or mobile product?",
+            "subheadline": "I'm a software engineer who can help you shape it, build it, and launch it.",
+            "description": "Have an idea for a web or mobile product? I'm a software engineer who can help you shape it, build it, and launch it. Let's turn what you're imagining into something people can use.",
+            "primaryAction": {
+              "label": "Let's Build Together",
+              "href": "#contact"
+            },
+            "secondaryAction": {
+              "label": "See My Work",
+              "href": "#projects"
+            },
+            "socials": [
+              "github",
+              "linkedin"
+            ],
+            "portrait": {
+              "asset": null,
+              "status": "provide-asset"
+            }
+          }
+        },
+        {
+          "id": "selected-projects",
+          "order": 2,
+          "type": "project-feature-grid",
+          "content": {
+            "heading": "Selected Projects",
+            "intro": "A selection of products and systems I've contributed to across mobile, web, AI and business automation.",
+            "projectIds": [
+              "koyo-app",
+              "hajamarketplace",
+              "curri-ai",
+              "schoola-src",
+              "dinki-app"
+            ],
+            "maxItems": 5,
+            "cardFields": [
+              "name",
+              "shortDescription",
+              "personalContribution",
+              "category",
+              "technologies",
+              "thumbnail",
+              "status",
+              "href"
+            ],
+            "footerAction": {
+              "label": "View All Projects",
+              "href": "/projects"
+            }
+          }
+        },
+        {
+          "id": "professional-experience",
+          "order": 3,
+          "type": "experience-timeline",
+          "content": {
+            "heading": "Professional Experience",
+            "intro": "Roles and collaborations through which I've contributed to software products, technical delivery and team development.",
+            "experienceIds": [
+              "it-central",
+              "schoola",
+              "travel-plus",
+              "dinki",
+              "dialogue-academy",
+              "krpc"
+            ],
+            "cardFields": [
+              "organisation",
+              "role",
+              "period",
+              "summary",
+              "highlights"
+            ],
+            "footerAction": {
+              "label": "More About Me",
+              "href": "/about"
+            }
+          }
+        },
+        {
+          "id": "capabilities",
+          "order": 4,
+          "type": "capability-grid",
+          "content": {
+            "heading": "What I Bring",
+            "intro": "I contribute across the product development lifecycle, combining hands-on engineering with practical delivery and team experience.",
+            "items": [
+              {
+                "id": "software-engineering",
+                "title": "Software Engineering",
+                "description": "Building web applications, cross-platform mobile products, backend services and APIs.",
+                "examples": [
+                  "React and Next.js applications",
+                  "React Native and Expo mobile apps",
+                  "Node.js and NestJS services",
+                  "Testing, release and deployment workflows"
+                ]
+              },
+              {
+                "id": "product-delivery",
+                "title": "Product Development & Delivery",
+                "description": "Translating business and user requirements into practical technical solutions and coordinating work through delivery.",
+                "examples": [
+                  "Requirements clarification",
+                  "Feature planning and implementation",
+                  "Cross-functional collaboration",
+                  "Quality and release coordination"
+                ]
+              },
+              {
+                "id": "technical-integration",
+                "title": "Technical Integration",
+                "description": "Connecting products to external services and building workflows that extend what software can do.",
+                "examples": [
+                  "AI and language-model APIs",
+                  "Payment gateways",
+                  "Real-time communication",
+                  "WhatsApp Business Cloud API and automation"
+                ]
+              },
+              {
+                "id": "technical-leadership",
+                "title": "Technical Leadership & Mentoring",
+                "description": "Supporting engineering teams through technical guidance, code quality practices and developer mentoring.",
+                "examples": [
+                  "Frontend leadership",
+                  "Code reviews and testing practices",
+                  "Mentoring junior developers",
+                  "Training and knowledge sharing"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "professional-collaborations",
+          "order": 5,
+          "type": "collaboration-list",
+          "content": {
+            "heading": "Professional Collaborations",
+            "intro": "I've worked with technology organisations and development teams in delivering digital products and solutions. These collaborations have exposed me to different teams, clients, delivery environments and technical challenges.",
+            "collaborationIds": [
+              "it-central",
+              "royalstone-technology",
+              "3logy"
+            ],
+            "presentation": "Show all three organisations in a dedicated section. Also attribute relevant projects to organisations on project detail pages where the relationship is verified.",
+            "cardFields": [
+              "name",
+              "logo",
+              "website",
+              "relationshipDescription",
+              "relatedProjectIds"
+            ],
+            "editorialNote": "Confirm the exact relationship and project attribution for each organisation. Do not imply employment, endorsement or formal partnership unless verified."
+          }
+        },
+        {
+          "id": "leadership-knowledge-sharing",
+          "order": 6,
+          "type": "impact-highlights",
+          "content": {
+            "heading": "Leadership & Knowledge Sharing",
+            "intro": "I value contributing to the growth of other developers and making practical technology skills more accessible.",
+            "highlights": [
+              {
+                "label": "Developer Interns Mentored",
+                "value": "5+",
+                "description": "Mentored developer interns in production code quality, state management patterns and Git workflows at iT Central."
+              },
+              {
+                "label": "Students Taught & Trained",
+                "value": "100+",
+                "description": "Taught web and mobile development across Girls Tech Bootcamp, Dialogue Academy, iT Central, and AFIT ICT workshops."
+              },
+              {
+                "label": "Technical Content & Community",
+                "value": "1K+",
+                "description": "Followers across social platforms learning practical mobile development tips, architecture choices, and software tools."
+              }
+            ],
+            "featuredMedia": {
+              "type": "tiktok-embed",
+              "platform": "tiktok",
+              "eyebrow": "Beyond the build",
+              "heading": "Practical tech tips, one video at a time.",
+              "description": "I share short videos on the tools and decisions behind building software. This one explains why Expo makes getting started with React Native easier.",
+              "embedUrl": "https://www.tiktok.com/player/v1/7698042073831738632?description=0&music_info=0&rel=0",
+              "videoId": "7698042073831738632",
+              "title": "React Native setup tip by Muhammed Ladan"
+            }
+          }
+        },
+        {
+          "id": "contact",
+          "order": 7,
+          "type": "contact",
+          "content": {
+            "heading": "Have a project, opportunity or technical challenge?",
+            "description": "I'm open to opportunities to contribute to software teams, build digital products, collaborate on technology projects and help organisations improve their digital solutions.",
+            "email": "mdcarliey@gmail.com",
+            "phone": "+234 703 621 5851",
+            "formFields": [
+              {
+                "name": "name",
+                "label": "Your name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "email",
+                "label": "Email address",
+                "type": "email",
+                "required": true
+              },
+              {
+                "name": "subject",
+                "label": "Subject",
+                "type": "text",
+                "required": false
+              },
+              {
+                "name": "message",
+                "label": "How can I help?",
+                "type": "textarea",
+                "required": true
+              }
+            ],
+            "socials": [
+              "linkedin",
+              "github",
+              "tiktok",
+              "youtube",
+              "instagram"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "about",
+      "path": "/about",
+      "title": "About",
+      "purpose": "Provide the fuller professional story, technical background, working approach, education and leadership experience.",
+      "sections": [
+        {
+          "id": "about-introduction",
+          "type": "profile",
+          "heading": "About Me",
+          "paragraphs": [
+            "I'm a software engineer focused on building web and mobile products and the backend systems that support them. My experience includes customer-facing applications, enterprise platforms, mobile products, AI-enabled workflows and business process automation.",
+            "Beyond implementation, I contribute to understanding requirements, planning features, coordinating with other disciplines, making technical decisions and supporting products through testing and deployment.",
+            "I enjoy working on practical problems where thoughtful engineering can improve how people learn, work, transact or access services."
+          ],
+          "editorialNote": "Review and personalise this first-person narrative before publication."
+        },
+        {
+          "id": "technical-expertise",
+          "type": "technology-groups",
+          "heading": "Technical Expertise",
+          "groups": [
+            {
+              "name": "Frontend & Web",
+              "items": [
+                "React.js",
+                "Next.js",
+                "TypeScript",
+                "JavaScript",
+                "Tailwind CSS",
+                "Redux Toolkit",
+                "HTML5",
+                "CSS3",
+                "Material UI",
+                "Vite"
+              ]
+            },
+            {
+              "name": "Mobile Development",
+              "items": [
+                "React Native",
+                "Expo",
+                "Expo Router",
+                "NativeWind",
+                "iOS and Android release workflows"
+              ]
+            },
+            {
+              "name": "Backend & APIs",
+              "items": [
+                "Node.js",
+                "NestJS",
+                "Express.js",
+                "REST APIs",
+                "Passport JWT Authentication",
+                "Microservices"
+              ]
+            },
+            {
+              "name": "Real-Time & Media",
+              "items": [
+                "Socket.IO",
+                "WebSockets",
+                "100ms Live Video SDK",
+                "Sharp"
+              ]
+            },
+            {
+              "name": "AI & Automation",
+              "items": [
+                "Anthropic Claude API",
+                "Google Gemini API",
+                "Wit.ai",
+                "Meta WhatsApp Cloud API"
+              ]
+            },
+            {
+              "name": "Payments",
+              "items": [
+                "Remita API",
+                "Paystack",
+                "Stripe"
+              ]
+            },
+            {
+              "name": "Databases & Storage",
+              "items": [
+                "MongoDB",
+                "Mongoose",
+                "MySQL",
+                "TypeORM",
+                "Cloudflare R2",
+                "AWS S3",
+                "Firebase"
+              ]
+            },
+            {
+              "name": "DevOps, Testing & Tools",
+              "items": [
+                "Git",
+                "GitHub",
+                "Docker",
+                "AWS",
+                "Jest",
+                "React Testing Library",
+                "Figma",
+                "ClamAV"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "engineering-approach",
+          "type": "principles",
+          "heading": "How I Approach Engineering",
+          "items": [
+            {
+              "title": "Understand the problem",
+              "description": "Clarify user needs, business requirements and operational constraints before settling on an implementation."
+            },
+            {
+              "title": "Build for maintainability",
+              "description": "Prefer clear structure, reusable components, predictable state and understandable code."
+            },
+            {
+              "title": "Integrate thoughtfully",
+              "description": "Treat external APIs, payment services, AI providers and real-time systems as part of the product experience."
+            },
+            {
+              "title": "Validate and deliver",
+              "description": "Use testing, practical feedback and release discipline to improve reliability and usability."
+            },
+            {
+              "title": "Work collaboratively",
+              "description": "Communicate trade-offs, coordinate with other disciplines and support shared ownership of outcomes."
+            }
+          ]
+        },
+        {
+          "id": "education",
+          "type": "education-list",
+          "heading": "Education",
+          "items": [
+            {
+              "qualification": "BSc Computer Science",
+              "institution": "Kaduna State University",
+              "period": "2017–2023",
+              "status": "completed",
+              "verify": "confirm-award-year"
+            },
+            {
+              "qualification": "ND Computer Science",
+              "institution": "Kaduna Polytechnic",
+              "period": "2013–2016",
+              "status": "completed"
+            },
+            {
+              "qualification": "MAI (Master's in Artificial Intelligence)",
+              "institution": "Nigerian Defence Academy",
+              "period": null,
+              "status": "confirm-current-enrolment-before-publishing"
+            }
+          ]
+        },
+        {
+          "id": "leadership",
+          "type": "leadership-summary",
+          "heading": "Leadership & Mentorship",
+          "description": "I have supported junior developers and interns through practical guidance, code reviews and development workflow mentoring. I have also taught foundational web development and helped learners build practical projects.",
+          "relatedExperienceIds": [
+            "it-central",
+            "dialogue-academy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "path": "/projects",
+      "title": "Projects",
+      "purpose": "Make the full project portfolio discoverable through categories, search and individual case studies.",
+      "sections": [
+        {
+          "id": "projects-intro",
+          "type": "page-intro",
+          "heading": "Projects",
+          "description": "A collection of web and mobile applications, enterprise platforms, AI-enabled products and backend systems I've contributed to."
+        },
+        {
+          "id": "project-catalogue",
+          "type": "project-catalogue",
+          "filters": [
+            {
+              "label": "All",
+              "value": "all"
+            },
+            {
+              "label": "Web Applications",
+              "value": "web"
+            },
+            {
+              "label": "Mobile Applications",
+              "value": "mobile"
+            },
+            {
+              "label": "Automation & APIs",
+              "value": "automation"
+            }
+          ],
+          "search": {
+            "enabled": true,
+            "placeholder": "Search projects..."
+          },
+          "projectIds": [
+            "koyo-app",
+            "hajamarketplace",
+            "curri-ai",
+            "schoola-src",
+            "dinki-app",
+            "nafcons-cbt",
+            "distress-sale",
+            "lessonthon",
+            "lrcn-backend",
+            "instafood",
+            "primetech-cms",
+            "bibliory",
+            "aeromedicals",
+            "hiprep-mobile",
+            "simplifi-finance",
+            "travel-plus",
+            "naf-awc",
+            "lumi-ai",
+            "schoola-landing",
+            "schoola-lms"
+          ],
+          "cardFields": [
+            "name",
+            "shortDescription",
+            "category",
+            "role",
+            "status",
+            "thumbnail",
+            "technologies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project-detail-template",
+      "pathPattern": "/projects/:id",
+      "title": "Project Detail",
+      "purpose": "Explain the product, the user's role and personal contribution, engineering work and verifiable outcomes.",
+      "sections": [
+        {
+          "id": "project-hero",
+          "type": "project-hero",
+          "fields": [
+            "name",
+            "tagline",
+            "category",
+            "status",
+            "heroImage",
+            "liveLinks"
+          ]
+        },
+        {
+          "id": "overview",
+          "type": "rich-text",
+          "heading": "Overview",
+          "fields": [
+            "overview",
+            "audience",
+            "problem"
+          ]
+        },
+        {
+          "id": "my-role",
+          "type": "role-summary",
+          "heading": "My Role",
+          "fields": [
+            "role",
+            "teamContext",
+            "responsibilities",
+            "ownershipScope"
+          ]
+        },
+        {
+          "id": "contributions",
+          "type": "feature-list",
+          "heading": "My Contributions",
+          "fields": [
+            "contributions"
+          ]
+        },
+        {
+          "id": "challenges",
+          "type": "case-study",
+          "heading": "Engineering Challenges",
+          "fields": [
+            "challenges",
+            "approach",
+            "decisions"
+          ]
+        },
+        {
+          "id": "technology",
+          "type": "technology-list",
+          "heading": "Technology & Architecture",
+          "fields": [
+            "technologies",
+            "architectureNotes",
+            "integrations"
+          ]
+        },
+        {
+          "id": "outcomes",
+          "type": "outcome-list",
+          "heading": "Outcomes",
+          "fields": [
+            "outcomes",
+            "metrics",
+            "statusNotes"
+          ]
+        },
+        {
+          "id": "gallery",
+          "type": "media-gallery",
+          "heading": "Screenshots",
+          "fields": [
+            "screenshots"
+          ]
+        },
+        {
+          "id": "links",
+          "type": "link-list",
+          "heading": "Explore the Project",
+          "fields": [
+            "liveLinks",
+            "sourceLinks",
+            "storeLinks"
+          ]
+        },
+        {
+          "id": "project-navigation",
+          "type": "project-navigation",
+          "fields": [
+            "previousProjectId",
+            "nextProjectId"
+          ]
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "it-central",
+      "organisation": "iT Central Limited",
+      "role": "Software Engineer & Senior Partner",
+      "period": "Jan 2022 – Present",
+      "summary": "Contributed to client-facing web, CMS, CBT and mobile products while supporting technical delivery, mentoring and product development.",
+      "highlights": [
+        "Built applications using React.js, Next.js, TypeScript, NestJS and React Native across 12+ client projects.",
+        "Mentored interns in code quality, state management and Git workflows.",
+        "Trained students in modern web development through bootcamps."
+      ],
+      "relatedProjectIds": [
+        "simplifi-finance",
+        "naf-awc",
+        "nafcons-cbt",
+        "aeromedicals",
+        "primetech-cms",
+        "bibliory",
+        "instafood"
+      ],
+      "verify": "confirm-role-title-and-dates"
+    },
+    {
+      "id": "schoola",
+      "organisation": "Schoola",
+      "role": "Frontend Lead",
+      "period": "Sep 2022 – Feb 2026",
+      "summary": "Led and contributed to frontend development across education technology products, working with product and engineering teams.",
+      "highlights": [
+        "Led frontend redevelopment of the School Record System, implementing 10+ core modules.",
+        "Built frontend experiences for Curri AI.",
+        "Contributed to systems reported to support 150+ schools and 15,000+ students.",
+        "Implemented tests with reported 80% critical workflow coverage."
+      ],
+      "relatedProjectIds": [
+        "curri-ai",
+        "schoola-src",
+        "lessonthon",
+        "schoola-landing",
+        "schoola-lms"
+      ],
+      "verify": "verify-metrics-and-distinguish-platform-impact-from-personal-contribution"
+    },
+    {
+      "id": "travel-plus",
+      "organisation": "Travel Plus",
+      "role": "Mobile App Developer (Contract/Part-time)",
+      "period": "Sep 2025 – Present",
+      "summary": "Developed cross-platform mobile application experiences for logistics and ride-booking workflows.",
+      "highlights": [
+        "Built React Native features.",
+        "Integrated REST APIs for trip booking, payments and GPS updates.",
+        "Worked on Play Store releases and production stability."
+      ],
+      "relatedProjectIds": [
+        "travel-plus"
+      ],
+      "verify": "confirm-current-status-and-public-links"
+    },
+    {
+      "id": "dinki",
+      "organisation": "Dinki App Limited",
+      "role": "Full-Stack Mobile Developer (Contract/Part-time)",
+      "period": "Dec 2024 – Jan 2026",
+      "summary": "Contributed to a product suite spanning mobile applications, web administration and supporting APIs.",
+      "highlights": [
+        "Delivered 20+ user-facing mobile features.",
+        "Built and updated REST APIs using Node.js and Express.js.",
+        "Worked on AWS CI/CD and cloud deployments.",
+        "Supported Play Store releases."
+      ],
+      "relatedProjectIds": [
+        "dinki-app"
+      ],
+      "verify": "confirm-role-period-and-ownership"
+    },
+    {
+      "id": "dialogue-academy",
+      "organisation": "Dialogue Academy Kaduna",
+      "role": "Web Development Tutor (Contract)",
+      "period": "May 2024 – Jul 2024",
+      "summary": "Taught foundational web development and guided learners through practical projects.",
+      "highlights": [
+        "Taught HTML, CSS and JavaScript to 30+ students.",
+        "Guided students in building practical web projects."
+      ],
+      "relatedProjectIds": []
+    },
+    {
+      "id": "krpc",
+      "organisation": "Kaduna Refining & Petrochemical Company (KRPC)",
+      "role": "IT Technical Support Intern",
+      "period": "Mar 2017 – Mar 2019",
+      "summary": "Provided workstation and IT support and assisted with computer resource inventory audits.",
+      "highlights": [
+        "Resolved software and network workstation issues.",
+        "Conducted quarterly inventory audits of computer resources across departments."
+      ],
+      "relatedProjectIds": [],
+      "verify": "confirm-internship-period"
+    }
+  ],
+  "collaborations": [
+    {
+      "id": "it-central",
+      "name": "iT Central Limited",
+      "relationshipDescription": null,
+      "website": null,
+      "logo": null,
+      "relatedProjectIds": [
+        "simplifi-finance",
+        "naf-awc",
+        "nafcons-cbt",
+        "aeromedicals",
+        "primetech-cms",
+        "bibliory",
+        "instafood"
+      ],
+      "publicationStatus": "verify-attribution-and-relationship"
+    },
+    {
+      "id": "royalstone-technology",
+      "name": "Royalstone Technology",
+      "relationshipDescription": null,
+      "website": null,
+      "logo": null,
+      "relatedProjectIds": [],
+      "publicationStatus": "relationship-and-projects-to-be-supplied"
+    },
+    {
+      "id": "3logy",
+      "name": "3logy",
+      "relationshipDescription": null,
+      "website": null,
+      "logo": null,
+      "relatedProjectIds": [],
+      "publicationStatus": "relationship-and-projects-to-be-supplied"
+    }
+  ],
+  "projects": [
+    {
+      "id": "koyo-app",
+      "name": "Koyo",
+      "category": "mobile",
+      "status": "live-ios-android",
+      "role": "Mobile, Live Video & AI Engineering",
+      "shortDescription": "A Nigerian language-learning app for Yoruba, Igbo and Hausa, combining interactive lessons, live cohort classrooms and conversational practice.",
+      "overview": "A language-learning mobile product designed to help learners worldwide develop Nigerian language skills through micro-lessons, live tutoring and practice.",
+      "contributions": [
+        "Built backend APIs and automated AI content-generation workflows to eliminate manual CSV filling.",
+        "Integrated the 100ms real-time video SDK for interactive live cohort tutoring classrooms.",
+        "Worked on synchronized call recording and live chat playback.",
+        "Built audio drills, streaks, XP tracking, notifications and Stripe subscriptions."
+      ],
+      "technologies": [
+        "React Native",
+        "100ms",
+        "Anthropic Claude API",
+        "Stripe",
+        "TypeScript"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://koyoapp.com"
+        },
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.koyo.koyoapp"
+        },
+        {
+          "label": "App Store",
+          "url": "https://apps.apple.com/ng/app/koyo-learn-nigerian-languages/id6744146311"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "hajamarketplace",
+      "name": "Haja Marketplace",
+      "category": "automation",
+      "status": "live",
+      "role": "Backend & Bot Architecture",
+      "shortDescription": "A conversational marketplace on WhatsApp that helps merchants list products and buyers discover inventory without installing a separate app.",
+      "overview": "A WhatsApp-based conversational commerce platform paired with a web product directory.",
+      "contributions": [
+        "Designed a three-bot WhatsApp Cloud API architecture for seller intake, product search and buyer alerts.",
+        "Worked on natural-language query handling for Nigerian Pidgin, Hausa, Yoruba and Igbo.",
+        "Built asynchronous image processing with Sharp/WebP and Cloudinary.",
+        "Implemented passwordless WhatsApp OTP authentication."
+      ],
+      "technologies": [
+        "Node.js",
+        "WhatsApp Cloud API",
+        "Wit.ai",
+        "Sharp",
+        "Cloudinary"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://www.hajamarket.site"
+        },
+        {
+          "label": "WhatsApp Bot",
+          "url": "https://wa.me/2348141804421?text=Hi%20Haja!%20I%20want%20to%20list%20or%20search%20products."
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "curri-ai",
+      "name": "Curri AI",
+      "category": "web",
+      "status": "live",
+      "role": "Frontend Engineering",
+      "shortDescription": "An education technology product that helps teachers generate lesson plans, structured notes, quizzes and curriculum resources.",
+      "overview": "An AI-powered lesson creation tool integrated into the Schoola education technology ecosystem.",
+      "contributions": [
+        "Built frontend experiences for lesson plan and note generation.",
+        "Worked on quiz and assessment creation experiences.",
+        "Integrated the product into the wider Schoola ecosystem."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "AI integration"
+      ],
+      "outcomes": [
+        "Portfolio source reports use by 3,000+ teachers.",
+        "45x faster lesson preparation claim requires validation."
+      ],
+      "links": [
+        {
+          "label": "Open Curri AI",
+          "url": "https://curri.schoola.app"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": [],
+      "verify": "validate-metrics"
+    },
+    {
+      "id": "schoola-src",
+      "name": "Schoola Record System",
+      "category": "web",
+      "status": "verify-release-status",
+      "role": "Frontend Lead",
+      "shortDescription": "A school administration platform covering student records, attendance, grades, fee workflows and academic reporting.",
+      "overview": "An enterprise K-12 school management system for school administration and academic operations.",
+      "contributions": [
+        "Led frontend redevelopment and implemented 10+ core modules.",
+        "Worked on student enrollment, attendance, grade compilation and fee collection.",
+        "Implemented report computation and printable batch report sheets.",
+        "Worked on data grids, filtering, search and frontend testing."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Jest",
+        "React Testing Library"
+      ],
+      "outcomes": [
+        "Portfolio source reports 150+ schools and 15,000+ students.",
+        "Portfolio source reports 80% critical workflow test coverage; verify scope."
+      ],
+      "links": [
+        {
+          "label": "Demo",
+          "url": "https://demo.schoola.app"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": [],
+      "verify": "confirm-preproduction-vs-live-status-and-metrics"
+    },
+    {
+      "id": "dinki-app",
+      "name": "Dinki Platform Suite",
+      "category": "mobile",
+      "status": "active",
+      "role": "Full-Stack & Mobile Developer",
+      "shortDescription": "A product suite spanning cross-platform mobile apps, an operational web app, admin dashboard, and backend services.",
+      "overview": "A multi-platform product suite where Muhammed engineered features across the React Native mobile app, web application, administrative dashboard, and Node.js backend APIs.",
+      "contributions": [
+        "Built product features across the React Native mobile application for iOS and Android.",
+        "Developed web application and administrative dashboard features for platform operations.",
+        "Engineered and maintained backend REST APIs using Node.js and Express.js.",
+        "Supported AWS cloud deployments, CI/CD pipelines, and Google Play Store releases."
+      ],
+      "technologies": [
+        "React Native",
+        "React",
+        "Node.js",
+        "Express.js",
+        "AWS"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "nafcons-cbt",
+      "name": "NAFCONS Applicant & CBT Portal",
+      "category": "web",
+      "status": "live-institutional-portal",
+      "role": "Admissions & CBT Engine",
+      "shortDescription": "An institutional admissions and computer-based testing portal with payment verification, candidate screening and timed examinations.",
+      "overview": "An applicant admissions workflow and CBT portal built for the Nigerian Air Force College of Nursing Sciences.",
+      "contributions": [
+        "Worked on applicant onboarding and payment verification.",
+        "Integrated Paystack payment verification.",
+        "Implemented JAMB lookup, eligibility checks and admission status tracking.",
+        "Worked on timed CBT examinations and administrative question-bank tools."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Paystack",
+        "REST APIs"
+      ],
+      "links": [
+        {
+          "label": "Institutional Portal",
+          "url": "https://nafcons.edu.ng/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "distress-sale",
+      "name": "Autonego (Distress Sale App)",
+      "category": "mobile",
+      "status": "predecessor-to-flip",
+      "role": null,
+      "shortDescription": "A peer-to-peer marketplace concept for urgent sales, local classifieds and buyer-seller negotiation.",
+      "overview": "A mobile marketplace product whose foundational work was later transferred to another team and rebranded/relaunched as Flip.",
+      "contributions": [
+        "Built React Native marketplace experiences.",
+        "Worked on buyer and seller listing feeds.",
+        "Implemented negotiation messaging, location filtering and deal alerts."
+      ],
+      "technologies": [
+        "React Native"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": [],
+      "verify": "clarify-transfer-and-rebranding-context"
+    },
+    {
+      "id": "lessonthon",
+      "name": "Lessonthon",
+      "category": "web",
+      "status": "schoola-edtech-contest",
+      "role": null,
+      "shortDescription": "A lesson-content creation and competition portal for educators.",
+      "overview": "A co-curricular lesson content platform and competition portal built for Schoola.",
+      "contributions": [
+        "Worked on educator lesson authoring and challenge submission workflows."
+      ],
+      "technologies": [
+        "Web technologies"
+      ],
+      "links": [
+        {
+          "label": "Open Lessonthon",
+          "url": "https://lessonthon.schoola.app/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "lrcn-backend",
+      "name": "LRCN Registry & Remita Backend",
+      "category": "automation",
+      "status": "production-api",
+      "role": "Backend & Payment Integration",
+      "shortDescription": "Backend services supporting librarian registration, licence renewals, payment processing and registry lookup.",
+      "overview": "A backend platform and Remita integration for the Librarians' Registration Council of Nigeria.",
+      "contributions": [
+        "Implemented Remita SHA-512 signing, RRR generation and webhook settlement.",
+        "Worked on registration, induction and annual licence payment flows.",
+        "Implemented file-security and cloud-storage workflows using ClamAV and Cloudflare R2/AWS S3.",
+        "Worked on registry search data and Excel roster synchronisation."
+      ],
+      "technologies": [
+        "Node.js",
+        "Remita",
+        "Cloudflare R2",
+        "AWS S3",
+        "ClamAV"
+      ],
+      "links": [
+        {
+          "label": "LRCN Website",
+          "url": "https://lrcn.gov.ng/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "instafood",
+      "name": "Instafood",
+      "category": "web",
+      "status": "discontinued",
+      "role": "Full-Stack & Real-Time Engineering",
+      "shortDescription": "A complete restaurant management and ordering platform supporting online home delivery, cashier POS, and waiter tableside ordering.",
+      "overview": "A complete multi-channel food ordering and restaurant management platform (discontinued). Customers could order meals online for home delivery or order in-restaurant. The system featured a cashier POS interface, a dedicated waiter tablet ordering system for table service, and real-time Socket.IO dispatch to kitchen dashboards.",
+      "contributions": [
+        "Architected the multi-role system covering customer home ordering, cashier POS, and waiter in-restaurant table ordering.",
+        "Engineered real-time Socket.IO streams connecting customer orders, waitstaff inputs, and kitchen displays.",
+        "Built audio alert systems, kitchen ticket printing, POS cashier terminal workflows, and Paystack checkout."
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "Socket.IO",
+        "Paystack",
+        "Tailwind CSS"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "primetech-cms",
+      "name": "PrimeTech Web & CMS",
+      "category": "web",
+      "status": "live-enterprise-site",
+      "role": "Frontend Engineering",
+      "shortDescription": "A corporate website and CMS for engineering projects, careers, media and company news.",
+      "overview": "A custom CMS for PrimeTech Design and Engineering Nigeria Limited.",
+      "contributions": [
+        "Built frontend experiences for projects, references, careers and press releases.",
+        "Worked on rich-text authoring, content ordering and media management.",
+        "Implemented SEO metadata controls."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "TinyMCE"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://primetech-solutions.com/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "bibliory",
+      "name": "Bibliory Digital Library",
+      "category": "web",
+      "status": "project",
+      "role": "Frontend Engineering",
+      "shortDescription": "A digital academic library and institutional repository with searchable resources and an embedded PDF reader.",
+      "overview": "A digital library experience for books, journals and academic publications.",
+      "contributions": [
+        "Worked on a paginated PDF reader and bookmarking.",
+        "Implemented faceted resource search.",
+        "Built saved reading lists and institutional access request workflows."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "react-pdf"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "aeromedicals",
+      "name": "AeroMedical App & Clinical Suite",
+      "category": "mobile",
+      "status": "061-naf-aeromedical-centre",
+      "role": null,
+      "shortDescription": "A mobile and clinical digitisation solution for aircrew medical assessments, specialist departments and appointments.",
+      "overview": "A clinical workflow product supporting medical screening and routing across specialist departments.",
+      "contributions": [
+        "Worked on a multi-step medical screening wizard with validation and draft saving.",
+        "Implemented routing across eight specialist departments.",
+        "Worked on appointments, investigation ordering and fitness-clearance review."
+      ],
+      "technologies": [
+        "React Native",
+        "Zod"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "hiprep-mobile",
+      "name": "HiPrep",
+      "category": "mobile",
+      "status": "web-active-app-discontinued",
+      "role": "Mobile Application Engineering",
+      "shortDescription": "An exam preparation and learning platform. The mobile application was discontinued while the active web portal continues at hipreponline.com.",
+      "overview": "An online exam preparation and student tutoring platform. Muhammed built the initial cross-platform mobile application experience; the mobile app was subsequently discontinued while the platform continues actively on the web at hipreponline.com.",
+      "contributions": [
+        "Built the initial cross-platform mobile application in React Native and Expo.",
+        "Engineered student practice exam journeys, timed quiz interfaces, and score analytics.",
+        "Implemented tutor onboarding, credential uploads, and booking workflows."
+      ],
+      "technologies": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "REST APIs"
+      ],
+      "links": [
+        {
+          "label": "Active Web Platform",
+          "url": "https://www.hipreponline.com"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "simplifi-finance",
+      "name": "Simplifi Finance",
+      "category": "mobile",
+      "status": "active",
+      "role": "Mobile Application Developer",
+      "shortDescription": "An active personal finance tracking and budgeting mobile application for expense management, wallet balances, and spending analytics.",
+      "overview": "An active personal finance tracking and budgeting mobile application. Muhammed engineered the cross-platform React Native mobile apps, wallet expense tracking features, and managed Google Play Store releases.",
+      "contributions": [
+        "Built cross-platform iOS and Android mobile applications using React Native.",
+        "Implemented real-time spending analytics, multi-wallet expense tracking, and budget targets.",
+        "Engineered secure encrypted local storage, auth flows, and state management.",
+        "Managed production build pipelines and Google Play Store releases."
+      ],
+      "technologies": [
+        "React Native",
+        "TypeScript",
+        "Payment APIs",
+        "Google Play Store"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "travel-plus",
+      "name": "Travel Plus",
+      "category": "mobile",
+      "status": "active-beta",
+      "role": "Mobile Application Developer",
+      "shortDescription": "A ride-booking and logistics mobile application currently in beta testing, supporting trip booking, driver dispatch, and digital payments.",
+      "overview": "An active pre-release mobile application for logistics and ride-booking workflows currently in beta testing. Muhammed built the mobile applications in React Native, integrated payment gateways, and prepared Google Play Store beta releases.",
+      "contributions": [
+        "Built cross-platform iOS and Android mobile features using React Native.",
+        "Integrated trip booking workflows, driver dispatch APIs, and payment integration.",
+        "Prepared beta build configurations and Google Play Store releases."
+      ],
+      "technologies": [
+        "React Native",
+        "REST APIs",
+        "Payment Integration",
+        "Google Play Store"
+      ],
+      "links": [],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "naf-awc",
+      "name": "NAF Air Warfare Center LMS (v1)",
+      "category": "web",
+      "status": "initial-version-v1",
+      "role": "Frontend Engineering",
+      "shortDescription": "The foundational first version of an institutional portal and LMS for the Nigerian Air Force Air Warfare Center.",
+      "overview": "An institutional portal and LMS with school administration, student records and role-based access.",
+      "contributions": [
+        "Built the foundational v1 institutional portal and LMS.",
+        "Worked on student profiles, grade sheets and course records.",
+        "Implemented role-based authorisation for students, administrative officers and commandants."
+      ],
+      "technologies": [
+        "React",
+        "TypeScript"
+      ],
+      "links": [
+        {
+          "label": "Current institutional website (subsequently updated)",
+          "url": "https://afwcn.airforce.mil.ng/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "lumi-ai",
+      "name": "Lumi AI",
+      "category": "web",
+      "status": "project",
+      "role": null,
+      "shortDescription": "An interactive learning assistant for micro-lessons, conversational tutoring and visual homework support.",
+      "overview": "An AI learning assistant with voice, chat and image-based learning interactions.",
+      "contributions": [
+        "Worked on an interactive tutoring experience with voice, chat and image input for homework assistance."
+      ],
+      "technologies": [
+        "AI integration",
+        "Web technologies"
+      ],
+      "links": [
+        {
+          "label": "Open Lumi AI",
+          "url": "https://lumiai.hipreponline.com/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "schoola-landing",
+      "name": "Schoola Landing Page",
+      "category": "web",
+      "status": "live",
+      "role": "Frontend Engineering",
+      "shortDescription": "The public marketing website and product showcase for the Schoola education technology platform.",
+      "overview": "A responsive marketing website supporting product discovery and lead capture.",
+      "contributions": [
+        "Worked on responsive layouts, lead capture and the public product showcase."
+      ],
+      "technologies": [
+        "React",
+        "Web technologies"
+      ],
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://schoola.app/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    },
+    {
+      "id": "schoola-lms",
+      "name": "Schoola LMS",
+      "category": "web",
+      "status": "live",
+      "role": "Frontend Engineering",
+      "shortDescription": "A live Learning Management System for schools, featuring digital classrooms, content creation APIs, structured lesson notes, and question banks.",
+      "overview": "A live institutional Learning Management System accessible through demo.schoola.app after logging in. Muhammed engineered the frontend web application and integrated content creation APIs, lesson notes authoring, and question/quiz engines.",
+      "contributions": [
+        "Built the frontend web application in React with modern component architecture.",
+        "Integrated content creation APIs for educators to create and organize curriculum materials.",
+        "Engineered interactive lesson note authoring tools and dynamic question/quiz creation workflows.",
+        "Worked on digital classroom modules, assignment grading, and student analytics."
+      ],
+      "technologies": [
+        "React",
+        "Redux Toolkit",
+        "REST APIs",
+        "Tailwind CSS"
+      ],
+      "links": [
+        {
+          "label": "Demo Portal (LMS login)",
+          "url": "https://demo.schoola.app"
+        },
+        {
+          "label": "Schoola Website",
+          "url": "https://schoola.app/"
+        }
+      ],
+      "thumbnail": null,
+      "screenshots": []
+    }
+  ],
+  "assetsToProvide": [
+    {
+      "id": "profile-photo",
+      "description": "Professional portrait for homepage hero",
+      "required": true
+    },
+    {
+      "id": "project-thumbnails",
+      "description": "A representative screenshot or product image for each featured project",
+      "required": true
+    },
+    {
+      "id": "project-screenshots",
+      "description": "Additional screenshots for project case studies",
+      "required": true
+    },
+    {
+      "id": "organisation-logos",
+      "description": "Approved logos for iT Central, Royalstone Technology and 3logy",
+      "required": false
+    },
+    {
+      "id": "cv-pdf",
+      "description": "Current downloadable CV PDF",
+      "required": true
+    },
+    {
+      "id": "favicon-social-image",
+      "description": "Favicon and social sharing image",
+      "required": true
+    }
+  ],
+  "editorialChecklist": [
+    "Confirm exact employment dates and titles for iT Central, Schoola, Travel Plus, Dinki and KRPC.",
+    "Confirm current status of Schoola Record System redevelopment and whether the demo URL represents the work described.",
+    "Verify the Curri AI teacher count and 45x claim, Schoola platform reach and 80% test coverage.",
+    "Confirm the 40+ students trained and 5+ interns mentored counts and whether programme counts overlap.",
+    "Add accurate relationship descriptions, websites, logos and project attributions for Royalstone Technology and 3logy.",
+    "Confirm which client/product names and screenshots can be shown publicly.",
+    "Distinguish personal contributions from team-wide features and outcomes on every project.",
+    "Confirm current education status and dates before publishing the MAI entry.",
+    "Provide the final CV PDF and verify all external links."
+  ]
+}

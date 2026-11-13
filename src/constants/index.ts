@@ -1,3 +1,5 @@
+import portfolioContent from "./muhammed_ladan_portfolio_content.json";
+
 import {
   javascript,
   typescript,
@@ -62,10 +64,6 @@ import {
   primetech_1,
   primetech_2,
   primetech_3,
-  naflms_cover,
-  naflms_1,
-  naflms_2,
-  naflms_3,
   nafcons_cbt,
   nafcons_header,
   haja_1,
@@ -118,269 +116,373 @@ import dialogue from "../assets/company/dialogue.png";
 import it_central from "../assets/company/it_central.png";
 import schoola from "../assets/company/schoola.svg";
 import krpc from "../assets/company/krpc.png";
-
 import nestjs from "../assets/nest_logo.svg";
 
+export { portfolioContent };
+
+// -------------------------------------------------------------
+// DERIVED SITE METADATA & PERSONAL INFO (from content JSON)
+// -------------------------------------------------------------
+interface HomeHeroContent {
+  eyebrow?: string;
+  headline?: string;
+  subheadline?: string;
+  description?: string;
+  primaryAction?: { label: string; href: string };
+  secondaryAction?: { label: string; href: string };
+  socials?: string[];
+}
+
+interface HomeSelectedContent {
+  heading?: string;
+  intro?: string;
+  projectIds?: string[];
+  maxItems?: number;
+}
+
+interface CapabilityItemJson {
+  id: string;
+  title: string;
+  description: string;
+  examples?: string[];
+}
+
+interface HomeCapabilitiesContent {
+  heading?: string;
+  intro?: string;
+  items?: CapabilityItemJson[];
+}
+
+interface LeadershipHighlightJson {
+  value: string;
+  label: string;
+  description: string;
+}
+
+interface HomeLeadershipContent {
+  heading?: string;
+  intro?: string;
+  highlights?: LeadershipHighlightJson[];
+  featuredMedia?: ContactFeaturedMedia | null;
+}
+
+export interface ContactFeaturedMedia {
+  type: string;
+  platform: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  embedUrl: string;
+  videoId?: string;
+  title?: string;
+}
+
+export interface ContactContent {
+  heading: string;
+  description: string;
+  email?: string;
+  phone?: string;
+  featuredMedia?: ContactFeaturedMedia | null;
+}
+
+interface GenericSection<T = unknown> {
+  id: string;
+  order?: number;
+  type?: string;
+  content?: T;
+}
+
+interface JsonProjectLink {
+  label: string;
+  url: string;
+}
+
+interface JsonProject {
+  id: string;
+  name: string;
+  category: string;
+  status: string;
+  role?: string;
+  shortDescription?: string;
+  overview?: string;
+  contributions?: string[];
+  technologies?: string[];
+  links?: JsonProjectLink[];
+  thumbnail?: string | null;
+  screenshots?: string[];
+}
+
+interface JsonExperience {
+  id: string;
+  organisation: string;
+  role: string;
+  period: string;
+  summary: string;
+  highlights?: string[];
+  relatedProjectIds?: string[];
+}
+
+interface JsonCollaboration {
+  id: string;
+  name: string;
+  relationshipDescription?: string | null;
+  relatedProjectIds?: string[];
+}
+
+const homePage = portfolioContent.pages.find((p) => p.id === "home");
+const homeSections = (homePage?.sections || []) as unknown as GenericSection[];
+
+const homeHero = homeSections.find((s) => s.id === "hero")
+  ?.content as HomeHeroContent | undefined;
+const homeSelectedSection = homeSections.find((s) => s.id === "selected-projects")
+  ?.content as HomeSelectedContent | undefined;
+const homeCapabilitiesSection = homeSections.find((s) => s.id === "capabilities")
+  ?.content as HomeCapabilitiesContent | undefined;
+const homeLeadershipSection = homeSections.find(
+  (s) => s.id === "leadership-knowledge-sharing"
+)?.content as HomeLeadershipContent | undefined;
+const homeContactSection = homeSections.find((s) => s.id === "contact")
+  ?.content as ContactContent | undefined;
+
 export const personalInfo = {
-  name: "Muhammed Ladan",
-  role: "Full-Stack & Mobile Engineer (React, React Native, NestJS)",
-  summary:
-    "Software Engineer with 4+ years of experience building production web platforms, cross-platform mobile apps, and automated backend workflows using React, React Native, Next.js, Node.js, and NestJS. Proven track record integrating live video classrooms (100ms), WebSockets, AI content pipelines, WhatsApp Business automation, and payment gateways including Remita, Paystack, and Stripe.",
-  email: "mdcarliey@gmail.com",
-  phone: "+2347036215851",
-  location: "Nigeria",
+  name: portfolioContent.site.name,
+  role: portfolioContent.site.positioning,
+  tagline: homeHero?.subheadline || "Product development · Technical integration · Engineering leadership",
+  summary: homeHero?.description || "Building web and mobile products from idea to production.",
+  email: portfolioContent.site.contact.email,
+  phone: portfolioContent.site.contact.phone,
+  location: portfolioContent.site.contact.location,
+  cvUrl: portfolioContent.site.globalActions.find((a) => /cv/i.test(a.label))?.href || "#",
+  stats: [
+    {
+      value: "4+",
+      label: "Years Experience",
+      detail: "Building scalable web & mobile products",
+    },
+    {
+      value: "15+",
+      label: "Products Shipped",
+      detail: "Web portals, mobile apps & automated bots",
+    },
+    {
+      value: "100+",
+      label: "Students Taught",
+      detail: "Bootcamps, Dialogue & AFIT ICT workshops",
+    },
+    {
+      value: "5+",
+      label: "Interns Mentored",
+      detail: "Engineering mentorship at iT Central",
+    },
+  ],
 };
 
 export const socialLinks = [
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/muhammed-ladan-1a1086173/",
+    url: portfolioContent.site.socials.linkedin,
     platform: "linkedin",
     color: "#0A66C2",
   },
   {
     name: "GitHub",
-    url: "https://github.com/carliey",
+    url: portfolioContent.site.socials.github,
     platform: "github",
     color: "#ffffff",
   },
   {
     name: "TikTok",
-    url: "https://www.tiktok.com/@carliey_",
+    url: portfolioContent.site.socials.tiktok,
     platform: "tiktok",
     color: "#ff0050",
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/carliey_/",
+    url: portfolioContent.site.socials.instagram,
     platform: "instagram",
     color: "#E4405F",
   },
   {
     name: "YouTube",
-    url: "https://youtube.com/@carliey",
+    url: portfolioContent.site.socials.youtube,
     platform: "youtube",
     color: "#FF0000",
   },
 ];
 
 export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "experience",
-    title: "Experience",
-  },
-  {
-    id: "projects",
-    title: "Projects",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
+  { id: "projects", title: "Projects" },
+  { id: "experience", title: "Experience" },
+  { id: "capabilities", title: "Capabilities" },
+  { id: "collaborations", title: "Collaborations" },
+  { id: "mentorship", title: "Mentorship" },
+  { id: "contact", title: "Contact" },
 ];
 
-const services = [
-  {
-    title: "Web applications",
-    description:
-      "Next.js & React customer-facing portals, CMS dashboards, CBT engines, and internal tools.",
-    icon: web,
-  },
-  {
-    title: "Mobile applications",
-    description:
-      "Cross-platform iOS and Android apps in React Native and Expo built for real-world scale.",
-    icon: mobile,
-  },
-  {
-    title: "WhatsApp & workflow automation",
-    description:
-      "Conversational marketplace bots, Cloud API state machines, OTP auth, and catalog sync.",
-    icon: whatsapp_automation,
-  },
-  {
-    title: "AI & real-time integrations",
-    description:
-      "Claude & Gemini content workflows, 100ms live video sessions, and Socket.IO instant streams.",
-    icon: ai_realtime,
-  },
-  {
-    title: "Backends, APIs & payments",
-    description:
-      "Scalable Node.js & NestJS services with Remita, Paystack, and Stripe payment gateways.",
-    icon: backend,
-  },
-  {
-    title: "Technical leadership & mentoring",
-    description:
-      "Clear engineering direction, Jest testing standards, and hands-on mentoring to help teams ship.",
-    icon: creator,
-  },
-];
+// -------------------------------------------------------------
+// CAPABILITIES (from content JSON home capabilities section)
+// -------------------------------------------------------------
+export interface CapabilityPillar {
+  id: string;
+  title: string;
+  tagline: string;
+  description: string;
+  technologies: string[];
+}
 
-const technologies = [
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "React Native",
-    icon: reactjs,
-  },
-  {
-    name: "Next.js",
-    icon: nextjsIcon,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "Nest JS",
-    icon: nestjs,
-  },
-  {
-    name: "WhatsApp Cloud API",
-    icon: whatsappIcon,
-  },
-  {
-    name: "AI Workflows",
-    icon: aiIcon,
-  },
-  {
-    name: "WebSockets & 100ms",
-    icon: realtimeIcon,
-  },
-  {
-    name: "Remita & Paystack",
-    icon: paymentsIcon,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
-  },
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-];
+export const capabilities: CapabilityPillar[] = (
+  homeCapabilitiesSection?.items || []
+).map((item: CapabilityItemJson) => ({
+  id: item.id,
+  title: item.title,
+  tagline: item.description,
+  description: item.description,
+  technologies: item.examples || [],
+}));
 
-const experiences = [
-  {
-    title: "Software Engineer & Senior Partner",
-    company_name: "IT CENTRAL LIMITED",
-    icon: it_central,
-    iconBg: "#0E5FAF",
-    date: "Jan 2022 – Present",
-    points: [
-      "Built client-facing web, CMS, CBT, and mobile applications using React.js, Next.js, TypeScript, NestJS, and React Native across 12+ projects.",
-      "Mentored 5 interns, improving their code quality and development workflow.",
-      "Trained 40+ students in web development across multiple bootcamps.",
-      "Key Projects: Simplifi (Finance Mobile App), NAF Air Warfare Center LMS, NAFCONS Applicant & CBT Portal, AeroMedical, PrimeTech CMS, Bibliory, Instafood.",
-    ],
-  },
-  {
-    title: "Mobile App Developer (Contract/Part-time)",
-    company_name: "TRAVEL PLUS",
-    icon: mobile,
-    iconBg: "#1d1836",
-    date: "Sept 2025 – Present",
-    points: [
-      "Built cross-platform mobile applications using React Native for logistics and ride-booking workflows.",
-      "Integrated RESTful APIs to support trip booking, payments, and real-time updates.",
-      "Managed Play Store releases, ensuring consistent updates and stability.",
-    ],
-  },
-  {
-    title: "Full-Stack Mobile Developer (Contract/Part-time)",
-    company_name: "DINKI APP LIMITED",
-    icon: backend,
-    iconBg: "#1d1836",
-    date: "Dec 2024 – Jan 2026",
-    points: [
-      "Contributed to the development of cross-platform mobile applications using React Native, delivering 20+ user-facing features.",
-      "Designed, built, and updated REST APIs using Node.js and Express.js to support new mobile features.",
-      "Managed CI/CD pipelines and cloud infrastructure on AWS, enabling automated deployments.",
-      "Managed Play Store deployments and release cycles, ensuring continuous delivery.",
-    ],
-  },
-  {
-    title: "Frontend Lead",
-    company_name: "Schoola",
-    icon: schoola,
-    iconBg: "#ffffff",
-    date: "Sep 2022 – Feb 2026",
-    points: [
-      "Led the redevelopment of the School Record System (SRC) frontend using React.js, implementing 10+ core modules (student management, attendance, report sheets, etc.).",
-      "Built the frontend and landing page for Curri AI, an AI-powered platform used by 3,000+ teachers.",
-      "Contributed to frontend systems supporting 15K+ students across 150+ schools.",
-      "Improved system stability by implementing a suite of unit and integration tests using Jest and React Testing Library (80% critical workflow coverage).",
-    ],
-  },
-  {
-    title: "Web Development Tutor (Contract)",
-    company_name: "Dialogue Academy Kaduna",
-    icon: dialogue,
-    iconBg: "#ffffff",
-    date: "May 2024 – July 2024",
-    points: [
-      "Taught foundational web development concepts to 30+ students as part of a pilot curriculum program.",
-      "Guided students in building practical projects using HTML, CSS, and JavaScript.",
-    ],
-  },
-  {
-    title: "IT Technical Support Intern",
-    company_name: "Kaduna Refining & Petrochemical Company (KRPC)",
-    icon: krpc,
-    iconBg: "#ffffff",
-    date: "March 2017 – March 2019",
-    points: [
-      "Provided IT technical support, promptly addressing software and hardware issues.",
-      "Conducted quarterly inventory checks of computer resources allocated to various departments, ensuring optimal resource allocation and maintenance.",
-    ],
-  },
-];
+// -------------------------------------------------------------
+// COLLABORATIONS (from content JSON collaborations array)
+// -------------------------------------------------------------
+export interface CollaborationItem {
+  id: string;
+  name: string;
+  badge: string;
+  type: string;
+  description: string;
+  impact: string;
+  relatedProjectIds?: string[];
+}
 
+const collabBadgeMap: Record<string, string> = {
+  "it-central": "Senior Partner & Engineering Collaborator",
+  "royalstone-technology": "Technology Collaboration Partner",
+  "3logy": "Software Engineering Partner",
+};
+
+const collabDescMap: Record<string, string> = {
+  "it-central":
+    "Core technology collaboration delivering 12+ enterprise platforms, CBT testing engines, and mobile products for corporate, educational, and defense clients.",
+  "royalstone-technology":
+    "Collaborated on enterprise digital transformation, institutional management platforms, and secure multi-role administrative portals.",
+  "3logy":
+    "Collaborated on mission-critical software engineering, resilient API design, and distributed system integrations.",
+};
+
+const collabImpactMap: Record<string, string> = {
+  "it-central": "12+ Delivered Client Platforms across Web, Mobile & Defense",
+  "royalstone-technology": "Enterprise Systems & Digital Transformation",
+  "3logy": "Mission-Critical Systems & API Integration",
+};
+
+export const collaborations: CollaborationItem[] = (
+  (portfolioContent.collaborations || []) as unknown as JsonCollaboration[]
+).map((collab: JsonCollaboration) => ({
+  id: collab.id,
+  name: collab.name,
+  badge: collabBadgeMap[collab.id] || "Collaboration Partner",
+  type: "Technology Hub",
+  description: collab.relationshipDescription || collabDescMap[collab.id] || "Professional engineering collaboration.",
+  impact: collabImpactMap[collab.id] || "Enterprise Software Delivery",
+  relatedProjectIds: collab.relatedProjectIds || [],
+}));
+
+// -------------------------------------------------------------
+// MENTORSHIP & LEADERSHIP (from content JSON leadership section)
+// -------------------------------------------------------------
+export interface MentorshipItem {
+  metric: string;
+  title: string;
+  role: string;
+  description: string;
+}
+
+const mentorshipRoleMap: Record<string, string> = {
+  "Developer Interns Mentored": "Senior Engineering Mentor (iT Central)",
+  "Developer interns mentored": "Senior Engineering Mentor (iT Central)",
+  "Students Taught & Trained": "Bootcamps, Dialogue & AFIT ICT",
+  "Students taught & trained": "Bootcamps, Dialogue & AFIT ICT",
+  "Students Trained & Taught": "Bootcamps, Dialogue & AFIT ICT",
+  "Students trained & taught": "Bootcamps, Dialogue & AFIT ICT",
+  "Technical Content & Community": "Tech Content Creator (@carliey_)",
+  "Technical content & community": "Tech Content Creator (@carliey_)",
+  "Social Media Community": "Tech Content Creator (@carliey_)",
+  "Social media community": "Tech Content Creator (@carliey_)",
+};
+
+export const mentorshipData: MentorshipItem[] = (
+  homeLeadershipSection?.highlights || []
+).map((h: LeadershipHighlightJson) => ({
+  metric: h.value,
+  title: h.label,
+  role: mentorshipRoleMap[h.label] || "Technical Mentorship",
+  description: h.description,
+}));
+
+export const knowledgeSharingContent = {
+  heading: homeLeadershipSection?.heading || "Leadership & Knowledge Sharing",
+  intro:
+    homeLeadershipSection?.intro ||
+    "I value contributing to the growth of other developers and making practical technology skills more accessible.",
+  highlights: mentorshipData,
+  featuredMedia: homeLeadershipSection?.featuredMedia || null,
+};
+
+// -------------------------------------------------------------
+// WORK EXPERIENCE (from content JSON experience array)
+// -------------------------------------------------------------
+export interface ExperienceItem {
+  id: string;
+  title: string;
+  company_name: string;
+  icon: string;
+  iconBg: string;
+  date: string;
+  summary: string;
+  points: string[];
+  relatedProjectIds?: string[];
+}
+
+const companyIconMap: Record<string, { icon: string; iconBg: string }> = {
+  "it-central": { icon: it_central, iconBg: "#0E5FAF" },
+  "schoola": { icon: schoola, iconBg: "#ffffff" },
+  "travel-plus": { icon: mobile, iconBg: "#1d1836" },
+  "dinki": { icon: backend, iconBg: "#1d1836" },
+  "dialogue-academy": { icon: dialogue, iconBg: "#ffffff" },
+  "krpc": { icon: krpc, iconBg: "#ffffff" },
+};
+
+export const experiences: ExperienceItem[] = (
+  (portfolioContent.experience || []) as unknown as JsonExperience[]
+).map((exp: JsonExperience) => {
+  const meta = companyIconMap[exp.id] || { icon: web, iconBg: "#1d1836" };
+  return {
+    id: exp.id,
+    title: exp.role,
+    company_name: exp.organisation,
+    icon: meta.icon,
+    iconBg: meta.iconBg,
+    date: exp.period,
+    summary: exp.summary,
+    points: exp.highlights || [],
+    relatedProjectIds: exp.relatedProjectIds || [],
+  };
+});
+
+// -------------------------------------------------------------
+// CONTACT SECTION CONTENT (from content JSON contact section)
+// -------------------------------------------------------------
+export const contactContent = homeContactSection || {
+  heading: "Have a project, opportunity or technical challenge?",
+  description:
+    "I'm open to opportunities to contribute to software teams, build digital products, collaborate on technology projects and help organisations improve their digital solutions.",
+  email: portfolioContent.site.contact.email,
+  phone: portfolioContent.site.contact.phone,
+  featuredMedia: null,
+};
+
+// -------------------------------------------------------------
+// PROJECTS (from content JSON projects array + asset maps)
+// -------------------------------------------------------------
 export interface ProjectItem {
   id: string;
   name: string;
@@ -395,9 +497,13 @@ export interface ProjectItem {
   description: string;
   role?: string;
   result?: string;
+  problem?: string;
+  contributions?: string[];
+  featured?: boolean;
   longDescription: string;
   features: string[];
   tags: { name: string; color: string }[];
+  technologies?: string[];
   image: string;
   screenshots: string[];
   source_code_link: string;
@@ -408,27 +514,11 @@ export interface ProjectItem {
   whatsapp_number?: string;
 }
 
-const projects: ProjectItem[] = [
-  {
-    id: "koyo-app",
-    name: "Koyo App",
-    category: "Mobile Application",
-    type: "mobile",
-    statusBadge: "Live on iOS & Android",
-    description:
-      "Nigerian language learning mobile app (Yoruba, Igbo, Hausa) with integrated 100ms live tutoring video sessions and an AI-powered lesson creation workflow.",
-    role: "Mobile, Live Video & AI",
-    result: "Live classes & AI curriculum",
-    longDescription:
-      "Koyo App helps learners worldwide master Nigerian languages through structured interactive lessons, Koyology live cohort sessions, and conversational practice. Alongside mobile engineering, I integrated real-time live video classrooms with 100ms and built an Anthropic Claude AI curriculum generation pipeline with human review and multi-language sibling syncing.",
-    features: [
-      "Integrated 100ms live video sessions (@100mslive/react-native-hms & room-kit) for Koyology interactive cohorts",
-      "Session recording playback and synchronized live call chat transcripts across mobile and admin tools",
-      "Engineered Anthropic Claude AI lesson generation pipeline with preflight curriculum checks and multi-language syncing",
-      "Interactive audio drills, streaks, XP tracking, push notifications, and Stripe subscription support",
-      "Published across Google Play and the Apple App Store",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+const projectAssetsMap: Record<
+  string,
+  { image: string; screenshots: string[]; whatsapp_number?: string }
+> = {
+  "koyo-app": {
     image: koyo_display,
     screenshots: [
       koyo_display,
@@ -438,92 +528,13 @@ const projects: ProjectItem[] = [
       koyo_play_1,
       koyo_play_2,
     ],
-    source_code_link: "",
-    project_link: "https://koyoapp.com",
-    play_store_link:
-      "https://play.google.com/store/apps/details?id=com.koyo.koyoapp",
-    app_store_link:
-      "https://apps.apple.com/ng/app/koyo-learn-nigerian-languages/id6744146311",
   },
-  {
-    id: "hajamarketplace",
-    name: "hajamarketplace",
-    category: "WhatsApp Automation & Backend",
-    type: "automation",
-    statusBadge: "WhatsApp Cloud API",
-    description:
-      "Conversational e-commerce marketplace platform for WhatsApp enabling merchants to list inventory, automate customer inquiries, and close sales directly inside chat.",
-    role: "Backend & Bot Architecture",
-    result: "3-bot marketplace engine",
-    longDescription:
-      "hajamarketplace turns WhatsApp into a structured e-commerce marketplace without requiring buyers or sellers to install a separate application. Powered by a 3-bot automation engine on Meta's WhatsApp Cloud API, sellers onboard and manage listings through interactive chat menus, while buyers discover local products via natural language search and connect directly via instant WhatsApp links.",
-    features: [
-      "Live web marketplace directory at hajamarket.site paired with WhatsApp chatbot onboarding",
-      "Chat directly with the bot on WhatsApp (+234 814 180 4421) to list inventory or discover items conversationally",
-      "3-bot WhatsApp Cloud API architecture: Haja List (seller intake), Haja Finder (instant search), and Haja Matchmaker (saved alerts)",
-      "Hybrid NLU parsing understanding Nigerian Pidgin, Hausa, Yoruba, and Igbo queries with local fallback",
-      "Asynchronous image optimization pipeline, Cloudinary CDN storage, and passwordless WhatsApp OTP authentication",
-    ],
-    tags: [{ name: "whatsapp-bot", color: "pink-text-gradient" }],
+  "hajamarketplace": {
     image: haja_1,
-    screenshots: [
-      haja_1,
-      haja_2,
-      haja_3,
-      haja_4,
-      haja_5,
-    ],
-    source_code_link: "",
-    project_link: "https://www.hajamarket.site",
+    screenshots: [haja_1, haja_2, haja_3, haja_4, haja_5],
     whatsapp_number: "+234 814 180 4421",
-    whatsapp_link:
-      "https://wa.me/2348141804421?text=Hi%20Haja!%20I%20want%20to%20list%20or%20search%20products.",
   },
-  {
-    id: "distress-sale",
-    name: "Autonego (Distress Sale App)",
-    category: "Mobile Application",
-    type: "mobile",
-    statusBadge: "Predecessor to Flip",
-    description:
-      "Peer-to-peer mobile marketplace built for automated negotiation, distressed sales, and fast local classifieds. The product was later transitioned and rebranded to Flip.",
-    longDescription:
-      "Developed the foundational mobile application during its original Autonego / Distress Sale phase — an automated-negotiation classifieds marketplace where buyers and sellers connected on urgent deals. Following this development phase, the project was transferred to another team that redesigned and relaunched it under the name Flip (flipnow.ng). This portfolio showcase features the original, authentic mobile build and UI screens.",
-    features: [
-      "Engineered core cross-platform React Native mobile application for automated price negotiation and urgent sales",
-      "Built buyer and seller listing feeds, category navigation (vehicles, electronics, property), and deal discovery",
-      "Implemented in-app messaging, offer negotiations, and real-time deal alerts",
-      "Product Evolution Note: The project was later transferred to another team that launched Flip (flipnow.ng); these screenshots reflect the original Autonego build",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
-    image: distress_1,
-    screenshots: [
-      distress_1,
-      distress_2,
-      distress_3,
-      distress_4,
-    ],
-    source_code_link: "",
-    project_link: "",
-  },
-  {
-    id: "curri-ai",
-    name: "Curri AI",
-    category: "Web Application",
-    type: "web",
-    description:
-      "An ed-tech platform that gives teachers the ability to generate lesson plans, lesson notes, and questions 45x faster. Used by over 3,000+ teachers.",
-    role: "Frontend engineering",
-    result: "Used by 3,000+ teachers",
-    longDescription:
-      "Curri AI is an ed-tech solution designed for teachers and educators. It enables teachers to generate comprehensive lesson notes, structured lesson plans, quizzes, and curriculum resources 45x faster than manual preparation.",
-    features: [
-      "Instant lesson plan & notes generation",
-      "Customizable curriculum templates aligned with school standards",
-      "Interactive quiz & assessment builder",
-      "Seamless integration with Schoola Edtech ecosystem",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "curri-ai": {
     image: curri_cover,
     screenshots: [
       curri_cover,
@@ -533,192 +544,40 @@ const projects: ProjectItem[] = [
       curri_cover_2,
       curri_cover_4,
     ],
-    source_code_link: "",
-    project_link: "https://curri.schoola.app",
   },
-  {
-    id: "schoola-src",
-    name: "Schoola Record System (SRC)",
-    category: "Web Application",
-    type: "web",
-    description:
-      "Enterprise K-12 school management system handling student records, attendance tracking, and report card generation across 150+ schools.",
-    role: "Frontend lead",
-    result: "Supporting 150+ schools",
-    longDescription:
-      "Schoola SRC is a comprehensive school administrative management platform serving over 150 schools. It automates 10+ core administrative modules including student enrollment, daily attendance logging, grade compilation, fee collection, and report card printing.",
-    features: [
-      "Engineered 10+ core administrative modules for K-12 schools",
-      "Supports 15,000+ active students across 150+ schools",
-      "Automated result compilation & printable report sheets",
-      "High-speed data grid & multi-level search filters",
-      "Synchronized state management & clean web UI",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "schoola-src": {
     image: schoola_src_1,
     screenshots: [schoola_src_1, schoola_src_2],
-    source_code_link: "",
-    project_link: "https://demo.schoola.app",
   },
-  {
-    id: "dinki-app",
-    name: "Dinki Platform Suite",
-    category: "Mobile Application",
-    type: "mobile",
-    statusBadge: "Mobile Apps, Web App & Site",
-    description:
-      "Full-stack product suite comprising cross-platform mobile apps (iOS & Android) with 20+ features, an operational web console, and the public marketing website.",
-    role: "Mobile & Web Suite Development",
-    result: "Cross-platform product suite",
-    longDescription:
-      "Built the comprehensive Dinki platform suite spanning three interconnected products: cross-platform mobile applications for iOS & Android, an internal operational web application, and the customer-facing marketing website. Designed scalable Node.js/Express.js backend services to power all client apps with automated CI/CD deployments.",
-    features: [
-      "Cross-Platform Mobile Apps: Built and released iOS & Android applications with over 20+ user-facing features on the Google Play Store",
-      "Web Operations Application: Built administrative dashboards for data management, user workflows, and system operations",
-      "Marketing Website: Developed responsive company landing site for user onboarding and product showcase",
-      "Cloud & Delivery: Managed CI/CD pipelines, AWS cloud infrastructure, and Play Store continuous release cycles",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+  "dinki-app": {
     image: dinki_0,
     screenshots: [dinki_0, dinki_1, dinki_2, dinki_3, dinki_4, dinki_icon],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "nafcons-cbt",
-    name: "NAFCONS Applicant & CBT Portal",
-    category: "Web Application",
-    type: "web",
-    statusBadge: "Live Institutional Portal",
-    description:
-      "Applicant admissions workflow, Paystack fee verification, JAMB candidate screening, and Computer-Based Testing (CBT) portal built for Nigerian Air Force College of Nursing Sciences (NAFCONS).",
-    role: "Admissions & CBT Engine",
-    result: "Live college portal",
-    longDescription:
-      "Engineered the applicant processing pipeline and UTME Computer-Based Test (CBT) engine for the Nigerian Air Force College of Nursing Sciences (NAFCONS). The platform guides prospective nursing students from application fee payment through document verification, exam unlock codes, and timed CBT assessments.",
-    features: [
-      "End-to-end applicant onboarding dashboard with Paystack payment verification guards",
-      "JAMB registration lookup, screening eligibility checks, and admission status tracking",
-      "Timed Computer-Based Testing (CBT) exam runner with secure candidate unlock flows",
-      "Administrative quiz & CBT question bank management tools for college staff",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
-    image: naflms_cover,
-    screenshots: [
-      naflms_cover,
-      naflms_1,
-      naflms_2,
-      naflms_3,
-      nafcons_cbt,
-      nafcons_header,
-    ],
-    source_code_link: "",
-    project_link: "https://nafcons.edu.ng/",
+  "nafcons-cbt": {
+    image: nafcons_cbt,
+    screenshots: [nafcons_cbt, nafcons_header],
   },
-  {
-    id: "lessonthon",
-    name: "Lessonthon",
-    category: "Web Application",
-    type: "web",
-    statusBadge: "Schoola Ed-Tech Contest",
-    description:
-      "Co-curricular lesson content creation platform and educator competition contest built for Schoola, enabling teachers across Africa to create structured lesson materials.",
-    longDescription:
-      "Engineered the web platform for Lessonthon — Schoola's first-ever co-curricular content creation contest for educators across Africa. The platform enables teachers to participate in lesson-authoring sprints, submit curriculum-aligned resources, compete on leaderboards, and receive certification and compensation.",
-    features: [
-      "Interactive lesson authoring portal for educators participating in content-creation competitions",
-      "Multi-step challenge submission workflow with curriculum validation and rubrics",
-      "Leaderboard, teacher certification tracking, and automated milestone badges",
-      "Responsive marketing and onboarding pages with animated competition steppers",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "distress-sale": {
+    image: distress_1,
+    screenshots: [distress_1, distress_2, distress_3, distress_4],
+  },
+  "lessonthon": {
     image: lessonthon_1,
     screenshots: [lessonthon_1, lessonthon_2, lessonthon_3, lessonthon_4],
-    source_code_link: "",
-    project_link: "https://lessonthon.schoola.app/",
   },
-  {
-    id: "lrcn-backend",
-    name: "LRCN Registry & Remita Backend",
-    category: "Backend & Payment API",
-    type: "automation",
-    statusBadge: "Production API",
-    description:
-      "Backend platform and Remita RRR payment integration powering librarian registration, license renewals, induction payments, and verified registry lookup for LRCN.",
-    longDescription:
-      "Architected core backend modules for the Librarians' Registration Council of Nigeria (LRCN). Integrated the Remita payment gateway with SHA-512 request signing, Remita Retrieval Reference (RRR) generation, and authenticated webhook settlement alongside secure document verification.",
-    features: [
-      "Remita payment gateway integration with SHA-512 hash signing, RRR generation, and webhook verification",
-      "Supports multi-tier registration workflows: application fees, induction fees, and annual license renewals",
-      "ClamAV virus scanning and presigned Cloudflare R2 / AWS S3 document uploads for applicant credentials",
-      "Public searchable registry data pipelines and Excel member roster synchronization",
-    ],
-    tags: [{ name: "backend-api", color: "pink-text-gradient" }],
+  "lrcn-backend": {
     image: lrcn_cover,
     screenshots: [lrcn_cover, lrcn_1, lrcn_2, lrcn_logo],
-    source_code_link: "",
-    project_link: "https://lrcn.gov.ng/",
   },
-  {
-    id: "instafood",
-    name: "Instafood Web & Kitchen Socket",
-    category: "Web Application",
-    type: "web",
-    statusBadge: "Real-time WebSocket App",
-    description:
-      "Food ordering web platform and restaurant admin console featuring real-time Socket.IO WebSockets for instant incoming order delivery and kitchen sound alerts.",
-    longDescription:
-      "Built frontend customer and restaurant admin experiences for Instafood. Customers place dine-in QR or delivery orders paid via Paystack, while cashier and kitchen dashboards receive orders instantaneously over persistent Socket.IO WebSocket connections with real-time audio alerts and receipt printing.",
-    features: [
-      "Real-time WebSocket (socket.io-client) order stream pushed straight to kitchen and cashier consoles",
-      "Instant sound notifications (use-sound), bulk order management, and POS receipt printing",
-      "QR code table ordering, cart management, and Paystack checkout flows on the customer portal",
-      "Inventory tracking, menu customization, and branch analytics dashboards",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "instafood": {
     image: instafood_cover,
     screenshots: [instafood_cover, instafood_1, instafood_2, instafood_logo],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "primetech-cms",
-    name: "PrimeTech Web & CMS",
-    category: "Web Application",
-    type: "web",
-    statusBadge: "Live Enterprise Site",
-    description:
-      "Custom content management system (CMS) built for PrimeTech Design & Engineering (Julius Berger Group) to manage projects, careers, media, and editorial content.",
-    longDescription:
-      "Developed the custom administrative CMS powering PrimeTech Design and Engineering Nigeria Limited. The dashboard gives non-technical editors full control over engineering project case studies, rich-text news articles, job openings, business segments, media assets, and traffic analytics.",
-    features: [
-      "Full CMS control over portfolio projects, reference items, newsroom posts, and open career roles",
-      "Rich-text authoring powered by TinyMCE alongside drag-and-drop content ordering",
-      "Centralized media gallery manager, contact inquiries, and SEO metadata controls",
-      "RTK Query cached state synchronization and Chart.js visitor analytics",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "primetech-cms": {
     image: primetech_1,
     screenshots: [primetech_1, primetech_2, primetech_3],
-    source_code_link: "",
-    project_link: "https://primetech-solutions.com/",
   },
-  {
-    id: "bibliory",
-    name: "Bibliory Digital Library",
-    category: "Web Application",
-    type: "web",
-    description:
-      "Digital academic library and institutional repository frontend with full-text resource search, embedded PDF document viewer, reading lists, and editor analytics.",
-    longDescription:
-      "Built the frontend for Bibliory, a digital library platform hosting books, peer-reviewed journals, and academic publications. Readers can search and filter catalogs seamlessly and read documents directly inside an embedded paginated PDF viewer without external downloads.",
-    features: [
-      "Embedded paginated PDF reader (react-pdf) with smooth navigation and viewport controls",
-      "Faceted search and categorization across books, academic journals, and institutional collections",
-      "Personal saved resources library and institutional access request workflows",
-      "Admin and editor dashboards powered by RTK Query and Chart.js publication analytics",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "bibliory": {
     image: bibliory_1,
     screenshots: [
       bibliory_1,
@@ -728,70 +587,16 @@ const projects: ProjectItem[] = [
       bibliory_5,
       bibliory_6,
     ],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "aeromedicals",
-    name: "AeroMedical App & Clinical Suite",
-    category: "Mobile Application",
-    type: "mobile",
-    statusBadge: "061 NAF AeroMedical Centre",
-    description:
-      "Mobile and clinical digitization experience for 061 NAF AeroMedical Centre Kaduna supporting aircrew medical assessments, 8 specialist departments, and appointment flows.",
-    longDescription:
-      "Worked on mobile and frontend patient/clinical workflows for the 061 Nigerian Air Force AeroMedical Centre in Kaduna. Digitized multi-step aircrew medical screening questionnaires with draft persistence, clinic appointments, investigation requests, and multi-department clinical clearance across 8 aviation medicine units.",
-    features: [
-      "Multi-step aircrew medical screening wizard with schema validation and draft recovery",
-      "Workflow routing across 8 specialist departments including Ophthalmology, ENT, Radiology, Cardiology, and Aviation Review",
-      "Applicant appointment booking, medical investigation ordering, and fitness certificate review",
-      "Patient assessment timeline tracking from intake to final medical clearance",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+  "aeromedicals": {
     image: aeromedical_cover,
     screenshots: [aeromedical_cover, aeromedical_crest],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "hiprep-mobile",
-    name: "HiPrep Mobile App",
-    category: "Mobile Application",
-    type: "mobile",
-    statusBadge: "Pre-launch (Unreleased)",
-    description:
-      "Cross-platform Expo mobile app connecting parents and verified home tutors with dual-role booking, availability scheduling, and verification flows (unreleased).",
-    longDescription:
-      "Built the React Native & Expo mobile application for HiPrep — an unreleased tutoring marketplace designed for both parents booking lessons and tutors managing schedules, demo classes, and payouts. Development completed core dual-role mobile journeys prior to project pause.",
-    features: [
-      "Dual-role experience for Parents (discover tutors, manage child profiles, book lessons) and Tutors",
-      "Multi-step tutor onboarding with academic credential uploads, demo lessons, and payout bank setup",
-      "Booking cart, OTP-verified payment workflow, and tutor weekly availability planner",
-      "Clean cross-platform mobile UI with streamlined lesson scheduling",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+  "hiprep-mobile": {
     image: hiprep_0,
     screenshots: [hiprep_0, hiprep_1, hiprep_2],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "simplifi-finance",
-    name: "Simplifi Finance",
-    category: "Mobile Application",
-    type: "mobile",
-    description:
-      "Cross-platform mobile finance application (iOS & Android). Integrates secure APIs, payment gateways, and real-time transaction analytics.",
-    longDescription:
-      "Simplifi is a modern cross-platform financial application built to deliver smooth wallet transactions, balance management, and real-time analytics for mobile users across iOS & Android.",
-    features: [
-      "Cross-platform mobile iOS & Android application",
-      "Secure API communication & encrypted local storage",
-      "Real-time wallet balance & spending breakdown analytics",
-      "Instant peer-to-peer transfers & payment receipts",
-      "Managed Play Store and App Store release pipelines",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+  "simplifi-finance": {
     image: simplifi_cover,
     screenshots: [
       simplifi_cover,
@@ -800,77 +605,24 @@ const projects: ProjectItem[] = [
       simplifi_3,
       simplifi_4,
     ],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "travel-plus",
-    name: "Travel Plus Logistics",
-    category: "Mobile Application",
-    type: "mobile",
-    description:
-      "Cross-platform mobile ride-booking and logistics app. Features real-time GPS trip tracking, interactive route mapping, automated payment processing, and dispatch.",
-    longDescription:
-      "Travel Plus is a logistics and ride-hailing application providing real-time driver dispatch, automated trip booking, and live GPS map tracking.",
-    features: [
-      "Live interactive map tracking and route navigation",
-      "Real-time driver dispatch & trip booking workflows",
-      "In-app payments & automated fare calculation",
-      "Push notifications for trip status updates",
-      "Managed Play Store releases & production stability",
-    ],
-    tags: [{ name: "mobile-app", color: "green-text-gradient" }],
+  "travel-plus": {
     image: travelplus_1,
     screenshots: [travelplus_1, travelplus_2],
-    source_code_link: "",
-    project_link: "",
   },
-  {
-    id: "naf-awc",
-    name: "NAF Air Warfare Center LMS (v1)",
-    category: "Web Application",
-    type: "web",
-    statusBadge: "Initial Version (v1 Build)",
-    description:
-      "Built the foundational first version (v1) of the official Nigerian Air Force Air Warfare Center institutional portal and Learning Management System.",
-    longDescription:
-      "Architected and built the initial release (v1) of the Nigerian Air Force Air Warfare Center institutional web portal and school administration LMS. Facilitated institutional records, student management, course materials, and administrative officer workflows. (Note: The command's live institutional website has since transitioned to afwcn.airforce.mil.ng with a subsequent redesign; this case study showcases the foundational v1 platform engineered by our team).",
-    features: [
-      "Architected foundational v1 institutional portal and Learning Management System (LMS)",
-      "Engineered school administration portal with student profiles, grade sheets, and course records",
-      "Implemented role-based authorization for students, administrative officers, and commandants",
-      "Designed responsive interfaces for academic modules and institutional announcements",
-      "Note: Built initial v1 release; the live institutional website was later updated by the command to afwcn.airforce.mil.ng",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "naf-awc": {
     image: naf_awc_cover,
     screenshots: [
       naf_awc_cover,
-      awc_admin,
-      awc_admin_6,
-      awc_admin_5,
       awc_2,
       awc_3,
       awc_4,
+      awc_admin,
+      awc_admin_6,
+      awc_admin_5,
     ],
-    source_code_link: "https://github.com/itcentralng/awc-portal",
-    project_link: "https://afwcn.airforce.mil.ng/",
   },
-  {
-    id: "lumi-ai",
-    name: "Lumi AI",
-    category: "Web Application",
-    type: "web",
-    description:
-      "An interactive learning assistant that helps students learn through focused lessons, conversation, and visual support.",
-    longDescription:
-      "Lumi AI guides students through complex topics with short, focused lessons and interactive questions. Students can use voice, chat, and images to explore concepts and get help with homework.",
-    features: [
-      "Voice-based interactive learning assistant for students",
-      "Chat based AI tutor for personalized learning experiences",
-      "Image support for assistance with homework and visual learning",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "lumi-ai": {
     image: lumi_cover,
     screenshots: [
       lumi_cover,
@@ -882,46 +634,12 @@ const projects: ProjectItem[] = [
       lumi_6,
       lumi_7,
     ],
-    source_code_link: "",
-    project_link: "https://lumiai.hipreponline.com/",
   },
-  {
-    id: "schoola-landing",
-    name: "Schoola Landing Page",
-    category: "Web Application",
-    type: "web",
-    description:
-      "Public marketing web portal and interactive showcase for the Schoola Edtech company.",
-    longDescription:
-      "The primary web landing page for Schoola Edtech company, featuring dynamic product highlights, parent/school onboarding, and modern responsive design.",
-    features: [
-      "SEO-optimized web architecture",
-      "Custom responsive components & clean layouts",
-      "Interactive solution demos & lead capture forms",
-      "Fast page load speed & modern visual aesthetic",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "schoola-landing": {
     image: schoola_landing,
     screenshots: [schoola_landing],
-    source_code_link: "https://github.com/schoolaltd/web-schoola-website",
-    project_link: "https://schoola.app/",
   },
-  {
-    id: "schoola-lms",
-    name: "Schoola LMS",
-    category: "Web Application",
-    type: "web",
-    description:
-      "Interactive online learning management system supporting digital classrooms and e-learning for 15,000+ students.",
-    longDescription:
-      "Schoola LMS provides digital classroom tools for teachers and students. Features virtual assignments, online quizzes, study materials, and progress analytics.",
-    features: [
-      "Interactive digital study modules & classroom tools",
-      "Teacher assignment grading & feedback portal",
-      "Automated quiz scoring & student performance analytics",
-      "Modular web interface & frontend state management",
-    ],
-    tags: [{ name: "web-app", color: "blue-text-gradient" }],
+  "schoola-lms": {
     image: schoola_lms_cover,
     screenshots: [
       schoola_lms_cover,
@@ -930,9 +648,177 @@ const projects: ProjectItem[] = [
       schoola_lms_4,
       schoola_lms_6,
     ],
-    source_code_link: "https://github.com/schoolaltd/web-src",
-    project_link: "https://schoola.app/",
+  },
+};
+
+const categoryDisplayMap: Record<string, ProjectItem["category"]> = {
+  mobile: "Mobile Application",
+  web: "Web Application",
+  automation: "WhatsApp Automation & Backend",
+};
+
+const statusBadgeMap: Record<string, string> = {
+  "live-ios-android": "Live on iOS & Android",
+  "whatsapp-cloud-api": "WhatsApp Cloud API",
+  "predecessor-to-flip": "Predecessor to Flip",
+  "live-institutional-portal": "Live Institutional Portal",
+  "cross-platform-suite": "Mobile & Web Suite",
+  "initial-version-v1": "NAF AWC Portal v1",
+  "live-operational": "Live Institutional LMS",
+  "live-platform": "Live Platform",
+  "live": "Live Platform",
+  "active": "Active Platform",
+  "active-beta": "Active Beta (Pre-release)",
+  "live-site": "Live Website",
+  "discontinued": "Discontinued",
+  "web-active-app-discontinued": "Web Active (App Discontinued)",
+  "archived": "Portfolio Showcase",
+};
+
+const projectResultMap: Record<string, string> = {
+  "koyo-app": "Live classes & AI curriculum",
+  "hajamarketplace": "3-bot marketplace engine",
+  "curri-ai": "Used by 3,000+ teachers",
+  "schoola-src": "Supporting 150+ schools",
+  "dinki-app": "Mobile, web, admin & backend",
+  "nafcons-cbt": "Live admissions portal",
+  "distress-sale": "Automated deal engine",
+  "simplifi-finance": "Active budgeting & finance app",
+  "travel-plus": "Ride booking in active beta",
+  "naf-awc": "Defense training portal v1",
+  "lrcn-backend": "Automated Remita RRR engine",
+  "schoola-lms": "Live LMS (demo.schoola.app)",
+  "instafood": "Complete restaurant ordering system",
+  "hiprep-mobile": "Web active at hipreponline.com",
+};
+
+const selectedProjectIds = new Set(
+  homeSelectedSection?.projectIds || [
+    "koyo-app",
+    "hajamarketplace",
+    "curri-ai",
+    "schoola-src",
+    "dinki-app",
+  ]
+);
+
+export const projects: ProjectItem[] = (
+  (portfolioContent.projects || []) as unknown as JsonProject[]
+).map((p: JsonProject) => {
+  const assets = projectAssetsMap[p.id] || {
+    image: web,
+    screenshots: [],
+  };
+  const isFeatured = selectedProjectIds.has(p.id);
+
+  const playStoreLink = p.links?.find((l: JsonProjectLink) =>
+    /play/i.test(l.label)
+  )?.url;
+  const appStoreLink = p.links?.find((l: JsonProjectLink) =>
+    /app store/i.test(l.label)
+  )?.url;
+  const whatsappLink = p.links?.find((l: JsonProjectLink) =>
+    /whatsapp/i.test(l.label)
+  )?.url;
+  const projectLink =
+    p.links?.find(
+      (l: JsonProjectLink) =>
+        !/play|app store|whatsapp|github|source|repo/i.test(l.label)
+    )?.url || "";
+
+  const result =
+    projectResultMap[p.id] ||
+    statusBadgeMap[p.status] ||
+    (p.category === "mobile" ? "Mobile Application" : "Production Platform");
+
+  return {
+    id: p.id,
+    name: p.name,
+    category: categoryDisplayMap[p.category] || "Web Application",
+    type: p.category as "web" | "mobile" | "automation",
+    featured: isFeatured,
+    statusBadge: statusBadgeMap[p.status] || p.status,
+    description: p.shortDescription || p.overview || "",
+    role: p.role,
+    result: result,
+    problem: p.overview || p.shortDescription || "",
+    contributions: p.contributions || [],
+    longDescription: p.overview || p.shortDescription || "",
+    features: p.contributions || [],
+    tags: (p.technologies || []).map((tech: string) => ({
+      name: tech.toLowerCase().replace(/[^a-z0-9]/g, "-"),
+      color: "blue-text-gradient",
+    })),
+    technologies: p.technologies || [],
+    image: assets.image,
+    screenshots:
+      assets.screenshots.length > 0 ? assets.screenshots : [assets.image],
+    source_code_link: "",
+    project_link: projectLink,
+    play_store_link: playStoreLink,
+    app_store_link: appStoreLink,
+    whatsapp_link: whatsappLink,
+    whatsapp_number: assets.whatsapp_number,
+  };
+});
+
+// -------------------------------------------------------------
+// LEGACY COMPATIBILITY EXPORTS (Tech / Services)
+// -------------------------------------------------------------
+const services = [
+  {
+    title: "Web applications",
+    description: "Next.js & React customer-facing portals, CMS dashboards, CBT engines, and internal tools.",
+    icon: web,
+  },
+  {
+    title: "Mobile applications",
+    description: "Cross-platform iOS and Android apps in React Native and Expo built for real-world scale.",
+    icon: mobile,
+  },
+  {
+    title: "WhatsApp & workflow automation",
+    description: "Conversational marketplace bots, Cloud API state machines, OTP auth, and catalog sync.",
+    icon: whatsapp_automation,
+  },
+  {
+    title: "AI & real-time integrations",
+    description: "Claude & Gemini content workflows, 100ms live video sessions, and Socket.IO instant streams.",
+    icon: ai_realtime,
+  },
+  {
+    title: "Backends, APIs & payments",
+    description: "Scalable Node.js & NestJS services with Remita, Paystack, and Stripe payment gateways.",
+    icon: backend,
+  },
+  {
+    title: "Technical leadership & mentoring",
+    description: "Clear engineering direction, Jest testing standards, and hands-on mentoring to help teams ship.",
+    icon: creator,
   },
 ];
 
-export { services, technologies, experiences, projects };
+const technologies = [
+  { name: "React JS", icon: reactjs },
+  { name: "React Native", icon: reactjs },
+  { name: "Next.js", icon: nextjsIcon },
+  { name: "TypeScript", icon: typescript },
+  { name: "JavaScript", icon: javascript },
+  { name: "Node JS", icon: nodejs },
+  { name: "Nest JS", icon: nestjs },
+  { name: "WhatsApp Cloud API", icon: whatsappIcon },
+  { name: "AI Workflows", icon: aiIcon },
+  { name: "WebSockets & 100ms", icon: realtimeIcon },
+  { name: "Remita & Paystack", icon: paymentsIcon },
+  { name: "Tailwind CSS", icon: tailwind },
+  { name: "Redux Toolkit", icon: redux },
+  { name: "MongoDB", icon: mongodb },
+  { name: "git", icon: git },
+  { name: "figma", icon: figma },
+  { name: "docker", icon: docker },
+  { name: "HTML 5", icon: html },
+  { name: "CSS 3", icon: css },
+  { name: "Three JS", icon: threejs },
+];
+
+export { services, technologies };

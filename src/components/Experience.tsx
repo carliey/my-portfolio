@@ -9,7 +9,7 @@ import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({ experience }: any) => {
+const ExperienceCard = ({ experience }: { experience: (typeof experiences)[number] }) => {
   return (
     <VerticalTimelineElement
       contentStyle={{
@@ -43,10 +43,16 @@ const ExperienceCard = ({ experience }: any) => {
         <p className="text-[#00cea8] text-[15px] font-semibold tracking-wider mt-1">
           {experience.company_name}
         </p>
+
+        {experience.summary && (
+          <p className="mt-3 text-xs sm:text-sm text-[#dfd9ff]/90 italic border-l-2 border-[#915EFF] pl-3 py-1 bg-primary/30 rounded-r-lg">
+            {experience.summary}
+          </p>
+        )}
       </div>
 
       <ul className="mt-4 ml-5 hidden list-disc space-y-2 sm:block">
-        {experience.points.map((point: any, index: any) => (
+        {experience.points.map((point: string, index: number) => (
           <li
             key={`experience-point-${index}`}
             className="text-[#dfd9ff] text-[14px] pl-1 leading-relaxed"
@@ -55,9 +61,10 @@ const ExperienceCard = ({ experience }: any) => {
           </li>
         ))}
       </ul>
-      <details className="mt-4 rounded-xl border border-white/10 bg-primary/30 sm:hidden">
+
+      <details className="mt-4 rounded-xl border border-white/10 bg-primary/40 sm:hidden">
         <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-white hover:text-[#b79bff]">
-          Read work highlights
+          View highlights & contributions
         </summary>
         <ul className="ml-5 space-y-2 px-4 pb-4 list-disc">
           {experience.points.map((point: string, index: number) => (
@@ -75,10 +82,12 @@ const Experience = () => {
   return (
     <>
       <motion.div variants={textVariant(0.1)}>
-        {/* <p className={`${styles.sectionSubText}`}>
-          What I have done so far
-        </p> */}
-        <h2 className={`${styles.sectionHeadText}`}>Work Experience.</h2>
+        <p className={styles.sectionSubText}>Professional Track Record</p>
+        <h2 className={styles.sectionHeadText}>Work Experience.</h2>
+        <p className="mt-4 text-secondary text-base sm:text-lg leading-relaxed max-w-3xl">
+          A progression of high-ownership engineering roles across education technology,
+          mobile logistics, defense contracting, and public-sector software delivery.
+        </p>
       </motion.div>
 
       <div className="mt-12 flex flex-col">
@@ -95,4 +104,5 @@ const Experience = () => {
   );
 };
 
-export default SectionWrapper({ Component: Experience, idName: "work" });
+const WrappedExperience = SectionWrapper({ Component: Experience, idName: "experience" });
+export default WrappedExperience;

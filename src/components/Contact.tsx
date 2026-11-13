@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { styles } from "../style";
 import { SectionWrapper } from "../hoc";
-import { personalInfo, socialLinks } from "../constants";
+import { contactContent, personalInfo, socialLinks } from "../constants";
 import { track } from "../lib/analytics";
 import {
   TikTokIcon,
@@ -46,11 +46,9 @@ const Contact = () => {
 
         <div className="text-center max-w-2xl mx-auto">
           <p className={styles.sectionSubText}>Get In Touch</p>
-          <h2 className={styles.sectionHeadText}>Tell Me What You're Building.</h2>
+          <h2 className={styles.sectionHeadText}>{contactContent.heading}</h2>
           <p className="text-secondary text-[16px] mt-4 leading-relaxed">
-            Starting something new or improving a product you already have? I'd
-            love to hear about it. Send me a message and let's talk through the
-            next step.
+            {contactContent.description}
           </p>
         </div>
 
@@ -91,37 +89,6 @@ const Contact = () => {
               </p>
             </div>
           </a>
-        </div>
-
-        {/* One featured video above the social profiles. */}
-        <div className="mt-12 border-t border-white/10 pt-10">
-          <div className="grid gap-8 rounded-2xl border border-white/10 bg-tertiary/70 p-5 sm:p-8 md:grid-cols-[minmax(0,280px)_1fr] md:items-center">
-            <div className="mx-auto w-full max-w-[280px] overflow-hidden rounded-xl border border-white/10 bg-primary">
-              <iframe
-                src="https://www.tiktok.com/player/v1/7698042073831738632?description=0&music_info=0&rel=0"
-                title="React Native setup tip by Muhammed Ladan"
-                loading="lazy"
-                allow="fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="aspect-[9/16] w-full border-0"
-              />
-            </div>
-
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#00cea8]">
-                Beyond the build
-              </p>
-              <h3 className="mt-3 text-2xl sm:text-3xl font-bold text-white">
-                Practical tech tips, one video at a time.
-              </h3>
-              <p className="mt-4 text-sm sm:text-base leading-relaxed text-secondary">
-                I share short videos on the tools and decisions behind building
-                software. This one explains why Expo makes getting started with
-                React Native easier.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Social Platforms Grid */}
@@ -165,4 +132,5 @@ const Contact = () => {
   );
 };
 
-export default SectionWrapper({ Component: Contact, idName: "contact" });
+const WrappedContact = SectionWrapper({ Component: Contact, idName: "contact" });
+export default WrappedContact;

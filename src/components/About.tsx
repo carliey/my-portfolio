@@ -47,9 +47,9 @@ const About = () => {
       detail: "Web portals, mobile apps & bots",
     },
     {
-      value: "45+",
-      label: "Interns & Students Mentored",
-      detail: "Bootcamps & technical leadership",
+      value: "100+",
+      label: "Students Taught & Mentored",
+      detail: "Bootcamps, academies & technical leadership",
     },
   ];
 
@@ -98,4 +98,5 @@ const About = () => {
   );
 };
 
-export default SectionWrapper({ Component: About, idName: "about" });
+const WrappedAbout = SectionWrapper({ Component: About, idName: "about" });
+export default WrappedAbout;

@@ -56,6 +56,11 @@ const ProjectDetailsPage = () => {
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#00cea8]">
               {project.category}
             </p>
+            {project.role && (
+              <span className="rounded-full border border-[#915EFF]/40 bg-[#915EFF]/10 px-3 py-1 text-xs font-semibold text-[#dfd9ff]">
+                {project.role}
+              </span>
+            )}
             {project.statusBadge && (
               <span className="rounded-full border border-[#00cea8]/40 bg-[#00cea8]/10 px-3 py-1 text-xs font-semibold text-[#00cea8]">
                 {project.statusBadge}
@@ -147,24 +152,6 @@ const ProjectDetailsPage = () => {
                   App Store
                 </a>
               )}
-              {project.source_code_link && (
-                <a
-                  href={project.source_code_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("outbound_click", {
-                      target: "source_code",
-                      project: project.id,
-                      url: project.source_code_link,
-                    })
-                  }
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
-                >
-                  <ExternalLinkIcon className="h-5 w-5" />
-                  View source code
-                </a>
-              )}
             </div>
           )}
 
@@ -227,26 +214,53 @@ const ProjectDetailsPage = () => {
           </div>
         </section>
 
+        {/* Product Overview */}
         <section aria-labelledby="overview-heading" className="mt-12 max-w-4xl">
           <h2 id="overview-heading" className="text-2xl font-bold text-white sm:text-3xl">
             Overview
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-white/90 sm:text-lg">
-            {project.longDescription}
-          </p>
+          <div className="mt-4 rounded-2xl bg-tertiary border border-white/10 p-5 sm:p-6">
+            <p className="text-base leading-relaxed text-[#dfd9ff] sm:text-lg">
+              {project.longDescription || project.description}
+            </p>
+          </div>
         </section>
 
-        <section aria-labelledby="highlights-heading" className="mt-12 max-w-4xl">
-          <h2 id="highlights-heading" className="text-2xl font-bold text-white sm:text-3xl">Highlights</h2>
-          <ul className="mt-5 divide-y divide-white/10 border-y border-white/10">
-            {project.features.map((feature) => (
-              <li key={feature} className="flex items-start gap-4 py-4">
-                <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#915EFF]" />
-                <span className="leading-relaxed text-white/90">{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {/* Technologies Used */}
+        {project.technologies && project.technologies.length > 0 && (
+          <section aria-labelledby="tech-heading" className="mt-10 max-w-4xl">
+            <h2 id="tech-heading" className="text-lg font-bold uppercase tracking-wider text-secondary">
+              Technologies & Tools
+            </h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {project.technologies.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="rounded-xl bg-tertiary border border-white/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white/90"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Key Engineering Contributions */}
+        {project.contributions && project.contributions.length > 0 && (
+          <section aria-labelledby="contributions-heading" className="mt-12 max-w-4xl">
+            <h2 id="contributions-heading" className="text-2xl font-bold text-white sm:text-3xl">
+              Key Engineering Contributions
+            </h2>
+            <ul className="mt-4 space-y-3">
+              {project.contributions.map((c, i) => (
+                <li key={i} className="flex items-start gap-3 rounded-xl bg-tertiary/70 border border-white/5 p-4 text-white/90">
+                  <span className="text-[#00cea8] font-bold mt-0.5">▸</span>
+                  <span className="leading-relaxed text-sm sm:text-base">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <div className="mt-10 flex max-w-4xl flex-col items-start gap-1 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <p className="text-lg font-semibold text-white">Have a project in mind?</p>

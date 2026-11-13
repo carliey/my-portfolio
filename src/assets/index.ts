@@ -89,7 +89,11 @@ import naflms_3 from "./projects/nafcons/naflms-3.png";
 import nafcons_cbt from "./projects/nafcons/nafcons_cbt.png";
 import nafcons_header from "./projects/nafcons/nafcons_header.jpg";
 
-import haja_whatsapp from "./projects/haja/haja_whatsapp.svg";
+import haja_1 from "./projects/haja/haja-1.png";
+import haja_2 from "./projects/haja/haja-2.png";
+import haja_3 from "./projects/haja/haja-3.png";
+import haja_4 from "./projects/haja/haja-4.png";
+import haja_5 from "./projects/haja/haja-5.png";
 
 import dinki_0 from "./projects/dinki/dinki-0.png";
 import dinki_1 from "./projects/dinki/dinki-1.png";
@@ -212,7 +216,11 @@ export {
   naflms_3,
   nafcons_cbt,
   nafcons_header,
-  haja_whatsapp,
+  haja_1,
+  haja_2,
+  haja_3,
+  haja_4,
+  haja_5,
   dinki_0,
   dinki_1,
   dinki_2,

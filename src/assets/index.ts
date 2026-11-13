@@ -115,7 +115,12 @@ import lumi_5 from "./projects/lumi/lumi-5.png";
 import lumi_6 from "./projects/lumi/lumi-6.png";
 import lumi_7 from "./projects/lumi/lumi-7.png";
 
-import schoola_curri from "./projects/curri AI/schoola_curri.png";
+import curri_cover from "./projects/curri AI/curri cover.png";
+import curri_cover_2 from "./projects/curri AI/curri cover 2.png";
+import curri_cover_4 from "./projects/curri AI/curri cover-4.png";
+import curri_1 from "./projects/curri AI/curri-1.png";
+import curri_2 from "./projects/curri AI/curri-2.png";
+import curri_3 from "./projects/curri AI/curri-3.png";
 import schoola_landing from "./projects/schoola website/schoola_landing.png";
 import schoola_src_1 from "./projects/schoola src/src-1.png";
 import schoola_src_2 from "./projects/schoola src/src-2.png";
@@ -229,7 +234,12 @@ export {
   lumi_5,
   lumi_6,
   lumi_7,
-  schoola_curri,
+  curri_cover,
+  curri_cover_2,
+  curri_cover_4,
+  curri_1,
+  curri_2,
+  curri_3,
   schoola_landing,
   schoola_src_1,
   schoola_src_2,

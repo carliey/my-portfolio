@@ -1,6 +1,9 @@
 import portfolioContent from "./muhammed_ladan_portfolio_content.json";
+import cvPdfUrl from "./Muhammed Ladan - CV.pdf";
 
 import {
+  me,
+  herobg,
   javascript,
   typescript,
   html,
@@ -118,7 +121,9 @@ import schoola from "../assets/company/schoola.svg";
 import krpc from "../assets/company/krpc.png";
 import nestjs from "../assets/nest_logo.svg";
 
-export { portfolioContent };
+export { portfolioContent, cvPdfUrl };
+export const profileImage = me;
+export const heroBgImage = herobg;
 
 // -------------------------------------------------------------
 // DERIVED SITE METADATA & PERSONAL INFO (from content JSON)
@@ -234,6 +239,19 @@ const homeSections = (homePage?.sections || []) as unknown as GenericSection[];
 
 const homeHero = homeSections.find((s) => s.id === "hero")
   ?.content as HomeHeroContent | undefined;
+
+export const heroContent = {
+  eyebrow: homeHero?.eyebrow || "Muhammed Ladan",
+  headline:
+    homeHero?.headline ||
+    "Have an idea for a web or mobile product?",
+  subheadline:
+    homeHero?.subheadline ||
+    "Product development · Technical integration · Engineering leadership",
+  description:
+    homeHero?.description ||
+    "I'm a software engineer who can help you shape it, build it, and launch it. Let's turn what you're imagining into something people can use.",
+};
 const homeSelectedSection = homeSections.find((s) => s.id === "selected-projects")
   ?.content as HomeSelectedContent | undefined;
 const homeCapabilitiesSection = homeSections.find((s) => s.id === "capabilities")
@@ -252,27 +270,20 @@ export const personalInfo = {
   email: portfolioContent.site.contact.email,
   phone: portfolioContent.site.contact.phone,
   location: portfolioContent.site.contact.location,
-  cvUrl: portfolioContent.site.globalActions.find((a) => /cv/i.test(a.label))?.href || "#",
+  cvUrl: "/cv",
+  cvPdfUrl,
   stats: [
     {
       value: "4+",
       label: "Years Experience",
-      detail: "Building scalable web & mobile products",
     },
     {
       value: "15+",
       label: "Products Shipped",
-      detail: "Web portals, mobile apps & automated bots",
     },
     {
       value: "100+",
-      label: "Students Taught",
-      detail: "Bootcamps, Dialogue & AFIT ICT workshops",
-    },
-    {
-      value: "5+",
-      label: "Interns Mentored",
-      detail: "Engineering mentorship at iT Central",
+      label: "Students & Interns Taught",
     },
   ],
 };
@@ -311,12 +322,18 @@ export const socialLinks = [
 ];
 
 export const navLinks = [
-  { id: "projects", title: "Projects" },
-  { id: "experience", title: "Experience" },
-  { id: "capabilities", title: "Capabilities" },
-  { id: "collaborations", title: "Collaborations" },
-  { id: "mentorship", title: "Mentorship" },
-  { id: "contact", title: "Contact" },
+  { id: "projects", title: "Work", href: "/#projects", route: "/projects" },
+  { id: "experience", title: "Experience", href: "/#experience" },
+  { id: "cv", title: "CV", href: "/cv", route: "/cv" },
+  { id: "contact", title: "Contact", href: "/#contact" },
+];
+
+export const chapterStages = [
+  { id: "hero", num: "01", label: "Intro" },
+  { id: "projects", num: "02", label: "Work" },
+  { id: "experience", num: "03", label: "Experience" },
+  { id: "mentorship", num: "04", label: "Knowledge" },
+  { id: "contact", num: "05", label: "Contact" },
 ];
 
 // -------------------------------------------------------------
@@ -445,6 +462,7 @@ export interface ExperienceItem {
 const companyIconMap: Record<string, { icon: string; iconBg: string }> = {
   "it-central": { icon: it_central, iconBg: "#0E5FAF" },
   "schoola": { icon: schoola, iconBg: "#ffffff" },
+  "royalstone": { icon: mobile, iconBg: "#1d1836" },
   "travel-plus": { icon: mobile, iconBg: "#1d1836" },
   "dinki": { icon: backend, iconBg: "#1d1836" },
   "dialogue-academy": { icon: dialogue, iconBg: "#ffffff" },
@@ -670,6 +688,7 @@ const statusBadgeMap: Record<string, string> = {
   "active": "Active Platform",
   "active-beta": "Active Beta (Pre-release)",
   "live-site": "Live Website",
+  "concluded": "Concluded Event",
   "discontinued": "Discontinued",
   "web-active-app-discontinued": "Web Active (App Discontinued)",
   "archived": "Portfolio Showcase",
@@ -699,6 +718,7 @@ const selectedProjectIds = new Set(
     "curri-ai",
     "schoola-src",
     "dinki-app",
+    "simplifi-finance",
   ]
 );
 
@@ -822,3 +842,137 @@ const technologies = [
 ];
 
 export { services, technologies };
+
+// -------------------------------------------------------------
+// STRUCTURED CV DOSSIER (verbatim alignment with Muhammed Ladan - CV.pdf)
+// -------------------------------------------------------------
+export interface CvExperienceEntry {
+  organisation: string;
+  role: string;
+  period: string;
+  bullets: string[];
+}
+
+export interface CvEducationEntry {
+  degree: string;
+  institution: string;
+  period: string;
+}
+
+export const cvData = {
+  name: "Muhammed Ladan",
+  headline: "Software Developer (React, React Native, Node.js)",
+  phone: "+2347036215851",
+  email: "mdcarliey@gmail.com",
+  location: "Kaduna, Nigeria",
+  summary:
+    "Software developer with 4+ years of experience building scalable web and mobile applications using React, React Native, and Node.js. Proven track record leading frontend development, mentoring developers, and delivering production-grade systems including LMS platforms and AI-powered tools. Strong focus on performance, responsive, and maintainable architecture.",
+  technicalSkills: [
+    {
+      group: "Frontend",
+      items: "React.js, JavaScript (ES6+), TypeScript, Next.js, Redux Toolkit, RTK Query, Tailwind CSS, Material UI, Styled Components, SEO",
+    },
+    {
+      group: "Mobile",
+      items: "React Native (Expo & React Native CLI)",
+    },
+    {
+      group: "Backend",
+      items: "Node.js, Express.js, Nest.js",
+    },
+    {
+      group: "Testing",
+      items: "Jest, React Testing Library, TDD, Unit & Integration Testing",
+    },
+    {
+      group: "Databases",
+      items: "MongoDB, MySQL, Firebase",
+    },
+    {
+      group: "Cloud & Deployment",
+      items: "AWS, Google Cloud, VPS, Dokploy, Vercel, Netlify",
+    },
+    {
+      group: "Tools & Workflow",
+      items: "Git, GitHub, Postman, Hoppscotch, Jira, ClickUp",
+    },
+  ],
+  experience: [
+    {
+      organisation: "Schoola",
+      role: "Frontend Lead",
+      period: "Sep 2022 – Present",
+      bullets: [
+        "Re-engineered the Schoola SRC frontend architecture into 5 role-tailored micro-applications, driving user adoption across 150+ educational institutions (15,000+ users).",
+        "Built and maintained the frontend architecture for Curri AI, powering curriculum generation workflows used by 3,000+ teachers.",
+        "Implemented automated unit and integration tests using Jest & React Testing Library, covering 80% of critical user workflows in Curri AI.",
+      ],
+    },
+    {
+      organisation: "iT Central Limited",
+      role: "Software Developer & Senior Partner",
+      period: "Jan 2022 – Oct 2026",
+      bullets: [
+        "Engineered client-facing web and mobile applications using React, TypeScript, and React Native across 8+ production projects.",
+        "Mentored developer interns in production code quality, state management patterns, and Git workflows, and trained students across technical bootcamps.",
+        "Notable deliverables include the Simplifi finance mobile application and the NAF Air Warfare Center LMS.",
+      ],
+    },
+    {
+      organisation: "Dinki App Limited",
+      role: "Full-Stack Mobile Developer (Contract/Part-time)",
+      period: "Dec 2024 – Jan 2026",
+      bullets: [
+        "Built cross-platform React Native applications delivering 20+ user-facing mobile features.",
+        "Developed and maintained Node.js & Express REST APIs, AWS CI/CD pipelines, and Google Play Store releases.",
+      ],
+    },
+    {
+      organisation: "Royalstone Technology Solutions Limited",
+      role: "Mobile App Developer (NYSC)",
+      period: "Aug 2024 – Aug 2025",
+      bullets: [
+        "Built cross-platform React Native applications for the logistics and ride-booking workflows of the Travel Plus mobile app.",
+        "Integrated RESTful APIs for trip booking, real-time status updates, and payment processing alongside Play Store releases.",
+      ],
+    },
+    {
+      organisation: "Dialogue Academy Kaduna",
+      role: "Web Development Tutor (Contract)",
+      period: "May 2024 – Jul 2024",
+      bullets: [
+        "Taught foundational HTML, CSS, and JavaScript and guided cohorts through building practical web projects.",
+      ],
+    },
+    {
+      organisation: "Kaduna Refining and Petrochemical Company (KRPC)",
+      role: "IT Technical Support Intern",
+      period: "Mar 2017 – Mar 2019",
+      bullets: [
+        "Delivered workstation and network IT technical support and assisted with quarterly hardware/software inventory checks.",
+      ],
+    },
+  ] as CvExperienceEntry[],
+  education: [
+    {
+      degree: "Master's in Artificial Intelligence (In progress)",
+      institution: "Nigerian Defence Academy",
+      period: "Expected – 2027",
+    },
+    {
+      degree: "B.Sc. Computer Science (CGPA: 3.92/5.00)",
+      institution: "Kaduna State University",
+      period: "2023",
+    },
+    {
+      degree: "ND Computer Science (CGPA: 3.43/4.00)",
+      institution: "Kaduna Polytechnic",
+      period: "2016",
+    },
+  ] as CvEducationEntry[],
+  certifications: [
+    "MERN Stack Course (Building your own Instagram) – Udemy (2020)",
+    "Most Dedicated Team Member – iT Central (2022)",
+    "Frontend Developer (React) Certificate – HackerRank (2024)",
+  ],
+};

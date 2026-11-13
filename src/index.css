@@ -1,100 +1,208 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-obsidian: #050816;
+  --bg-indigo-deep: #100d25;
+  --bg-indigo-surface: #151030;
+  --accent-violet: #915eff;
+  --accent-teal: #00cea8;
+  --text-primary: #ffffff;
+  --text-highlight: #dfd9ff;
+  --text-secondary: #aaa6c3;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(145, 94, 255, 0.35);
+
+  --font-display: "Space Grotesk", "Poppins", sans-serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  scroll-behavior: smooth;
   color-scheme: dark;
 }
 
 html {
-  scroll-padding-top: 5.5rem;
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+}
+
+/* Activated only on landing page route for 1-section-at-a-time proximity snap */
+html.snap-stage-container {
+  scroll-snap-type: y proximity;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  overflow-x: clip;
+  text-rendering: optimizeLegibility;
 }
 
 :focus-visible {
-  outline: 3px solid #00cea8;
+  outline: 2px solid var(--accent-teal);
   outline-offset: 3px;
 }
 
+/* Skip navigation link */
 .skip-link {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
   z-index: 100;
-  transform: translateY(-150%);
+  transform: translateY(-160%);
   border-radius: 0.5rem;
-  background: #00cea8;
+  background: var(--accent-teal);
   padding: 0.75rem 1rem;
-  color: #050816;
+  color: var(--bg-obsidian);
   font-weight: 700;
+  text-decoration: none;
 }
 
 .skip-link:focus-visible {
   transform: translateY(0);
 }
 
-.hash-span {
-  margin-top: -100px;
-  padding-bottom: 100px;
-  display: block;
+/* Fluid Typography System (rem-based clamp, max <= 2.5 * min for 500% zoom) */
+.font-display {
+  font-family: var(--font-display);
 }
 
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+.type-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 1.45rem + 2.8vw, 4.1rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.type-section {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.95rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.type-prose {
+  font-size: clamp(0.95rem, 0.92rem + 0.25vw, 1.075rem);
+  line-height: 1.65;
+  max-inline-size: 62ch;
+  text-wrap: pretty;
+}
+
+/* Full-Stage Snap Architecture */
+.snap-stage {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+  min-block-size: 100dvh;
+  position: relative;
+}
+
+/* Architectural Grid Surface Texture */
+.bg-architectural-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gradient helper classes preserved for inner routes */
 .orange-text-gradient {
-  background: #f12711;
-  background: -webkit-linear-gradient(to top, #f12711, #f5af19);
   background: linear-gradient(to top, #f12711, #f5af19);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .green-text-gradient {
-  background: #11998e;
-  background: -webkit-linear-gradient(to top, #11998e, #38ef7d);
   background: linear-gradient(to top, #11998e, #38ef7d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .blue-text-gradient {
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to top, #2f80ed, #56ccf2);
   background: linear-gradient(to top, #2f80ed, #56ccf2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .pink-text-gradient {
-  background: #ec008c;
-  background: -webkit-linear-gradient(to top, #ec008c, #fc6767);
   background: linear-gradient(to top, #ec008c, #fc6767);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Marquee Infinite Scrolling Animation */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
+/* Native CSS Scroll-Driven Parallax & Stage Reveals */
+@keyframes parallaxShiftSlow {
+  from {
+    transform: translate3d(0, -32px, 0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate3d(0, 32px, 0);
   }
 }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 30s linear infinite;
+@keyframes parallaxShiftBackdrop {
+  from {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+  to {
+    transform: translate3d(0, 56px, 0) scale(1.1);
+  }
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+@keyframes stageRevealUp {
+  from {
+    opacity: 0.15;
+    transform: translate3d(0, 28px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .parallax-layer-slow {
+      will-change: transform;
+      animation: parallaxShiftSlow linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+
+    .parallax-hero-bg {
+      will-change: transform;
+      animation: parallaxShiftBackdrop linear both;
+      animation-timeline: view();
+      animation-range: exit-crossing 0% exit 100%;
+    }
+
+    .stage-reveal {
+      will-change: transform, opacity;
+      animation: stageRevealUp ease-out both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 36%;
+    }
+  }
+}
+
+/* JS fallback support when CSS scroll-driven animation timeline is unsupported */
+.parallax-fallback-active {
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -107,111 +215,12 @@ html {
     transition-duration: 0.01ms !important;
   }
 
-  .animate-marquee {
+  .parallax-layer-slow,
+  .parallax-hero-bg,
+  .stage-reveal,
+  .parallax-fallback-active {
     animation: none !important;
-  }
-}
-
-/* canvas- styles */
-.canvas-loader {
-  font-size: 10px;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  position: relative;
-  text-indent: -9999em;
-  animation: mulShdSpin 1.1s infinite ease;
-  transform: translateZ(0);
-}
-
-@keyframes mulShdSpin {
-  0%,
-  100% {
-    box-shadow:
-      0em -2.6em 0em 0em #ffffff,
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.5),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7);
-  }
-  12.5% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.7),
-      1.8em -1.8em 0 0em #ffffff,
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5);
-  }
-  25% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.5),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.7),
-      2.5em 0em 0 0em #ffffff,
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  37.5% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.5),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.7),
-      1.75em 1.75em 0 0em #ffffff,
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  50% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.5),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.7),
-      0em 2.5em 0 0em #ffffff,
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.2),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  62.5% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.5),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.7),
-      -1.8em 1.8em 0 0em #ffffff,
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  75% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.5),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.7),
-      -2.6em 0em 0 0em #ffffff,
-      -1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2);
-  }
-  87.5% {
-    box-shadow:
-      0em -2.6em 0em 0em rgba(255, 255, 255, 0.2),
-      1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2),
-      2.5em 0em 0 0em rgba(255, 255, 255, 0.2),
-      1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2),
-      0em 2.5em 0 0em rgba(255, 255, 255, 0.2),
-      -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5),
-      -2.6em 0em 0 0em rgba(255, 255, 255, 0.7),
-      -1.8em -1.8em 0 0em #ffffff;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

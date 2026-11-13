@@ -93,3 +93,23 @@ export const AppStoreIcon: React.FC<{ className?: string }> = ({ className = "w-
     <line x1="12" y1="18" x2="12.01" y2="18" />
   </svg>
 );
+
+export const SocialPlatformIcon: React.FC<{ platform: string; className?: string }> = ({
+  platform,
+  className = "w-4 h-4",
+}) => {
+  switch (platform) {
+    case "tiktok":
+      return <TikTokIcon className={className} />;
+    case "linkedin":
+      return <LinkedInIcon className={className} />;
+    case "instagram":
+      return <InstagramIcon className={className} />;
+    case "youtube":
+      return <YouTubeIcon className={className} />;
+    case "github":
+      return <GitHubIcon className={className} />;
+    default:
+      return null;
+  }
+};

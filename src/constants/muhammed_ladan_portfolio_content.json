@@ -100,9 +100,10 @@
               "hajamarketplace",
               "curri-ai",
               "schoola-src",
-              "dinki-app"
+              "dinki-app",
+              "simplifi-finance"
             ],
-            "maxItems": 5,
+            "maxItems": 6,
             "cardFields": [
               "name",
               "shortDescription",
@@ -234,14 +235,9 @@
             "intro": "I value contributing to the growth of other developers and making practical technology skills more accessible.",
             "highlights": [
               {
-                "label": "Developer Interns Mentored",
-                "value": "5+",
-                "description": "Mentored developer interns in production code quality, state management patterns and Git workflows at iT Central."
-              },
-              {
-                "label": "Students Taught & Trained",
+                "label": "Students & Interns Taught",
                 "value": "100+",
-                "description": "Taught web and mobile development across Girls Tech Bootcamp, Dialogue Academy, iT Central, and AFIT ICT workshops."
+                "description": "Taught web and mobile development across Girls Tech Bootcamp, Dialogue Academy, AFIT ICT workshops, and developer internship mentorship at iT Central."
               },
               {
                 "label": "Technical Content & Community",
@@ -664,11 +660,11 @@
     {
       "id": "it-central",
       "organisation": "iT Central Limited",
-      "role": "Software Engineer & Senior Partner",
-      "period": "Jan 2022 – Present",
+      "role": "Software Developer & Senior Partner",
+      "period": "Jan 2022 – Oct 2026",
       "summary": "Contributed to client-facing web, CMS, CBT and mobile products while supporting technical delivery, mentoring and product development.",
       "highlights": [
-        "Built applications using React.js, Next.js, TypeScript, NestJS and React Native across 12+ client projects.",
+        "Built applications using React.js, Next.js, TypeScript, NestJS and React Native across 8+ client projects.",
         "Mentored interns in code quality, state management and Git workflows.",
         "Trained students in modern web development through bootcamps."
       ],
@@ -687,13 +683,13 @@
       "id": "schoola",
       "organisation": "Schoola",
       "role": "Frontend Lead",
-      "period": "Sep 2022 – Feb 2026",
+      "period": "Sep 2022 – Present",
       "summary": "Led and contributed to frontend development across education technology products, working with product and engineering teams.",
       "highlights": [
-        "Led frontend redevelopment of the School Record System, implementing 10+ core modules.",
-        "Built frontend experiences for Curri AI.",
+        "Re-engineered the School Record System frontend into 5 role-tailored micro-applications.",
+        "Built frontend experiences for Curri AI used by 3,000+ teachers.",
         "Contributed to systems reported to support 150+ schools and 15,000+ students.",
-        "Implemented tests with reported 80% critical workflow coverage."
+        "Implemented tests with 80% critical workflow coverage in Curri AI."
       ],
       "relatedProjectIds": [
         "curri-ai",
@@ -705,20 +701,19 @@
       "verify": "verify-metrics-and-distinguish-platform-impact-from-personal-contribution"
     },
     {
-      "id": "travel-plus",
-      "organisation": "Travel Plus",
-      "role": "Mobile App Developer (Contract/Part-time)",
-      "period": "Sep 2025 – Present",
-      "summary": "Developed cross-platform mobile application experiences for logistics and ride-booking workflows.",
+      "id": "royalstone",
+      "organisation": "Royalstone Technology Solutions Limited",
+      "role": "Mobile App Developer (NYSC)",
+      "period": "Aug 2024 – Aug 2025",
+      "summary": "Built cross-platform mobile applications for logistics and ride-booking workflows across the Travel Plus mobile app.",
       "highlights": [
-        "Built React Native features.",
-        "Integrated REST APIs for trip booking, payments and GPS updates.",
+        "Built React Native features for Travel Plus logistics and ride-booking workflows.",
+        "Integrated RESTful APIs for trip booking and payment processing.",
         "Worked on Play Store releases and production stability."
       ],
       "relatedProjectIds": [
         "travel-plus"
-      ],
-      "verify": "confirm-current-status-and-public-links"
+      ]
     },
     {
       "id": "dinki",
@@ -1018,10 +1013,10 @@
       "id": "lessonthon",
       "name": "Lessonthon",
       "category": "web",
-      "status": "schoola-edtech-contest",
+      "status": "concluded",
       "role": null,
-      "shortDescription": "A lesson-content creation and competition portal for educators.",
-      "overview": "A co-curricular lesson content platform and competition portal built for Schoola.",
+      "shortDescription": "A concluded national lesson-content competition portal for educators built for Schoola.",
+      "overview": "A successful, concluded one-time educational event portal built for Schoola to host educator lesson authoring and challenge submissions.",
       "contributions": [
         "Worked on educator lesson authoring and challenge submission workflows."
       ],

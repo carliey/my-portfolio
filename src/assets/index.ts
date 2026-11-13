@@ -1,4 +1,6 @@
 import logo from "./logo.svg";
+import me from "./me.png";
+import herobg from "./herobg.png";
 import backend from "./backend.png";
 import creator from "./creator.png";
 import mobile from "./mobile.png";
@@ -145,6 +147,8 @@ import lessonthon_4 from "./projects/lessonthon/lessonthon-4.png";
 
 export {
   logo,
+  me,
+  herobg,
   backend,
   creator,
   mobile,

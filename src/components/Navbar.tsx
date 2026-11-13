@@ -1,227 +1,215 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { styles } from "../style";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { close, menu } from "../assets";
-import { navLinks, personalInfo } from "../constants";
-import { DownloadIcon } from "./SocialIcons";
-import { track } from "../lib/analytics";
+import { navLinks, personalInfo, profileImage } from "../constants";
 
 const Navbar = () => {
-  const [activeSection, setActiveSection] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const navigate = useNavigate();
+
+  const isHome = location.pathname === "/";
+  const isProjectsRoute = location.pathname.startsWith("/projects");
+  const isCvRoute = location.pathname === "/cv";
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setScrolled(scrollTop > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // IntersectionObserver scrollspy to mirror active section with aria-current
   useEffect(() => {
-    if (!isHomePage) return;
+    setToggle(false);
+  }, [location.pathname, location.hash]);
 
-    const sectionIds = navLinks.map((nav) => nav.id);
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => el !== null);
+  useEffect(() => {
+    if (!toggle) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setToggle(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [toggle]);
 
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            setActiveSection(id);
-          }
-        });
-      },
-      {
-        rootMargin: "-25% 0px -50% 0px",
-        threshold: 0,
-      }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [isHomePage]);
+  const handleHashLink = (sectionId: string) => {
+    setToggle(false);
+    if (!isHome) {
+      navigate(`/#${sectionId}`);
+      return;
+    }
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.focus({ preventScroll: true });
+    }
+  };
 
   return (
     <header
-      className={`w-full fixed top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-40 transition-colors duration-300 ${
         scrolled
-          ? "bg-[#050816]/90 backdrop-blur-md shadow-lg border-b border-white/5 py-3"
-          : "bg-transparent py-5"
+          ? "border-b border-white/[0.08] bg-[#050816]/85 backdrop-blur-xl"
+          : "border-b border-transparent bg-gradient-to-b from-[#050816]/85 to-transparent"
       }`}
     >
-      <div className={`${styles.paddingX} w-full flex justify-between items-center max-w-7xl mx-auto`}>
-        {/* Brand / Logo */}
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-10">
         <Link
           to="/"
-          className="flex items-center gap-3 group focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00cea8]"
-          onClick={() => {
-            setActiveSection("");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="group flex min-h-11 items-center gap-3 rounded-full pr-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00cea8]"
+          aria-current={isHome ? "page" : undefined}
         >
-          <div className="w-10 h-10 rounded-xl bg-[#915EFF] flex items-center justify-center font-black text-white shadow-md shadow-[#915EFF]/30 group-hover:scale-105 transition-transform">
-            ML
-          </div>
-          <div className="flex flex-col">
-            <span className="text-white text-base sm:text-lg font-bold flex items-center tracking-wide leading-tight">
+          <span className="relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full border border-[#915EFF]/50 bg-[#100d25] ring-2 ring-white/10 transition-transform duration-300 group-hover:scale-105">
+            <img
+              src={profileImage}
+              alt={personalInfo.name}
+              className="h-full w-full object-cover object-top"
+            />
+          </span>
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-sm font-bold tracking-tight text-white sm:text-base">
               {personalInfo.name}
             </span>
-            <span className="text-[11px] text-[#00cea8] font-semibold tracking-wider uppercase">
-              Full-Stack & Mobile
+            <span className="font-mono-tech mt-0.5 text-[10px] uppercase tracking-[0.18em] text-[#00cea8]">
+              Software Engineer
             </span>
-          </div>
+          </span>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav
-          aria-label="Primary site navigation"
-          className="hidden lg:flex items-center gap-7"
-          style={{ scrollTargetGroup: "auto" } as React.CSSProperties}
-        >
-          <ul className="list-none flex flex-row items-center gap-6">
-            {navLinks.map((nav) => {
-              const isActive = activeSection === nav.id;
-              const href = isHomePage ? `#${nav.id}` : `/#${nav.id}`;
+        {/* Desktop Minimal Nav (4 essential routes only) */}
+        <nav aria-label="Primary" className="hidden items-center gap-2 md:flex">
+          <ul className="flex items-center gap-1">
+            {navLinks.map((link) => {
+              if (link.id === "cv") {
+                return (
+                  <li key={link.id}>
+                    <Link
+                      to="/cv"
+                      aria-current={isCvRoute ? "page" : undefined}
+                      className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium transition-colors ${
+                        isCvRoute
+                          ? "bg-white/10 text-white"
+                          : "text-[#aaa6c3] hover:bg-white/[0.05] hover:text-white"
+                      }`}
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                );
+              }
+
+              if (link.id === "contact") {
+                return (
+                  <li key={link.id} className="ml-2">
+                    <button
+                      type="button"
+                      onClick={() => handleHashLink("contact")}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[#915EFF]/50 bg-[#100d25]/90 px-5 text-sm font-semibold text-white transition-all hover:border-[#00cea8] hover:bg-[#151030]"
+                    >
+                      <span
+                        className="h-1.5 w-1.5 rounded-full bg-[#00cea8]"
+                        aria-hidden="true"
+                      />
+                      Let&apos;s Talk
+                    </button>
+                  </li>
+                );
+              }
+
+              const isWorkActive = link.id === "projects" && isProjectsRoute;
               return (
-                <li key={nav.id}>
-                  <a
-                    href={href}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={() => {
-                      setActiveSection(nav.id);
-                      track("nav_click", { section: nav.id });
-                    }}
-                    className={`relative py-1 text-sm font-semibold tracking-wide transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#00cea8] ${
-                      isActive
-                        ? "text-white"
-                        : "text-secondary hover:text-white"
+                <li key={link.id}>
+                  <button
+                    type="button"
+                    onClick={() => handleHashLink(link.id)}
+                    aria-current={isWorkActive ? "page" : undefined}
+                    className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium transition-colors ${
+                      isWorkActive
+                        ? "bg-white/10 text-white"
+                        : "text-[#aaa6c3] hover:bg-white/[0.05] hover:text-white"
                     }`}
                   >
-                    {nav.title}
-                    {isActive && (
-                      <span
-                        aria-hidden="true"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00cea8] rounded-full"
-                      />
-                    )}
-                  </a>
+                    {link.title}
+                  </button>
                 </li>
               );
             })}
-
-            <li>
-              <Link
-                to="/projects"
-                onClick={() => track("nav_click", { section: "all_projects_btn" })}
-                className="text-xs font-bold uppercase tracking-wider text-[#dfd9ff] bg-tertiary hover:bg-[#232631] px-3.5 py-2 rounded-lg border border-white/10 hover:border-[#915EFF] transition-colors"
-              >
-                All Projects (20)
-              </Link>
-            </li>
-
-            <li>
-              <a
-                href={personalInfo.cvUrl || "#"}
-                download
-                onClick={() => track("cta_click", { label: "nav_download_cv" })}
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-black bg-[#00cea8] hover:bg-[#00cea8]/90 px-3.5 py-2 rounded-lg shadow-sm transition-all hover:scale-105"
-              >
-                <DownloadIcon className="w-3.5 h-3.5" />
-                <span>CV</span>
-              </a>
-            </li>
           </ul>
         </nav>
 
-        {/* Mobile Navigation Toggle */}
-        <div className="lg:hidden flex items-center">
+        {/* Mobile Menu Trigger */}
+        <div className="relative md:hidden">
           <button
             type="button"
-            aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+            onClick={() => setToggle((prev) => !prev)}
             aria-expanded={toggle}
-            aria-controls="mobile-navigation"
-            className="flex h-11 w-11 items-center justify-center rounded-xl bg-tertiary border border-white/10 text-white hover:border-[#915EFF] transition-colors"
-            onClick={() => setToggle(!toggle)}
+            aria-controls="mobile-nav-drawer"
+            aria-label={toggle ? "Close navigation menu" : "Open navigation menu"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[#100d25]/90 text-white"
           >
             <img
               src={toggle ? close : menu}
               alt=""
               aria-hidden="true"
-              width="24"
-              height="24"
-              className="w-6 h-6 object-contain"
+              className="h-5 w-5 object-contain"
             />
           </button>
 
-          {/* Mobile Dropdown Menu */}
-          <div
-            id="mobile-navigation"
-            className={`${
-              !toggle ? "hidden" : "flex"
-            } p-6 bg-[#100d25] absolute top-20 right-4 left-4 z-50 rounded-2xl border border-white/10 shadow-2xl flex-col gap-4 backdrop-blur-xl`}
-          >
-            <ul className="list-none flex flex-col gap-3">
-              {navLinks.map((nav) => {
-                const isActive = activeSection === nav.id;
-                const href = isHomePage ? `#${nav.id}` : `/#${nav.id}`;
-                return (
-                  <li key={nav.id}>
-                    <a
-                      href={href}
-                      aria-current={isActive ? "page" : undefined}
-                      className={`block rounded-xl px-4 py-3 font-medium text-base transition-colors ${
-                        isActive
-                          ? "bg-[#915EFF]/20 text-white font-bold border-l-4 border-[#00cea8]"
-                          : "text-secondary hover:text-white hover:bg-white/5"
-                      }`}
-                      onClick={() => {
-                        setToggle(false);
-                        setActiveSection(nav.id);
-                        track("nav_click", { section: nav.id, mobile: true });
-                      }}
-                    >
-                      {nav.title}
-                    </a>
-                  </li>
-                );
-              })}
-
-              <li className="pt-2 border-t border-white/10 flex flex-col gap-2">
-                <Link
-                  to="/projects"
-                  className="block rounded-xl px-4 py-3 text-center font-bold text-sm bg-tertiary text-white border border-white/10"
-                  onClick={() => setToggle(false)}
-                >
-                  Explore All 20 Projects
-                </Link>
-
-                <a
-                  href={personalInfo.cvUrl || "#"}
-                  download
-                  className="flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-center font-bold text-sm bg-[#00cea8] text-black"
-                  onClick={() => {
-                    setToggle(false);
-                    track("cta_click", { label: "mobile_download_cv" });
-                  }}
-                >
-                  <DownloadIcon className="w-4 h-4" />
-                  Download CV
-                </a>
-              </li>
-            </ul>
-          </div>
+          {toggle && (
+            <nav
+              id="mobile-nav-drawer"
+              aria-label="Mobile navigation"
+              className="absolute right-0 top-14 z-50 w-[min(86dvw,18rem)] rounded-2xl border border-white/10 bg-[#100d25]/95 p-4 shadow-2xl shadow-black/60 backdrop-blur-xl"
+            >
+              <ul className="flex flex-col gap-1.5">
+                {navLinks.map((link) => {
+                  if (link.id === "cv") {
+                    return (
+                      <li key={link.id}>
+                        <Link
+                          to="/cv"
+                          aria-current={isCvRoute ? "page" : undefined}
+                          onClick={() => setToggle(false)}
+                          className={`flex min-h-11 items-center justify-between rounded-xl px-4 text-sm font-medium ${
+                            isCvRoute
+                              ? "bg-[#915EFF]/20 text-white"
+                              : "text-[#dfd9ff] hover:bg-white/[0.06]"
+                          }`}
+                        >
+                          <span>View &amp; Download CV</span>
+                          <span className="font-mono-tech text-[11px] text-[#00cea8]">
+                            PDF
+                          </span>
+                        </Link>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link.id}>
+                      <button
+                        type="button"
+                        onClick={() => handleHashLink(link.id)}
+                        className="flex min-h-11 w-full items-center rounded-xl px-4 text-left text-sm font-medium text-[#dfd9ff] hover:bg-white/[0.06] hover:text-white"
+                      >
+                        {link.id === "contact" ? "Let's Talk" : link.title}
+                      </button>
+                    </li>
+                  );
+                })}
+                <li className="mt-1 border-t border-white/10 pt-2">
+                  <Link
+                    to="/projects"
+                    onClick={() => setToggle(false)}
+                    className="flex min-h-11 items-center justify-between rounded-xl px-4 text-sm font-medium text-[#aaa6c3] hover:bg-white/[0.06] hover:text-white"
+                  >
+                    <span>All 20 Projects Archive</span>
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          )}
         </div>
       </div>
     </header>

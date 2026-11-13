@@ -1,104 +1,152 @@
-import { styles } from "../style";
-import { motion } from "framer-motion";
-import { personalInfo } from "../constants";
-import { DownloadIcon } from "./SocialIcons";
+import { Link } from "react-router-dom";
+import { heroBgImage, heroContent, personalInfo, profileImage } from "../constants";
 import { track } from "../lib/analytics";
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.focus({ preventScroll: true });
+    }
+  };
+
   return (
-    <section className="relative w-full min-h-[92vh] mx-auto flex flex-col justify-between pt-32 pb-12">
-      <div
-        className={`w-full max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-6 z-10 my-auto`}
-      >
-        {/* Purple vertical line indicator */}
-        <div className="flex flex-col justify-center items-center mt-3">
-          <div className="w-5 h-5 rounded-full bg-[#915EFF] shadow-lg shadow-[#915EFF]/50" />
-          <div className="w-1 sm:h-80 h-52 bg-gradient-to-b from-[#915EFF] to-transparent" />
-        </div>
+    <section
+      id="hero"
+      tabIndex={-1}
+      className="snap-stage relative flex min-h-[100dvh] w-full flex-col justify-between overflow-hidden bg-[#050816] outline-none"
+    >
+      {/* Preserved Hero Background Image with Parallax Depth & Obsidian Scrim */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <img
+          src={heroBgImage}
+          alt=""
+          aria-hidden="true"
+          data-parallax-speed="28"
+          className="parallax-hero-bg h-full w-full object-cover object-center opacity-75"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-[#050816]/60 via-[#050816]/75 to-[#050816]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(145,94,255,0.16),transparent_55%)]"
+        />
+      </div>
 
-        <div className="flex-1 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#00cea8]/10 border border-[#00cea8]/30 text-[#00cea8] text-xs sm:text-sm font-semibold mb-4 backdrop-blur-sm shadow-sm">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00cea8] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00cea8]"></span>
-              </span>
-              <span>Available for engineering projects & technical leadership</span>
-            </div>
+      {/* Main Editorial Grid */}
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 items-center gap-10 px-5 pb-12 pt-24 sm:px-10 lg:grid-cols-12 lg:gap-12 lg:pt-28">
+        {/* Left: Core Positioning + CTAs + Minimalist Proof Bar */}
+        <div className="flex flex-col justify-center lg:col-span-7">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
+              01 // Introduction
+            </span>
+            <span className="h-1 w-1 rounded-full bg-white/30" aria-hidden="true" />
+            <span className="font-mono-tech inline-flex items-center gap-2 text-xs text-[#aaa6c3]">
+              <span className="h-2 w-2 rounded-full bg-[#00cea8]" aria-hidden="true" />
+              {personalInfo.location}
+            </span>
+          </div>
 
-            <p className="text-sm sm:text-base font-semibold tracking-wider uppercase text-[#00cea8]">
-              Hi, I'm Muhammed Ladan
-            </p>
+          <h1 className="type-hero mt-5 text-white">
+            {heroContent.headline}
+          </h1>
 
-            <h1 className="mt-2 text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] tracking-tight">
-              Have an idea for a <span className="text-[#915EFF]">web</span> or <span className="text-[#00cea8]">mobile product</span>?
-            </h1>
+          <p className="type-prose mt-5 text-[#dfd9ff]/90">
+            {heroContent.description}
+          </p>
 
-            <p className="mt-5 text-[#dfd9ff] text-base sm:text-xl leading-relaxed max-w-3xl">
-              I'm a software engineer who can help you shape it, build it, and launch it. Let's turn what you're imagining into something people can use.
-            </p>
-          </motion.div>
-
-          {/* Action CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-8 flex flex-wrap items-center gap-4"
-          >
-            <a
-              href="#contact"
-              onClick={() => track("cta_click", { label: "hero_lets_build_together" })}
-              className="bg-[#915EFF] hover:bg-[#804dee] text-white font-bold px-7 py-3.5 rounded-xl shadow-lg shadow-[#915EFF]/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <button
+              type="button"
+              onClick={() => {
+                track("hero_cta_click", { target: "contact" });
+                scrollToSection("contact");
+              }}
+              className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#915EFF] px-7 text-sm font-semibold text-white shadow-lg shadow-[#915EFF]/25 transition-all hover:bg-[#7d48f5]"
             >
-              Let's Build Together
-            </a>
+              Let&apos;s Build Together
+            </button>
 
-            <a
-              href="#projects"
-              onClick={() => track("cta_click", { label: "hero_see_my_work" })}
-              className="inline-flex items-center gap-2 bg-tertiary hover:bg-[#232631] text-white border border-white/15 font-semibold px-6 py-3.5 rounded-xl shadow-md transition-all hover:border-[#915EFF]/50 hover:scale-[1.02] active:scale-[0.98]"
+            <button
+              type="button"
+              onClick={() => {
+                track("hero_cta_click", { target: "projects" });
+                scrollToSection("projects");
+              }}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/15 bg-[#100d25]/80 px-6 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:border-[#00cea8] hover:bg-[#151030]"
             >
               See My Work
-            </a>
+              <span aria-hidden="true" className="text-[#00cea8]">↓</span>
+            </button>
 
-            <a
-              href={personalInfo.cvUrl || "#"}
-              download
-              onClick={() => track("cta_click", { label: "hero_download_cv" })}
-              className="inline-flex items-center gap-2 text-secondary hover:text-white font-semibold px-4 py-3.5 transition-colors"
+            <Link
+              to="/cv"
+              onClick={() => track("hero_cta_click", { target: "cv" })}
+              className="inline-flex min-h-12 items-center px-3 text-sm font-medium text-[#aaa6c3] underline decoration-white/25 underline-offset-4 transition-colors hover:text-[#00cea8] hover:decoration-[#00cea8]"
             >
-              <DownloadIcon className="w-4 h-4 text-[#00cea8]" />
-              <span>Download CV</span>
-            </a>
-          </motion.div>
+              View CV
+            </Link>
+          </div>
 
-          {/* Integrated Proof Stats Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-6"
-          >
-            {personalInfo.stats.map((stat, idx) => (
-              <div key={idx} className="flex flex-col">
-                <span className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-                  <span className="text-[#915EFF]">{stat.value}</span>
-                </span>
-                <span className="text-white text-sm font-bold mt-1">
+          {/* Minimalist 3-Stat Bar — Numbers & Labels Only */}
+          <dl className="mt-10 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-7 sm:gap-8">
+            {personalInfo.stats.map((stat) => (
+              <div key={stat.label}>
+                <dd className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+                  {stat.value}
+                </dd>
+                <dt className="mt-1 text-xs font-medium text-[#aaa6c3] sm:text-sm">
                   {stat.label}
-                </span>
-                <span className="text-secondary text-xs mt-0.5 hidden sm:block">
-                  {stat.detail}
-                </span>
+                </dt>
               </div>
             ))}
-          </motion.div>
+          </dl>
+        </div>
+
+        {/* Right: Studio Portrait Architectural Frame */}
+        <div className="flex justify-center lg:col-span-5 lg:justify-end">
+          <div
+            data-parallax-speed="-16"
+            className="parallax-layer-slow relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[400px]"
+          >
+            {/* Subtle offset framing accent */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 rounded-[2rem] border border-[#915EFF]/25 bg-gradient-to-br from-[#915EFF]/10 via-transparent to-[#00cea8]/10"
+            />
+            <div className="relative overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#100d25] shadow-2xl shadow-black/70">
+              <div className="aspect-[4/5] w-full overflow-hidden bg-[#100d25]">
+                <img
+                  src={profileImage}
+                  alt="Studio portrait of Muhammed Ladan"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#050816] via-[#050816]/60 to-transparent"
+              />
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between px-5 pb-4 pt-6">
+                <div>
+                  <p className="font-display text-sm font-semibold text-white">
+                    {personalInfo.name}
+                  </p>
+                  <p className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#00cea8]">
+                    Web · Mobile · AI · Backend
+                  </p>
+                </div>
+                <span className="font-mono-tech rounded-full border border-white/15 bg-[#050816]/80 px-2.5 py-1 text-[10px] text-[#dfd9ff] backdrop-blur-md">
+                  NG · Remote
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

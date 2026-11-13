@@ -1,101 +1,142 @@
-import { styles } from "../style";
-import { SectionWrapper } from "../hoc";
-import { knowledgeSharingContent, portfolioContent } from "../constants";
-import { TikTokIcon } from "./SocialIcons";
+import { knowledgeSharingContent, socialLinks } from "../constants";
+import { SocialPlatformIcon } from "./SocialIcons";
 import { track } from "../lib/analytics";
 
 const Leadership = () => {
-  const { highlights, featuredMedia } = knowledgeSharingContent;
+  const { featuredMedia, highlights } = knowledgeSharingContent;
+  const teachingHighlight = highlights[0];
+  const communityHighlight = highlights[1];
 
   return (
-    <>
-      <div className="max-w-3xl">
-        <p className={styles.sectionSubText}>Community & Impact</p>
-        <h2 className={styles.sectionHeadText}>Knowledge Sharing.</h2>
-        <p className="mt-3 text-secondary text-base leading-relaxed">
-          Contributing to the growth of other developers and making practical technology skills more accessible — through hands-on mentoring, classroom teaching, and technical breakdowns.
-        </p>
-      </div>
+    <section
+      id="mentorship"
+      tabIndex={-1}
+      className="snap-stage relative flex min-h-[100dvh] w-full flex-col justify-center border-t border-white/[0.06] bg-[#050816] py-20 outline-none sm:py-24"
+    >
+      <div
+        aria-hidden="true"
+        data-parallax-speed="-20"
+        className="parallax-layer-slow pointer-events-none absolute -left-24 top-1/3 h-80 w-80 rounded-full bg-[#00cea8]/10 blur-[110px]"
+      />
 
-      {/* Mentorship & Teaching Metric Cards */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
-        {highlights.map((item, idx) => (
-          <div
-            key={idx}
-            className="flex flex-col justify-between rounded-2xl border border-white/10 bg-tertiary p-6 transition-all duration-300 hover:border-[#915EFF]/50 hover:shadow-lg hover:shadow-[#915EFF]/10 group"
-          >
-            <div>
-              <span className="text-3xl sm:text-4xl font-black text-[#915EFF]">
-                {item.metric}
-              </span>
-              <h3 className="mt-2 text-lg font-bold text-white group-hover:text-[#b79bff] transition-colors">
-                {item.title}
-              </h3>
-              <p className="text-xs font-semibold text-[#00cea8] mt-0.5">
-                {item.role}
-              </p>
-              <p className="mt-2.5 text-xs sm:text-sm text-secondary leading-relaxed">
-                {item.description}
-              </p>
-            </div>
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 sm:px-10 lg:grid-cols-12">
+        {/* Left: Teaching & Community Footprint */}
+        <div className="stage-reveal lg:col-span-6">
+          <p className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
+            04 // Knowledge Sharing
+          </p>
+          <h2 className="type-section mt-2 text-white">
+            Teaching &amp; Beyond the Build
+          </h2>
+          <p className="type-prose mt-4 text-[#aaa6c3]">
+            {knowledgeSharingContent.intro}
+          </p>
+
+          {/* Focused 2-Metric Row (Interns + Bootcamps unified into 100+) */}
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {teachingHighlight && (
+              <div className="rounded-2xl border border-white/10 bg-[#100d25]/90 p-5">
+                <p className="font-display text-3xl font-bold text-[#00cea8]">
+                  {teachingHighlight.metric}
+                </p>
+                <p className="mt-1 font-display text-base font-semibold text-white">
+                  {teachingHighlight.title}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-[#aaa6c3]">
+                  Girls Tech Bootcamp, Dialogue Academy, AFIT ICT workshops &amp; iT Central internships.
+                </p>
+              </div>
+            )}
+
+            {communityHighlight && (
+              <div className="rounded-2xl border border-white/10 bg-[#100d25]/90 p-5">
+                <p className="font-display text-3xl font-bold text-[#915EFF]">
+                  {communityHighlight.metric}
+                </p>
+                <p className="mt-1 font-display text-base font-semibold text-white">
+                  {communityHighlight.title}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-[#aaa6c3]">
+                  Short practical videos breaking down React Native, tooling &amp; engineering decisions.
+                </p>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
 
-      {/* Beyond the Build - Featured TikTok Engineering Breakdown */}
-      {featuredMedia && (
-        <div className="mt-8 rounded-2xl border border-white/10 bg-tertiary p-6 sm:p-8 transition-all duration-300 hover:border-[#915EFF]/40">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,280px)_1fr] lg:items-center">
-            <div className="mx-auto w-full max-w-[280px] overflow-hidden rounded-2xl border border-white/10 bg-primary shadow-2xl">
-              <iframe
-                src={featuredMedia.embedUrl}
-                title={featuredMedia.title || "Beyond the Build video by Muhammed Ladan"}
-                loading="lazy"
-                allow="fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
-                className="aspect-[9/16] w-full border-0"
-              />
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 self-start rounded-full bg-[#00cea8]/10 border border-[#00cea8]/30 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#00cea8]">
-                <span>{featuredMedia.eyebrow}</span>
-              </div>
-
-              <h3 className="mt-3 text-2xl sm:text-3xl font-bold text-white">
-                {featuredMedia.heading}
-              </h3>
-
-              <p className="mt-3 text-sm sm:text-base leading-relaxed text-secondary max-w-xl">
-                {featuredMedia.description}
-              </p>
-
-              <div className="mt-6">
-                <a
-                  href={portfolioContent.site.socials.tiktok}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("social_click", {
-                      network: "tiktok",
-                      source: "beyond_the_build",
-                    })
-                  }
-                  className="inline-flex items-center gap-2.5 rounded-xl bg-[#ff0050]/15 border border-[#ff0050]/30 hover:border-[#ff0050] hover:bg-[#ff0050]/25 px-5 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]"
-                >
-                  <TikTokIcon className="w-4 h-4 text-[#ff0050]" />
-                  <span>Watch more on TikTok (@carliey_)</span>
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </div>
+          {/* Community Channels */}
+          <div className="mt-7 flex flex-wrap items-center gap-2.5">
+            {socialLinks.map((social) => (
+              <a
+                key={social.platform}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  track("social_click", {
+                    platform: social.platform,
+                    source: "knowledge_stage",
+                  })
+                }
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/10 bg-[#100d25] px-4 text-xs font-medium text-[#dfd9ff] transition-colors hover:border-[#00cea8] hover:text-white"
+              >
+                <SocialPlatformIcon platform={social.platform} className="h-4 w-4" />
+                <span>{social.name}</span>
+              </a>
+            ))}
           </div>
         </div>
-      )}
-    </>
+
+        {/* Right: Featured Beyond the Build Short Video */}
+        {featuredMedia && (
+          <div className="flex justify-center lg:col-span-6 lg:justify-end">
+            <div className="w-full max-w-[360px] rounded-3xl border border-white/10 bg-[#100d25] p-4 shadow-2xl shadow-black/50 sm:p-5">
+              <div className="mb-3 flex items-center justify-between gap-2 px-1">
+                <div>
+                  <p className="font-mono-tech text-[10px] uppercase tracking-[0.2em] text-[#00cea8]">
+                    {featuredMedia.eyebrow}
+                  </p>
+                  <h3 className="font-display text-sm font-semibold text-white">
+                    {featuredMedia.heading}
+                  </h3>
+                </div>
+                <SocialPlatformIcon
+                  platform={featuredMedia.platform}
+                  className="h-5 w-5 shrink-0 text-[#dfd9ff]"
+                />
+              </div>
+
+              <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-white/10 bg-[#050816]">
+                <iframe
+                  src={featuredMedia.embedUrl}
+                  title={featuredMedia.title || featuredMedia.heading}
+                  className="h-full w-full"
+                  loading="lazy"
+                  allow="encrypted-media; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+
+              <div className="mt-3.5 flex items-center justify-between gap-3 px-1">
+                <p className="line-clamp-2 text-xs text-[#aaa6c3]">
+                  {featuredMedia.description}
+                </p>
+                {featuredMedia.videoId && (
+                  <a
+                    href={`https://www.tiktok.com/@muhammedladan/video/${featuredMedia.videoId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 text-xs font-semibold text-[#00cea8] hover:underline"
+                  >
+                    Open ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 
-const WrappedLeadership = SectionWrapper({ Component: Leadership, idName: "mentorship" });
-export default WrappedLeadership;
+export default Leadership;

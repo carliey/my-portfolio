@@ -24,8 +24,7 @@ const ProjectsPage = () => {
       project.name.toLowerCase().includes(q) ||
       project.description.toLowerCase().includes(q) ||
       project.category.toLowerCase().includes(q) ||
-      Boolean(project.statusBadge?.toLowerCase().includes(q)) ||
-      Boolean(project.tech_stack?.some((t) => t.toLowerCase().includes(q)))
+      Boolean(project.statusBadge?.toLowerCase().includes(q))
     );
   };
 

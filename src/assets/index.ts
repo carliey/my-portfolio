@@ -37,7 +37,8 @@ import tesla from "./company/tesla.png";
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 
-import travel_plus from "./projects/travel_plus.svg";
+import travelplus_1 from "./projects/travelplus/travelplus-1.png";
+import travelplus_2 from "./projects/travelplus/travelplus-2.png";
 
 import simplifi_cover from "./projects/simplifi/simplifi.png";
 import simplifi_1 from "./projects/simplifi/simplfi screeshot app.png";
@@ -52,7 +53,10 @@ import koyo_lessons from "./projects/koyo/koyo_lessons.webp";
 import koyo_play_1 from "./projects/koyo/koyo_play_1.png";
 import koyo_play_2 from "./projects/koyo/koyo_play_2.png";
 
-import distress_sale_placeholder from "./projects/distress_sale/distress_sale_placeholder.svg";
+import distress_1 from "./projects/distress_sale/distress-1.png";
+import distress_2 from "./projects/distress_sale/distress-2.png";
+import distress_3 from "./projects/distress_sale/distress-3.png";
+import distress_4 from "./projects/distress_sale/distress-4.png";
 
 import hiprep_0 from "./projects/hiprep/hiprep0.png";
 import hiprep_1 from "./projects/hiprep/hiprep1.png";
@@ -175,7 +179,8 @@ export {
   tesla,
   carrent,
   jobit,
-  travel_plus,
+  travelplus_1,
+  travelplus_2,
   simplifi_cover,
   simplifi_1,
   simplifi_2,
@@ -187,7 +192,10 @@ export {
   koyo_lessons,
   koyo_play_1,
   koyo_play_2,
-  distress_sale_placeholder,
+  distress_1,
+  distress_2,
+  distress_3,
+  distress_4,
   hiprep_0,
   hiprep_1,
   hiprep_2,

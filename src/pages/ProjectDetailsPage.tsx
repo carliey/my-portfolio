@@ -53,7 +53,7 @@ const ProjectDetailsPage = () => {
         setActiveImageIndex((prev) => (prev + 1) % screenshots.length);
       } else if (e.key === "ArrowLeft") {
         setActiveImageIndex(
-          (prev) => (prev - 1 + screenshots.length) % screenshots.length,
+          (prev) => (prev - 1 + screenshots.length) % screenshots.length
         );
       }
     };
@@ -101,8 +101,7 @@ const ProjectDetailsPage = () => {
         </p>
         <h1 className="type-section mt-2">Project unavailable</h1>
         <p className="mt-3 max-w-md text-sm text-[#aaa6c3]">
-          Explore the complete engineering archive to browse shipped platforms
-          and systems.
+          Explore the complete engineering archive to browse shipped platforms and systems.
         </p>
         <Link
           to="/projects"
@@ -115,8 +114,7 @@ const ProjectDetailsPage = () => {
   }
 
   const activeImage = screenshots[activeImageIndex] ?? screenshots[0];
-  const previous =
-    projects[(projectIndex - 1 + projects.length) % projects.length];
+  const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
 
   const actionCells: {
@@ -307,18 +305,10 @@ const ProjectDetailsPage = () => {
                           : "bg-[#915EFF]/15 text-[#00cea8]"
                       }`}
                     >
-                      {cell.icon === "web" && (
-                        <ExternalLinkIcon className="h-4 w-4" />
-                      )}
-                      {cell.icon === "whatsapp" && (
-                        <WhatsAppIcon className="h-4 w-4" />
-                      )}
-                      {cell.icon === "play" && (
-                        <PlayStoreIcon className="h-4 w-4" />
-                      )}
-                      {cell.icon === "apple" && (
-                        <AppStoreIcon className="h-4 w-4" />
-                      )}
+                      {cell.icon === "web" && <ExternalLinkIcon className="h-4 w-4" />}
+                      {cell.icon === "whatsapp" && <WhatsAppIcon className="h-4 w-4" />}
+                      {cell.icon === "play" && <PlayStoreIcon className="h-4 w-4" />}
+                      {cell.icon === "apple" && <AppStoreIcon className="h-4 w-4" />}
                     </span>
                     <div className="min-w-0">
                       <p className="font-mono-tech truncate text-[10px] uppercase tracking-[0.16em] text-[#aaa6c3]">
@@ -373,7 +363,7 @@ const ProjectDetailsPage = () => {
                     onClick={() =>
                       setActiveImageIndex(
                         (prev) =>
-                          (prev - 1 + screenshots.length) % screenshots.length,
+                          (prev - 1 + screenshots.length) % screenshots.length
                       )
                     }
                     aria-label="Previous screenshot"
@@ -385,7 +375,7 @@ const ProjectDetailsPage = () => {
                     type="button"
                     onClick={() =>
                       setActiveImageIndex(
-                        (prev) => (prev + 1) % screenshots.length,
+                        (prev) => (prev + 1) % screenshots.length
                       )
                     }
                     aria-label="Next screenshot"
@@ -448,8 +438,7 @@ const ProjectDetailsPage = () => {
                       onClick={() =>
                         setActiveImageIndex(
                           (prev) =>
-                            (prev - 1 + screenshots.length) %
-                            screenshots.length,
+                            (prev - 1 + screenshots.length) % screenshots.length
                         )
                       }
                       aria-label="Previous screenshot"
@@ -461,7 +450,7 @@ const ProjectDetailsPage = () => {
                       type="button"
                       onClick={() =>
                         setActiveImageIndex(
-                          (prev) => (prev + 1) % screenshots.length,
+                          (prev) => (prev + 1) % screenshots.length
                         )
                       }
                       aria-label="Next screenshot"
@@ -485,8 +474,7 @@ const ProjectDetailsPage = () => {
         >
           <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
             <p className="font-mono-tech text-xs text-[#dfd9ff]">
-              {project.name} — Frame {activeImageIndex + 1} /{" "}
-              {screenshots.length}
+              {project.name} — Frame {activeImageIndex + 1} / {screenshots.length}
             </p>
             <form method="dialog">
               <button
@@ -516,7 +504,7 @@ const ProjectDetailsPage = () => {
                 onClick={() =>
                   setActiveImageIndex(
                     (prev) =>
-                      (prev - 1 + screenshots.length) % screenshots.length,
+                      (prev - 1 + screenshots.length) % screenshots.length
                   )
                 }
                 aria-label="Previous fullscreen frame"

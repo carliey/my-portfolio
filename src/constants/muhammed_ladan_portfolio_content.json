@@ -78,7 +78,10 @@
               "label": "See My Work",
               "href": "#projects"
             },
-            "socials": ["github", "linkedin"],
+            "socials": [
+              "github",
+              "linkedin"
+            ],
             "portrait": {
               "asset": null,
               "status": "provide-asset"
@@ -289,7 +292,13 @@
                 "required": true
               }
             ],
-            "socials": ["linkedin", "github", "tiktok", "youtube", "instagram"],
+            "socials": [
+              "linkedin",
+              "github",
+              "tiktok",
+              "youtube",
+              "instagram"
+            ],
             "eyebrow": "Get In Touch"
           }
         }
@@ -373,7 +382,11 @@
             },
             {
               "name": "Payments",
-              "items": ["Remita API", "Paystack", "Stripe"]
+              "items": [
+                "Remita API",
+                "Paystack",
+                "Stripe"
+              ]
             },
             {
               "name": "Databases & Storage",
@@ -460,7 +473,10 @@
           "type": "leadership-summary",
           "heading": "Leadership & Mentorship",
           "description": "I have supported junior developers and interns through practical guidance, code reviews and development workflow mentoring. I have also taught foundational web development and helped learners build practical projects.",
-          "relatedExperienceIds": ["it-central", "dialogue-academy"]
+          "relatedExperienceIds": [
+            "it-central",
+            "dialogue-academy"
+          ]
         }
       ]
     },
@@ -557,7 +573,11 @@
           "id": "overview",
           "type": "rich-text",
           "heading": "Overview",
-          "fields": ["overview", "audience", "problem"]
+          "fields": [
+            "overview",
+            "audience",
+            "problem"
+          ]
         },
         {
           "id": "my-role",
@@ -574,42 +594,65 @@
           "id": "contributions",
           "type": "feature-list",
           "heading": "My Contributions",
-          "fields": ["contributions"]
+          "fields": [
+            "contributions"
+          ]
         },
         {
           "id": "challenges",
           "type": "case-study",
           "heading": "Engineering Challenges",
-          "fields": ["challenges", "approach", "decisions"]
+          "fields": [
+            "challenges",
+            "approach",
+            "decisions"
+          ]
         },
         {
           "id": "technology",
           "type": "technology-list",
           "heading": "Technology & Architecture",
-          "fields": ["technologies", "architectureNotes", "integrations"]
+          "fields": [
+            "technologies",
+            "architectureNotes",
+            "integrations"
+          ]
         },
         {
           "id": "outcomes",
           "type": "outcome-list",
           "heading": "Outcomes",
-          "fields": ["outcomes", "metrics", "statusNotes"]
+          "fields": [
+            "outcomes",
+            "metrics",
+            "statusNotes"
+          ]
         },
         {
           "id": "gallery",
           "type": "media-gallery",
           "heading": "Screenshots",
-          "fields": ["screenshots"]
+          "fields": [
+            "screenshots"
+          ]
         },
         {
           "id": "links",
           "type": "link-list",
           "heading": "Explore the Project",
-          "fields": ["liveLinks", "sourceLinks", "storeLinks"]
+          "fields": [
+            "liveLinks",
+            "sourceLinks",
+            "storeLinks"
+          ]
         },
         {
           "id": "project-navigation",
           "type": "project-navigation",
-          "fields": ["previousProjectId", "nextProjectId"]
+          "fields": [
+            "previousProjectId",
+            "nextProjectId"
+          ]
         }
       ]
     }
@@ -669,7 +712,9 @@
         "Integrated RESTful APIs for trip booking and payment processing.",
         "Worked on Play Store releases and production stability."
       ],
-      "relatedProjectIds": ["travel-plus"]
+      "relatedProjectIds": [
+        "travel-plus"
+      ]
     },
     {
       "id": "dinki",
@@ -683,7 +728,9 @@
         "Worked on AWS CI/CD and cloud deployments.",
         "Supported Play Store releases."
       ],
-      "relatedProjectIds": ["dinki-app"],
+      "relatedProjectIds": [
+        "dinki-app"
+      ],
       "verify": "confirm-role-period-and-ownership"
     },
     {
@@ -850,7 +897,11 @@
         "Worked on quiz and assessment creation experiences.",
         "Integrated the product into the wider Schoola ecosystem."
       ],
-      "technologies": ["React", "TypeScript", "AI integration"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "AI integration"
+      ],
       "outcomes": [
         "Portfolio source reports use by 3,000+ teachers.",
         "45x faster lesson preparation claim requires validation."
@@ -884,7 +935,12 @@
         "Implemented report computation and printable batch report sheets.",
         "Worked on data grids, filtering, search and frontend testing."
       ],
-      "technologies": ["React", "TypeScript", "Jest", "React Testing Library"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Jest",
+        "React Testing Library"
+      ],
       "outcomes": [
         "Portfolio source reports 150+ schools and 15,000+ students.",
         "Portfolio source reports 80% critical workflow test coverage; verify scope."
@@ -918,7 +974,13 @@
         "Engineered and maintained backend REST APIs using Node.js and Express.js.",
         "Supported AWS cloud deployments, CI/CD pipelines, and Google Play Store releases."
       ],
-      "technologies": ["React Native", "React", "Node.js", "Express.js", "AWS"],
+      "technologies": [
+        "React Native",
+        "React",
+        "Node.js",
+        "Express.js",
+        "AWS"
+      ],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -942,7 +1004,12 @@
         "Implemented JAMB lookup, eligibility checks and admission status tracking.",
         "Worked on timed CBT examinations and administrative question-bank tools."
       ],
-      "technologies": ["React", "TypeScript", "Paystack", "REST APIs"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Paystack",
+        "REST APIs"
+      ],
       "links": [
         {
           "label": "Institutional Portal",
@@ -970,7 +1037,9 @@
         "Worked on buyer and seller listing feeds.",
         "Implemented negotiation messaging, location filtering and deal alerts."
       ],
-      "technologies": ["React Native"],
+      "technologies": [
+        "React Native"
+      ],
       "links": [],
       "thumbnail": null,
       "screenshots": [],
@@ -992,7 +1061,9 @@
       "contributions": [
         "Worked on educator lesson authoring and challenge submission workflows."
       ],
-      "technologies": ["Web technologies"],
+      "technologies": [
+        "Web technologies"
+      ],
       "links": [
         {
           "label": "Open Lessonthon",
@@ -1084,7 +1155,11 @@
         "Worked on rich-text authoring, content ordering and media management.",
         "Implemented SEO metadata controls."
       ],
-      "technologies": ["React", "TypeScript", "TinyMCE"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "TinyMCE"
+      ],
       "links": [
         {
           "label": "Website",
@@ -1112,7 +1187,11 @@
         "Implemented faceted resource search.",
         "Built saved reading lists and institutional access request workflows."
       ],
-      "technologies": ["React", "TypeScript", "react-pdf"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "react-pdf"
+      ],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -1135,7 +1214,10 @@
         "Implemented routing across eight specialist departments.",
         "Worked on appointments, investigation ordering and fitness-clearance review."
       ],
-      "technologies": ["React Native", "Zod"],
+      "technologies": [
+        "React Native",
+        "Zod"
+      ],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -1158,7 +1240,12 @@
         "Engineered student practice exam journeys, timed quiz interfaces, and score analytics.",
         "Implemented tutor onboarding, credential uploads, and booking workflows."
       ],
-      "technologies": ["React Native", "Expo", "TypeScript", "REST APIs"],
+      "technologies": [
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "REST APIs"
+      ],
       "links": [
         {
           "label": "Active Web Platform",
@@ -1243,7 +1330,10 @@
         "Worked on student profiles, grade sheets and course records.",
         "Implemented role-based authorisation for students, administrative officers and commandants."
       ],
-      "technologies": ["React", "TypeScript"],
+      "technologies": [
+        "React",
+        "TypeScript"
+      ],
       "links": [
         {
           "label": "Current institutional website (subsequently updated)",
@@ -1269,7 +1359,10 @@
       "contributions": [
         "Worked on an interactive tutoring experience with voice, chat and image input for homework assistance."
       ],
-      "technologies": ["AI integration", "Web technologies"],
+      "technologies": [
+        "AI integration",
+        "Web technologies"
+      ],
       "links": [
         {
           "label": "Open Lumi AI",
@@ -1295,7 +1388,10 @@
       "contributions": [
         "Worked on responsive layouts, lead capture and the public product showcase."
       ],
-      "technologies": ["React", "Web technologies"],
+      "technologies": [
+        "React",
+        "Web technologies"
+      ],
       "links": [
         {
           "label": "Website",
@@ -1324,7 +1420,12 @@
         "Engineered interactive lesson note authoring tools and dynamic question/quiz creation workflows.",
         "Worked on digital classroom modules, assignment grading, and student analytics."
       ],
-      "technologies": ["React", "Redux Toolkit", "REST APIs", "Tailwind CSS"],
+      "technologies": [
+        "React",
+        "Redux Toolkit",
+        "REST APIs",
+        "Tailwind CSS"
+      ],
       "links": [
         {
           "label": "Demo Portal (LMS login)",

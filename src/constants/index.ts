@@ -238,13 +238,14 @@ interface JsonCollaboration {
 const homePage = portfolioContent.pages.find((p) => p.id === "home");
 const homeSections = (homePage?.sections || []) as unknown as GenericSection[];
 
-const homeHero = homeSections.find((s) => s.id === "hero")?.content as
-  | HomeHeroContent
-  | undefined;
+const homeHero = homeSections.find((s) => s.id === "hero")
+  ?.content as HomeHeroContent | undefined;
 
 export const heroContent = {
   eyebrow: homeHero?.eyebrow || "Muhammed Ladan",
-  headline: homeHero?.headline || "Have an idea for a web or mobile product?",
+  headline:
+    homeHero?.headline ||
+    "Have an idea for a web or mobile product?",
   subheadline:
     homeHero?.subheadline ||
     "Product development · Technical integration · Engineering leadership",
@@ -252,14 +253,12 @@ export const heroContent = {
     homeHero?.description ||
     "I'm a software engineer who can help you shape it, build it, and launch it. Let's turn what you're imagining into something people can use.",
 };
-const homeSelectedSection = homeSections.find(
-  (s) => s.id === "selected-projects",
-)?.content as HomeSelectedContent | undefined;
-const homeCapabilitiesSection = homeSections.find(
-  (s) => s.id === "capabilities",
-)?.content as HomeCapabilitiesContent | undefined;
+const homeSelectedSection = homeSections.find((s) => s.id === "selected-projects")
+  ?.content as HomeSelectedContent | undefined;
+const homeCapabilitiesSection = homeSections.find((s) => s.id === "capabilities")
+  ?.content as HomeCapabilitiesContent | undefined;
 const homeLeadershipSection = homeSections.find(
-  (s) => s.id === "leadership-knowledge-sharing",
+  (s) => s.id === "leadership-knowledge-sharing"
 )?.content as HomeLeadershipContent | undefined;
 const homeContactSection = homeSections.find((s) => s.id === "contact")
   ?.content as ContactContent | undefined;
@@ -267,12 +266,8 @@ const homeContactSection = homeSections.find((s) => s.id === "contact")
 export const personalInfo = {
   name: portfolioContent.site.name,
   role: portfolioContent.site.positioning,
-  tagline:
-    homeHero?.subheadline ||
-    "Product development · Technical integration · Engineering leadership",
-  summary:
-    homeHero?.description ||
-    "Building web and mobile products from idea to production.",
+  tagline: homeHero?.subheadline || "Product development · Technical integration · Engineering leadership",
+  summary: homeHero?.description || "Building web and mobile products from idea to production.",
   email: portfolioContent.site.contact.email,
   phone: portfolioContent.site.contact.phone,
   location: portfolioContent.site.contact.location,
@@ -406,10 +401,7 @@ export const collaborations: CollaborationItem[] = (
   name: collab.name,
   badge: collabBadgeMap[collab.id] || "Collaboration Partner",
   type: "Technology Hub",
-  description:
-    collab.relationshipDescription ||
-    collabDescMap[collab.id] ||
-    "Professional engineering collaboration.",
+  description: collab.relationshipDescription || collabDescMap[collab.id] || "Professional engineering collaboration.",
   impact: collabImpactMap[collab.id] || "Enterprise Software Delivery",
   relatedProjectIds: collab.relatedProjectIds || [],
 }));
@@ -472,12 +464,12 @@ export interface ExperienceItem {
 
 const companyIconMap: Record<string, { icon: string; iconBg: string }> = {
   "it-central": { icon: it_central, iconBg: "#0E5FAF" },
-  schoola: { icon: schoola, iconBg: "#ffffff" },
-  royalstone: { icon: mobile, iconBg: "#1d1836" },
+  "schoola": { icon: schoola, iconBg: "#ffffff" },
+  "royalstone": { icon: mobile, iconBg: "#1d1836" },
   "travel-plus": { icon: mobile, iconBg: "#1d1836" },
-  dinki: { icon: dinki_icon, iconBg: "#E02A09" },
+  "dinki": { icon: dinki_icon, iconBg: "#E02A09" },
   "dialogue-academy": { icon: dialogue, iconBg: "#ffffff" },
-  krpc: { icon: krpc, iconBg: "#ffffff" },
+  "krpc": { icon: krpc, iconBg: "#ffffff" },
 };
 
 export const experiences: ExperienceItem[] = (
@@ -562,7 +554,7 @@ const projectAssetsMap: Record<
       koyo_play_2,
     ],
   },
-  hajamarketplace: {
+  "hajamarketplace": {
     image: haja_1,
     screenshots: [haja_1, haja_2, haja_3, haja_4, haja_5],
     whatsapp_number: "+234 814 180 4421",
@@ -594,7 +586,7 @@ const projectAssetsMap: Record<
     image: distress_1,
     screenshots: [distress_1, distress_2, distress_3, distress_4],
   },
-  lessonthon: {
+  "lessonthon": {
     image: lessonthon_1,
     screenshots: [lessonthon_1, lessonthon_2, lessonthon_3, lessonthon_4],
   },
@@ -602,7 +594,7 @@ const projectAssetsMap: Record<
     image: lrcn_cover,
     screenshots: [lrcn_cover, lrcn_1, lrcn_2, lrcn_logo],
   },
-  instafood: {
+  "instafood": {
     image: instafood_cover,
     screenshots: [instafood_cover, instafood_1, instafood_2, instafood_logo],
   },
@@ -610,7 +602,7 @@ const projectAssetsMap: Record<
     image: primetech_1,
     screenshots: [primetech_1, primetech_2, primetech_3],
   },
-  bibliory: {
+  "bibliory": {
     image: bibliory_1,
     screenshots: [
       bibliory_1,
@@ -621,7 +613,7 @@ const projectAssetsMap: Record<
       bibliory_6,
     ],
   },
-  aeromedicals: {
+  "aeromedicals": {
     image: aeromedical_cover,
     screenshots: [aeromedical_cover, aeromedical_crest],
   },
@@ -699,19 +691,19 @@ const statusBadgeMap: Record<string, string> = {
   "initial-version-v1": "NAF AWC Portal v1",
   "live-operational": "Live Institutional LMS",
   "live-platform": "Live",
-  live: "Live",
-  active: "Live",
+  "live": "Live",
+  "active": "Live",
   "active-beta": "Active Beta (Pre-release)",
   "live-site": "Live Website",
-  concluded: "Concluded Event",
-  discontinued: "Discontinued",
+  "concluded": "Concluded Event",
+  "discontinued": "Discontinued",
   "web-active-app-discontinued": "Web Active (App Discontinued)",
-  archived: "Portfolio Showcase",
+  "archived": "Portfolio Showcase",
 };
 
 const projectResultMap: Record<string, string> = {
   "koyo-app": "Live classes & AI curriculum",
-  hajamarketplace: "3-bot marketplace engine",
+  "hajamarketplace": "3-bot marketplace engine",
   "curri-ai": "Used by 3,000+ teachers",
   "schoola-src": "Supporting 150+ schools",
   "dinki-app": "Mobile, web, admin & backend",
@@ -722,7 +714,7 @@ const projectResultMap: Record<string, string> = {
   "naf-awc": "Defense training portal v1",
   "lrcn-backend": "Automated Remita RRR engine",
   "schoola-lms": "Live LMS (demo.schoola.app)",
-  instafood: "Complete restaurant ordering system",
+  "instafood": "Complete restaurant ordering system",
   "hiprep-mobile": "Web active at hipreponline.com",
 };
 
@@ -734,7 +726,7 @@ const selectedProjectIds = new Set(
     "schoola-src",
     "dinki-app",
     "simplifi-finance",
-  ],
+  ]
 );
 
 export const projects: ProjectItem[] = (
@@ -747,18 +739,18 @@ export const projects: ProjectItem[] = (
   const isFeatured = selectedProjectIds.has(p.id);
 
   const playStoreLink = p.links?.find((l: JsonProjectLink) =>
-    /play/i.test(l.label),
+    /play/i.test(l.label)
   )?.url;
   const appStoreLink = p.links?.find((l: JsonProjectLink) =>
-    /app store/i.test(l.label),
+    /app store/i.test(l.label)
   )?.url;
   const whatsappLink = p.links?.find((l: JsonProjectLink) =>
-    /whatsapp/i.test(l.label),
+    /whatsapp/i.test(l.label)
   )?.url;
   const projectLink =
     p.links?.find(
       (l: JsonProjectLink) =>
-        !/play|app store|whatsapp|github|source|repo/i.test(l.label),
+        !/play|app store|whatsapp|github|source|repo/i.test(l.label)
     )?.url || "";
 
   const result =
@@ -803,38 +795,32 @@ export const projects: ProjectItem[] = (
 const services = [
   {
     title: "Web applications",
-    description:
-      "Next.js & React customer-facing portals, CMS dashboards, CBT engines, and internal tools.",
+    description: "Next.js & React customer-facing portals, CMS dashboards, CBT engines, and internal tools.",
     icon: web,
   },
   {
     title: "Mobile applications",
-    description:
-      "Cross-platform iOS and Android apps in React Native and Expo built for real-world scale.",
+    description: "Cross-platform iOS and Android apps in React Native and Expo built for real-world scale.",
     icon: mobile,
   },
   {
     title: "WhatsApp & workflow automation",
-    description:
-      "Conversational marketplace bots, Cloud API state machines, OTP auth, and catalog sync.",
+    description: "Conversational marketplace bots, Cloud API state machines, OTP auth, and catalog sync.",
     icon: whatsapp_automation,
   },
   {
     title: "AI & real-time integrations",
-    description:
-      "Claude & Gemini content workflows, 100ms live video sessions, and Socket.IO instant streams.",
+    description: "Claude & Gemini content workflows, 100ms live video sessions, and Socket.IO instant streams.",
     icon: ai_realtime,
   },
   {
     title: "Backends, APIs & payments",
-    description:
-      "Scalable Node.js & NestJS services with Remita, Paystack, and Stripe payment gateways.",
+    description: "Scalable Node.js & NestJS services with Remita, Paystack, and Stripe payment gateways.",
     icon: backend,
   },
   {
     title: "Technical leadership & mentoring",
-    description:
-      "Clear engineering direction, Jest testing standards, and hands-on mentoring to help teams ship.",
+    description: "Clear engineering direction, Jest testing standards, and hands-on mentoring to help teams ship.",
     icon: creator,
   },
 ];
@@ -891,8 +877,7 @@ export const cvData = {
   technicalSkills: [
     {
       group: "Frontend",
-      items:
-        "React.js, JavaScript (ES6+), TypeScript, Next.js, Redux Toolkit, RTK Query, Tailwind CSS, Material UI, Styled Components, SEO",
+      items: "React.js, JavaScript (ES6+), TypeScript, Next.js, Redux Toolkit, RTK Query, Tailwind CSS, Material UI, Styled Components, SEO",
     },
     {
       group: "Mobile",

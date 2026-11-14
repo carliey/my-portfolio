@@ -207,10 +207,6 @@ const ProjectDetailsPage = () => {
             <span>All Projects</span>
           </Link>
 
-          <span className="hidden font-mono-tech text-xs text-[#aaa6c3]/80 sm:inline">
-            archive / {project.id}
-          </span>
-
           <div className="flex items-center gap-2">
             <span className="font-mono-tech text-xs text-[#dfd9ff]">
               {String(projectIndex + 1).padStart(2, "0")} /{" "}

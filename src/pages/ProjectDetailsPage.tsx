@@ -53,7 +53,7 @@ const ProjectDetailsPage = () => {
         setActiveImageIndex((prev) => (prev + 1) % screenshots.length);
       } else if (e.key === "ArrowLeft") {
         setActiveImageIndex(
-          (prev) => (prev - 1 + screenshots.length) % screenshots.length
+          (prev) => (prev - 1 + screenshots.length) % screenshots.length,
         );
       }
     };
@@ -101,7 +101,8 @@ const ProjectDetailsPage = () => {
         </p>
         <h1 className="type-section mt-2">Project unavailable</h1>
         <p className="mt-3 max-w-md text-sm text-[#aaa6c3]">
-          Explore the complete engineering archive to browse shipped platforms and systems.
+          Explore the complete engineering archive to browse shipped platforms
+          and systems.
         </p>
         <Link
           to="/projects"
@@ -114,7 +115,8 @@ const ProjectDetailsPage = () => {
   }
 
   const activeImage = screenshots[activeImageIndex] ?? screenshots[0];
-  const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
+  const previous =
+    projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
 
   const actionCells: {
@@ -271,10 +273,6 @@ const ProjectDetailsPage = () => {
             {project.name}
           </h1>
 
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#dfd9ff]/85 sm:text-lg">
-            {project.description}
-          </p>
-
           {/* Split-Cell Architectural Launch Dock */}
           {actionCells.length > 0 && (
             <div
@@ -309,10 +307,18 @@ const ProjectDetailsPage = () => {
                           : "bg-[#915EFF]/15 text-[#00cea8]"
                       }`}
                     >
-                      {cell.icon === "web" && <ExternalLinkIcon className="h-4 w-4" />}
-                      {cell.icon === "whatsapp" && <WhatsAppIcon className="h-4 w-4" />}
-                      {cell.icon === "play" && <PlayStoreIcon className="h-4 w-4" />}
-                      {cell.icon === "apple" && <AppStoreIcon className="h-4 w-4" />}
+                      {cell.icon === "web" && (
+                        <ExternalLinkIcon className="h-4 w-4" />
+                      )}
+                      {cell.icon === "whatsapp" && (
+                        <WhatsAppIcon className="h-4 w-4" />
+                      )}
+                      {cell.icon === "play" && (
+                        <PlayStoreIcon className="h-4 w-4" />
+                      )}
+                      {cell.icon === "apple" && (
+                        <AppStoreIcon className="h-4 w-4" />
+                      )}
                     </span>
                     <div className="min-w-0">
                       <p className="font-mono-tech truncate text-[10px] uppercase tracking-[0.16em] text-[#aaa6c3]">
@@ -367,7 +373,7 @@ const ProjectDetailsPage = () => {
                     onClick={() =>
                       setActiveImageIndex(
                         (prev) =>
-                          (prev - 1 + screenshots.length) % screenshots.length
+                          (prev - 1 + screenshots.length) % screenshots.length,
                       )
                     }
                     aria-label="Previous screenshot"
@@ -379,7 +385,7 @@ const ProjectDetailsPage = () => {
                     type="button"
                     onClick={() =>
                       setActiveImageIndex(
-                        (prev) => (prev + 1) % screenshots.length
+                        (prev) => (prev + 1) % screenshots.length,
                       )
                     }
                     aria-label="Next screenshot"
@@ -442,7 +448,8 @@ const ProjectDetailsPage = () => {
                       onClick={() =>
                         setActiveImageIndex(
                           (prev) =>
-                            (prev - 1 + screenshots.length) % screenshots.length
+                            (prev - 1 + screenshots.length) %
+                            screenshots.length,
                         )
                       }
                       aria-label="Previous screenshot"
@@ -454,7 +461,7 @@ const ProjectDetailsPage = () => {
                       type="button"
                       onClick={() =>
                         setActiveImageIndex(
-                          (prev) => (prev + 1) % screenshots.length
+                          (prev) => (prev + 1) % screenshots.length,
                         )
                       }
                       aria-label="Next screenshot"
@@ -478,7 +485,8 @@ const ProjectDetailsPage = () => {
         >
           <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
             <p className="font-mono-tech text-xs text-[#dfd9ff]">
-              {project.name} — Frame {activeImageIndex + 1} / {screenshots.length}
+              {project.name} — Frame {activeImageIndex + 1} /{" "}
+              {screenshots.length}
             </p>
             <form method="dialog">
               <button
@@ -508,7 +516,7 @@ const ProjectDetailsPage = () => {
                 onClick={() =>
                   setActiveImageIndex(
                     (prev) =>
-                      (prev - 1 + screenshots.length) % screenshots.length
+                      (prev - 1 + screenshots.length) % screenshots.length,
                   )
                 }
                 aria-label="Previous fullscreen frame"
@@ -530,125 +538,94 @@ const ProjectDetailsPage = () => {
           )}
         </dialog>
 
-        {/* Section 01: Editorial Split Overview */}
-        <section
-          aria-labelledby="overview-heading"
-          className="mt-14 grid grid-cols-1 gap-6 border-t border-white/10 pt-12 lg:grid-cols-12 lg:gap-10"
-        >
-          <div className="lg:col-span-4">
-            <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
-              01 // Overview
-            </span>
-            <h2
-              id="overview-heading"
-              className="type-section mt-2 text-white"
-            >
-              Product Context
-            </h2>
-            {project.result && (
-              <p className="font-mono-tech mt-3 text-xs text-[#aaa6c3]">
-                {project.result}
-              </p>
-            )}
-          </div>
-
-          <div className="lg:col-span-8">
-            <p className="border-l-2 border-[#00cea8] pl-5 text-lg leading-[1.7] text-[#dfd9ff] sm:pl-7 sm:text-xl">
+        {/* Hierarchical Case Study Body: Overview -> Core Features -> Contributions */}
+        <article className="mt-14 max-w-4xl space-y-10 border-t border-white/10 pt-10">
+          {/* 01: Overview */}
+          <section aria-labelledby="overview-heading">
+            <div className="flex items-center gap-3">
+              <span className="font-mono-tech text-xs font-semibold tracking-[0.18em] text-[#00cea8]">
+                01
+              </span>
+              <h2
+                id="overview-heading"
+                className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl"
+              >
+                Overview
+              </h2>
+            </div>
+            <p className="mt-3 border-l-2 border-[#00cea8]/60 pl-4 text-base leading-[1.75] text-[#dfd9ff] sm:pl-6 sm:text-lg">
               {project.longDescription || project.description}
             </p>
-          </div>
-        </section>
+          </section>
 
-        {/* Section 02: Blueprint Contributions Grid */}
-        {project.contributions && project.contributions.length > 0 && (
-          <section
-            aria-labelledby="contributions-heading"
-            className="mt-14 border-t border-white/10 pt-12"
-          >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
-                  02 // Engineering Execution
+          {/* 02: Core Features */}
+          {project.features && project.features.length > 0 && (
+            <section
+              aria-labelledby="features-heading"
+              className="border-t border-white/10 pt-9"
+            >
+              <div className="flex items-center gap-3">
+                <span className="font-mono-tech text-xs font-semibold tracking-[0.18em] text-[#00cea8]">
+                  02
+                </span>
+                <h2
+                  id="features-heading"
+                  className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl"
+                >
+                  Core Features
+                </h2>
+              </div>
+              <ul className="mt-4 space-y-3 pl-2 sm:pl-5">
+                {project.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-[#dfd9ff]/95 sm:text-base"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#00cea8]"
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* 03: Contributions */}
+          {project.contributions && project.contributions.length > 0 && (
+            <section
+              aria-labelledby="contributions-heading"
+              className="border-t border-white/10 pt-9"
+            >
+              <div className="flex items-center gap-3">
+                <span className="font-mono-tech text-xs font-semibold tracking-[0.18em] text-[#915EFF]">
+                  03
                 </span>
                 <h2
                   id="contributions-heading"
-                  className="type-section mt-2 text-white"
+                  className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl"
                 >
-                  What I Built &amp; Shipped
+                  Contributions
                 </h2>
               </div>
-              <span className="font-mono-tech text-xs text-[#aaa6c3]">
-                {String(project.contributions.length).padStart(2, "0")} Key Deliverables
-              </span>
-            </div>
-
-            <ol className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-              {project.contributions.map((item, idx) => (
-                <li
-                  key={item}
-                  className="flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#100d25]/70 p-5 transition-colors hover:border-[#915EFF]/50 sm:p-6"
-                >
-                  <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] pb-3">
-                    <span className="font-mono-tech text-sm font-bold text-[#915EFF]">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
+              <ul className="mt-4 space-y-3 pl-2 sm:pl-5">
+                {project.contributions.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-[#dfd9ff]/95 sm:text-base"
+                  >
                     <span
                       aria-hidden="true"
-                      className="h-1.5 w-1.5 rounded-full bg-[#00cea8]"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#915EFF]"
                     />
-                  </div>
-                  <p className="mt-4 text-sm leading-relaxed text-[#dfd9ff]/95 sm:text-base">
-                    {item}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
-
-        {/* Section 03: Architectural Stack Matrix */}
-        {project.technologies && project.technologies.length > 0 && (
-          <section
-            aria-labelledby="tech-heading"
-            className="mt-14 border-t border-white/10 pt-12"
-          >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
-                  03 // Stack &amp; Infrastructure
-                </span>
-                <h2
-                  id="tech-heading"
-                  className="type-section mt-2 text-white"
-                >
-                  Technologies Used
-                </h2>
-              </div>
-            </div>
-
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {project.technologies.map((tech, idx) => (
-                <div
-                  key={tech}
-                  className="flex items-center justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#100d25]/85 px-4 py-3.5 transition-colors hover:border-[#00cea8]/45"
-                >
-                  <div className="flex min-w-0 items-center gap-2.5">
-                    <span
-                      aria-hidden="true"
-                      className="h-2 w-2 shrink-0 rounded-sm bg-[#915EFF]"
-                    />
-                    <span className="truncate font-display text-sm font-semibold text-white">
-                      {tech}
-                    </span>
-                  </div>
-                  <span className="font-mono-tech shrink-0 text-[10px] text-[#aaa6c3]">
-                    T-{String(idx + 1).padStart(2, "0")}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        </article>
 
         {/* Visual Case-Study Pager */}
         <nav

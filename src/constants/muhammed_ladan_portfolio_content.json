@@ -78,10 +78,7 @@
               "label": "See My Work",
               "href": "#projects"
             },
-            "socials": [
-              "github",
-              "linkedin"
-            ],
+            "socials": ["github", "linkedin"],
             "portrait": {
               "asset": null,
               "status": "provide-asset"
@@ -292,13 +289,7 @@
                 "required": true
               }
             ],
-            "socials": [
-              "linkedin",
-              "github",
-              "tiktok",
-              "youtube",
-              "instagram"
-            ],
+            "socials": ["linkedin", "github", "tiktok", "youtube", "instagram"],
             "eyebrow": "Get In Touch"
           }
         }
@@ -382,11 +373,7 @@
             },
             {
               "name": "Payments",
-              "items": [
-                "Remita API",
-                "Paystack",
-                "Stripe"
-              ]
+              "items": ["Remita API", "Paystack", "Stripe"]
             },
             {
               "name": "Databases & Storage",
@@ -473,10 +460,7 @@
           "type": "leadership-summary",
           "heading": "Leadership & Mentorship",
           "description": "I have supported junior developers and interns through practical guidance, code reviews and development workflow mentoring. I have also taught foundational web development and helped learners build practical projects.",
-          "relatedExperienceIds": [
-            "it-central",
-            "dialogue-academy"
-          ]
+          "relatedExperienceIds": ["it-central", "dialogue-academy"]
         }
       ]
     },
@@ -573,11 +557,7 @@
           "id": "overview",
           "type": "rich-text",
           "heading": "Overview",
-          "fields": [
-            "overview",
-            "audience",
-            "problem"
-          ]
+          "fields": ["overview", "audience", "problem"]
         },
         {
           "id": "my-role",
@@ -594,65 +574,42 @@
           "id": "contributions",
           "type": "feature-list",
           "heading": "My Contributions",
-          "fields": [
-            "contributions"
-          ]
+          "fields": ["contributions"]
         },
         {
           "id": "challenges",
           "type": "case-study",
           "heading": "Engineering Challenges",
-          "fields": [
-            "challenges",
-            "approach",
-            "decisions"
-          ]
+          "fields": ["challenges", "approach", "decisions"]
         },
         {
           "id": "technology",
           "type": "technology-list",
           "heading": "Technology & Architecture",
-          "fields": [
-            "technologies",
-            "architectureNotes",
-            "integrations"
-          ]
+          "fields": ["technologies", "architectureNotes", "integrations"]
         },
         {
           "id": "outcomes",
           "type": "outcome-list",
           "heading": "Outcomes",
-          "fields": [
-            "outcomes",
-            "metrics",
-            "statusNotes"
-          ]
+          "fields": ["outcomes", "metrics", "statusNotes"]
         },
         {
           "id": "gallery",
           "type": "media-gallery",
           "heading": "Screenshots",
-          "fields": [
-            "screenshots"
-          ]
+          "fields": ["screenshots"]
         },
         {
           "id": "links",
           "type": "link-list",
           "heading": "Explore the Project",
-          "fields": [
-            "liveLinks",
-            "sourceLinks",
-            "storeLinks"
-          ]
+          "fields": ["liveLinks", "sourceLinks", "storeLinks"]
         },
         {
           "id": "project-navigation",
           "type": "project-navigation",
-          "fields": [
-            "previousProjectId",
-            "nextProjectId"
-          ]
+          "fields": ["previousProjectId", "nextProjectId"]
         }
       ]
     }
@@ -712,9 +669,7 @@
         "Integrated RESTful APIs for trip booking and payment processing.",
         "Worked on Play Store releases and production stability."
       ],
-      "relatedProjectIds": [
-        "travel-plus"
-      ]
+      "relatedProjectIds": ["travel-plus"]
     },
     {
       "id": "dinki",
@@ -728,9 +683,7 @@
         "Worked on AWS CI/CD and cloud deployments.",
         "Supported Play Store releases."
       ],
-      "relatedProjectIds": [
-        "dinki-app"
-      ],
+      "relatedProjectIds": ["dinki-app"],
       "verify": "confirm-role-period-and-ownership"
     },
     {
@@ -804,7 +757,12 @@
       "status": "live-ios-android",
       "role": "Mobile, Live Video & AI Engineering",
       "shortDescription": "A Nigerian language-learning app for Yoruba, Igbo and Hausa, combining interactive lessons, live cohort classrooms and conversational practice.",
-      "overview": "A language-learning mobile product designed to help learners worldwide develop Nigerian language skills through micro-lessons, live tutoring and practice.",
+      "overview": "A Nigerian language-learning mobile application helping learners worldwide build fluency in Yoruba, Igbo, and Hausa through micro-lessons, live cohort classrooms, and guided practice.",
+      "coreFeatures": [
+        "Structured micro-lessons, audio drills, and conversational practice for Yoruba, Igbo, and Hausa.",
+        "Live interactive cohort tutoring classrooms with real-time video, synchronized call recording, and chat playback.",
+        "Gamified daily streaks, XP tracking, push notifications, and in-app subscription plans."
+      ],
       "contributions": [
         "Built backend APIs and automated AI content-generation workflows to eliminate manual CSV filling.",
         "Integrated the 100ms real-time video SDK for interactive live cohort tutoring classrooms.",
@@ -842,7 +800,12 @@
       "status": "live",
       "role": "Backend & Bot Architecture",
       "shortDescription": "A conversational marketplace on WhatsApp that helps merchants list products and buyers discover inventory without installing a separate app.",
-      "overview": "A WhatsApp-based conversational commerce platform paired with a web product directory.",
+      "overview": "A WhatsApp-based conversational commerce platform paired with a searchable web product directory that lets merchants list inventory and buyers discover items without installing an app.",
+      "coreFeatures": [
+        "Conversational product listing, search, and buyer notifications directly inside WhatsApp.",
+        "Multilingual natural-language query support across English, Nigerian Pidgin, Hausa, Yoruba, and Igbo.",
+        "Companion web product directory and passwordless WhatsApp OTP verification."
+      ],
       "contributions": [
         "Designed a three-bot WhatsApp Cloud API architecture for seller intake, product search and buyer alerts.",
         "Worked on natural-language query handling for Nigerian Pidgin, Hausa, Yoruba and Igbo.",
@@ -876,17 +839,18 @@
       "status": "live",
       "role": "Frontend Engineering",
       "shortDescription": "An education technology product that helps teachers generate lesson plans, structured notes, quizzes and curriculum resources.",
-      "overview": "An AI-powered lesson creation tool integrated into the Schoola education technology ecosystem.",
+      "overview": "An AI-powered lesson creation platform integrated into the Schoola education ecosystem to help teachers produce curriculum materials faster.",
+      "coreFeatures": [
+        "Automated generation of structured lesson plans, class notes, and curriculum resources.",
+        "Interactive quiz and classroom assessment authoring tools for educators.",
+        "Direct integration with schools and classes across the wider Schoola ecosystem."
+      ],
       "contributions": [
         "Built frontend experiences for lesson plan and note generation.",
         "Worked on quiz and assessment creation experiences.",
         "Integrated the product into the wider Schoola ecosystem."
       ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "AI integration"
-      ],
+      "technologies": ["React", "TypeScript", "AI integration"],
       "outcomes": [
         "Portfolio source reports use by 3,000+ teachers.",
         "45x faster lesson preparation claim requires validation."
@@ -908,19 +872,19 @@
       "status": "live",
       "role": "Frontend Lead",
       "shortDescription": "A school administration platform covering student records, attendance, grades, fee workflows and academic reporting.",
-      "overview": "An enterprise K-12 school management system for school administration and academic operations.",
+      "overview": "An enterprise K-12 school management system unifying student administration, classroom attendance, grading, and fee operations.",
+      "coreFeatures": [
+        "End-to-end student enrollment, class rosters, and daily attendance tracking.",
+        "Automated grade compilation and printable batch terminal report sheets.",
+        "School fee billing workflows with searchable, filterable administrative data grids."
+      ],
       "contributions": [
         "Led frontend redevelopment and implemented 10+ core modules.",
         "Worked on student enrollment, attendance, grade compilation and fee collection.",
         "Implemented report computation and printable batch report sheets.",
         "Worked on data grids, filtering, search and frontend testing."
       ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Jest",
-        "React Testing Library"
-      ],
+      "technologies": ["React", "TypeScript", "Jest", "React Testing Library"],
       "outcomes": [
         "Portfolio source reports 150+ schools and 15,000+ students.",
         "Portfolio source reports 80% critical workflow test coverage; verify scope."
@@ -942,20 +906,19 @@
       "status": "live",
       "role": "Full-Stack & Mobile Developer",
       "shortDescription": "A product suite spanning cross-platform mobile apps, an operational web app, admin dashboard, and backend services.",
-      "overview": "A multi-platform product suite where Muhammed engineered features across the React Native mobile app, web application, administrative dashboard, and Node.js backend APIs.",
+      "overview": "A multi-platform product suite spanning native-feel mobile apps, an operational web portal, and an administrative console powered by shared REST services.",
+      "coreFeatures": [
+        "Cross-platform iOS and Android customer mobile applications.",
+        "Operational web application alongside an internal administrative management console.",
+        "Centralized REST backend infrastructure with cloud storage and automated deployments."
+      ],
       "contributions": [
         "Built product features across the React Native mobile application for iOS and Android.",
         "Developed web application and administrative dashboard features for platform operations.",
         "Engineered and maintained backend REST APIs using Node.js and Express.js.",
         "Supported AWS cloud deployments, CI/CD pipelines, and Google Play Store releases."
       ],
-      "technologies": [
-        "React Native",
-        "React",
-        "Node.js",
-        "Express.js",
-        "AWS"
-      ],
+      "technologies": ["React Native", "React", "Node.js", "Express.js", "AWS"],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -967,19 +930,19 @@
       "status": "live-institutional-portal",
       "role": "Admissions & CBT Engine",
       "shortDescription": "An institutional admissions and computer-based testing portal with payment verification, candidate screening and timed examinations.",
-      "overview": "An applicant admissions workflow and CBT portal built for the Nigerian Air Force College of Nursing Sciences.",
+      "overview": "An institutional admissions portal and computer-based testing engine built for the Nigerian Air Force College of Nursing Sciences.",
+      "coreFeatures": [
+        "Online applicant onboarding, JAMB record lookup, eligibility validation, and Paystack fee payment verification.",
+        "Timed computer-based testing (CBT) examination portal for screened candidates.",
+        "Administrative question-bank management and real-time admission status tracking."
+      ],
       "contributions": [
         "Worked on applicant onboarding and payment verification.",
         "Integrated Paystack payment verification.",
         "Implemented JAMB lookup, eligibility checks and admission status tracking.",
         "Worked on timed CBT examinations and administrative question-bank tools."
       ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Paystack",
-        "REST APIs"
-      ],
+      "technologies": ["React", "TypeScript", "Paystack", "REST APIs"],
       "links": [
         {
           "label": "Institutional Portal",
@@ -996,15 +959,18 @@
       "status": "predecessor-to-flip",
       "role": null,
       "shortDescription": "A peer-to-peer marketplace concept for urgent sales, local classifieds and buyer-seller negotiation.",
-      "overview": "A mobile marketplace product whose foundational work was later transferred to another team and rebranded/relaunched as Flip.",
+      "overview": "A peer-to-peer mobile marketplace for urgent sales and local classifieds whose foundational product was later transferred to another team and relaunched as Flip.",
+      "coreFeatures": [
+        "Urgent-sale product discovery feeds for local buyers and sellers.",
+        "Location-based filtering and automated buyer deal alerts.",
+        "In-app direct negotiation messaging between buyers and sellers."
+      ],
       "contributions": [
         "Built React Native marketplace experiences.",
         "Worked on buyer and seller listing feeds.",
         "Implemented negotiation messaging, location filtering and deal alerts."
       ],
-      "technologies": [
-        "React Native"
-      ],
+      "technologies": ["React Native"],
       "links": [],
       "thumbnail": null,
       "screenshots": [],
@@ -1017,13 +983,16 @@
       "status": "concluded",
       "role": null,
       "shortDescription": "A concluded national lesson-content competition portal for educators built for Schoola.",
-      "overview": "A successful, concluded one-time educational event portal built for Schoola to host educator lesson authoring and challenge submissions.",
+      "overview": "A concluded national educational competition portal built for Schoola to host structured educator lesson authoring and challenge submissions.",
+      "coreFeatures": [
+        "Structured digital lesson authoring tools for participating educators.",
+        "End-to-end national challenge entry submission workflows.",
+        "Curated showcase and evaluation portal for submitted lesson content."
+      ],
       "contributions": [
         "Worked on educator lesson authoring and challenge submission workflows."
       ],
-      "technologies": [
-        "Web technologies"
-      ],
+      "technologies": ["Web technologies"],
       "links": [
         {
           "label": "Open Lessonthon",
@@ -1040,7 +1009,12 @@
       "status": "production-api",
       "role": "Backend & Payment Integration",
       "shortDescription": "Backend services supporting librarian registration, licence renewals, payment processing and registry lookup.",
-      "overview": "A backend platform and Remita integration for the Librarians' Registration Council of Nigeria.",
+      "overview": "A backend services platform and Remita payment integration supporting national librarian registration, licence renewals, and verified registry lookups for LRCN.",
+      "coreFeatures": [
+        "Official librarian registration, induction, and annual licence renewal payment processing via Remita.",
+        "Searchable public registry lookup synchronized with institutional Excel member rosters.",
+        "Automated malware-scanned document uploads using ClamAV and encrypted cloud storage."
+      ],
       "contributions": [
         "Implemented Remita SHA-512 signing, RRR generation and webhook settlement.",
         "Worked on registration, induction and annual licence payment flows.",
@@ -1070,7 +1044,12 @@
       "status": "discontinued",
       "role": "Full-Stack & Real-Time Engineering",
       "shortDescription": "A complete restaurant management and ordering platform supporting online home delivery, cashier POS, and waiter tableside ordering.",
-      "overview": "A complete multi-channel food ordering and restaurant management platform (discontinued). Customers could order meals online for home delivery or order in-restaurant. The system featured a cashier POS interface, a dedicated waiter tablet ordering system for table service, and real-time Socket.IO dispatch to kitchen dashboards.",
+      "overview": "A complete multi-channel food ordering and restaurant management platform (discontinued) unifying online customer delivery, cashier POS terminals, waiter table ordering tablets, and real-time kitchen dispatch.",
+      "coreFeatures": [
+        "Customer-facing web storefront for online home delivery and dine-in meal orders.",
+        "Cashier POS checkout interface paired with a dedicated waiter tablet ordering system for table service.",
+        "Live Socket.IO kitchen display dispatching with audio order alerts, kitchen ticket printing, and Paystack payments."
+      ],
       "contributions": [
         "Architected the multi-role system covering customer home ordering, cashier POS, and waiter in-restaurant table ordering.",
         "Engineered real-time Socket.IO streams connecting customer orders, waitstaff inputs, and kitchen displays.",
@@ -1094,17 +1073,18 @@
       "status": "live-enterprise-site",
       "role": "Frontend Engineering",
       "shortDescription": "A corporate website and CMS for engineering projects, careers, media and company news.",
-      "overview": "A custom CMS for PrimeTech Design and Engineering Nigeria Limited.",
+      "overview": "A custom corporate website and content management system built for PrimeTech Design and Engineering Nigeria Limited to publish projects, careers, and company news.",
+      "coreFeatures": [
+        "Managed showcases for engineering projects, client references, career openings, and press releases.",
+        "Custom rich-text article authoring with drag-and-drop content ordering and media management.",
+        "Per-page SEO metadata controls for public corporate pages."
+      ],
       "contributions": [
         "Built frontend experiences for projects, references, careers and press releases.",
         "Worked on rich-text authoring, content ordering and media management.",
         "Implemented SEO metadata controls."
       ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "TinyMCE"
-      ],
+      "technologies": ["React", "TypeScript", "TinyMCE"],
       "links": [
         {
           "label": "Website",
@@ -1121,17 +1101,18 @@
       "status": "project",
       "role": "Frontend Engineering",
       "shortDescription": "A digital academic library and institutional repository with searchable resources and an embedded PDF reader.",
-      "overview": "A digital library experience for books, journals and academic publications.",
+      "overview": "A digital academic library and institutional repository giving readers searchable access to books, journals, and academic publications.",
+      "coreFeatures": [
+        "Embedded paginated PDF document reader with page bookmarking.",
+        "Faceted catalogue search across academic books, journals, and institutional collections.",
+        "Personal saved reading lists and institutional access request workflows."
+      ],
       "contributions": [
         "Worked on a paginated PDF reader and bookmarking.",
         "Implemented faceted resource search.",
         "Built saved reading lists and institutional access request workflows."
       ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "react-pdf"
-      ],
+      "technologies": ["React", "TypeScript", "react-pdf"],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -1143,16 +1124,18 @@
       "status": "061-naf-aeromedical-centre",
       "role": null,
       "shortDescription": "A mobile and clinical digitisation solution for aircrew medical assessments, specialist departments and appointments.",
-      "overview": "A clinical workflow product supporting medical screening and routing across specialist departments.",
+      "overview": "A mobile and clinical workflow digitisation suite supporting aircrew medical screening, specialist routing, and appointment scheduling at the 061 NAF Aeromedical Centre.",
+      "coreFeatures": [
+        "Guided multi-step aircrew medical screening wizard with schema validation and draft saving.",
+        "Structured clinical patient routing across eight specialist medical departments.",
+        "Appointment scheduling, investigation ordering, and fitness-clearance review workflows."
+      ],
       "contributions": [
         "Worked on a multi-step medical screening wizard with validation and draft saving.",
         "Implemented routing across eight specialist departments.",
         "Worked on appointments, investigation ordering and fitness-clearance review."
       ],
-      "technologies": [
-        "React Native",
-        "Zod"
-      ],
+      "technologies": ["React Native", "Zod"],
       "links": [],
       "thumbnail": null,
       "screenshots": []
@@ -1164,18 +1147,18 @@
       "status": "web-active-app-discontinued",
       "role": "Mobile Application Engineering",
       "shortDescription": "An exam preparation and learning platform. The mobile application was discontinued while the active web portal continues at hipreponline.com.",
-      "overview": "An online exam preparation and student tutoring platform. Muhammed built the initial cross-platform mobile application experience; the mobile app was subsequently discontinued while the platform continues actively on the web at hipreponline.com.",
+      "overview": "An online exam preparation and student tutoring platform connecting learners with timed practice exams and verified tutors (the mobile app was later discontinued while the active platform runs on the web at hipreponline.com).",
+      "coreFeatures": [
+        "Student practice exam journeys with timed quiz interfaces and score analytics.",
+        "Tutor discovery, credential onboarding, and session booking workflows.",
+        "Unified account experience synchronized with the active HiPrep web portal."
+      ],
       "contributions": [
         "Built the initial cross-platform mobile application in React Native and Expo.",
         "Engineered student practice exam journeys, timed quiz interfaces, and score analytics.",
         "Implemented tutor onboarding, credential uploads, and booking workflows."
       ],
-      "technologies": [
-        "React Native",
-        "Expo",
-        "TypeScript",
-        "REST APIs"
-      ],
+      "technologies": ["React Native", "Expo", "TypeScript", "REST APIs"],
       "links": [
         {
           "label": "Active Web Platform",
@@ -1192,7 +1175,12 @@
       "status": "live",
       "role": "Mobile Application Developer",
       "shortDescription": "An active personal finance tracking and budgeting mobile application for expense management, wallet balances, and spending analytics.",
-      "overview": "An active personal finance tracking and budgeting mobile application. Muhammed engineered the cross-platform React Native mobile apps, wallet expense tracking features, and managed Google Play Store releases.",
+      "overview": "An active personal finance tracking and budgeting mobile application helping users monitor wallet balances, daily expenses, and monthly spending targets.",
+      "coreFeatures": [
+        "Multi-wallet expense and income tracking with instant balance summaries.",
+        "Real-time spending analytics paired with customizable personal budget targets.",
+        "Encrypted local data storage and secure authentication flows across iOS and Android."
+      ],
       "contributions": [
         "Built cross-platform iOS and Android mobile applications using React Native.",
         "Implemented real-time spending analytics, multi-wallet expense tracking, and budget targets.",
@@ -1216,7 +1204,12 @@
       "status": "active-beta",
       "role": "Mobile Application Developer",
       "shortDescription": "A ride-booking and logistics mobile application currently in beta testing, supporting trip booking, driver dispatch, and digital payments.",
-      "overview": "An active pre-release mobile application for logistics and ride-booking workflows currently in beta testing. Muhammed built the mobile applications in React Native, integrated payment gateways, and prepared Google Play Store beta releases.",
+      "overview": "An active beta mobile application for urban ride-booking and logistics coordination, connecting passengers with drivers and digital payment checkouts.",
+      "coreFeatures": [
+        "End-to-end ride and logistics trip booking flows on iOS and Android.",
+        "Real-time driver dispatch coordination and booking status tracking.",
+        "Integrated in-app digital payment checkout for completed trips."
+      ],
       "contributions": [
         "Built cross-platform iOS and Android mobile features using React Native.",
         "Integrated trip booking workflows, driver dispatch APIs, and payment integration.",
@@ -1239,16 +1232,18 @@
       "status": "initial-version-v1",
       "role": "Frontend Engineering",
       "shortDescription": "The foundational first version of an institutional portal and LMS for the Nigerian Air Force Air Warfare Center.",
-      "overview": "An institutional portal and LMS with school administration, student records and role-based access.",
+      "overview": "The foundational v1 institutional portal and learning management system built for the Nigerian Air Force Air Warfare Center to digitise academic records and administration.",
+      "coreFeatures": [
+        "Digital student academic profiles, course enrollment records, and grade sheets.",
+        "Role-based access portals tailored for students, administrative officers, and commandants.",
+        "Centralized school administration dashboards for course and cohort operations."
+      ],
       "contributions": [
         "Built the foundational v1 institutional portal and LMS.",
         "Worked on student profiles, grade sheets and course records.",
         "Implemented role-based authorisation for students, administrative officers and commandants."
       ],
-      "technologies": [
-        "React",
-        "TypeScript"
-      ],
+      "technologies": ["React", "TypeScript"],
       "links": [
         {
           "label": "Current institutional website (subsequently updated)",
@@ -1265,14 +1260,16 @@
       "status": "project",
       "role": null,
       "shortDescription": "An interactive learning assistant for micro-lessons, conversational tutoring and visual homework support.",
-      "overview": "An AI learning assistant with voice, chat and image-based learning interactions.",
+      "overview": "An interactive AI learning assistant combining micro-lessons, conversational tutoring, voice guidance, and visual homework support.",
+      "coreFeatures": [
+        "Conversational AI tutoring across text chat and interactive voice sessions.",
+        "Image upload support for step-by-step visual homework assistance.",
+        "Bite-sized micro-lessons tailored to student questions and learning pace."
+      ],
       "contributions": [
         "Worked on an interactive tutoring experience with voice, chat and image input for homework assistance."
       ],
-      "technologies": [
-        "AI integration",
-        "Web technologies"
-      ],
+      "technologies": ["AI integration", "Web technologies"],
       "links": [
         {
           "label": "Open Lumi AI",
@@ -1289,14 +1286,16 @@
       "status": "live",
       "role": "Frontend Engineering",
       "shortDescription": "The public marketing website and product showcase for the Schoola education technology platform.",
-      "overview": "A responsive marketing website supporting product discovery and lead capture.",
+      "overview": "The public-facing marketing website and product showcase for the Schoola education technology platform, built for product discovery and school onboarding.",
+      "coreFeatures": [
+        "Responsive product showcase pages highlighting Schoola tools for schools and teachers.",
+        "Structured school onboarding and demo lead-capture workflows.",
+        "Optimized cross-device layouts across desktop and mobile browsers."
+      ],
       "contributions": [
         "Worked on responsive layouts, lead capture and the public product showcase."
       ],
-      "technologies": [
-        "React",
-        "Web technologies"
-      ],
+      "technologies": ["React", "Web technologies"],
       "links": [
         {
           "label": "Website",
@@ -1313,19 +1312,19 @@
       "status": "live",
       "role": "Frontend Engineering",
       "shortDescription": "A live Learning Management System for schools, featuring digital classrooms, content creation APIs, structured lesson notes, and question banks.",
-      "overview": "A live institutional Learning Management System accessible through demo.schoola.app after logging in. Muhammed engineered the frontend web application and integrated content creation APIs, lesson notes authoring, and question/quiz engines.",
+      "overview": "A live institutional Learning Management System empowering schools with digital classrooms, structured curriculum authoring, and automated grading analytics.",
+      "coreFeatures": [
+        "Digital classroom modules with assignment distribution, grading, and student analytics.",
+        "Structured lesson note authoring tools and searchable curriculum banks for educators.",
+        "Dynamic question and quiz creation workflows accessible via school portals."
+      ],
       "contributions": [
         "Built the frontend web application in React with modern component architecture.",
         "Integrated content creation APIs for educators to create and organize curriculum materials.",
         "Engineered interactive lesson note authoring tools and dynamic question/quiz creation workflows.",
         "Worked on digital classroom modules, assignment grading, and student analytics."
       ],
-      "technologies": [
-        "React",
-        "Redux Toolkit",
-        "REST APIs",
-        "Tailwind CSS"
-      ],
+      "technologies": ["React", "Redux Toolkit", "REST APIs", "Tailwind CSS"],
       "links": [
         {
           "label": "Demo Portal (LMS login)",

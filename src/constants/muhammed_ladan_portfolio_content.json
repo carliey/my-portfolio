@@ -194,7 +194,7 @@
                 "title": "Technical Leadership & Mentoring",
                 "description": "Supporting engineering teams through technical guidance, code quality practices and developer mentoring.",
                 "examples": [
-                  "Frontend leadership",
+                  "Team leadership",
                   "Code reviews and testing practices",
                   "Mentoring junior developers",
                   "Training and knowledge sharing"
@@ -262,10 +262,10 @@
           "order": 7,
           "type": "contact",
           "content": {
-            "heading": "Have a project, opportunity or technical challenge?",
-            "description": "I'm open to opportunities to contribute to software teams, build digital products, collaborate on technology projects and help organisations improve their digital solutions.",
+            "heading": "Tell Me What You're Building.",
+            "description": "Starting something new or improving a product you already have? I'd love to hear about it. Send me a message and let's talk through the next step.",
             "email": "mdcarliey@gmail.com",
-            "phone": "+234 703 621 5851",
+            "phone": "+2347036215851",
             "formFields": [
               {
                 "name": "name",
@@ -298,7 +298,8 @@
               "tiktok",
               "youtube",
               "instagram"
-            ]
+            ],
+            "eyebrow": "Get In Touch"
           }
         }
       ]
@@ -904,7 +905,7 @@
       "id": "schoola-src",
       "name": "Schoola Record System",
       "category": "web",
-      "status": "verify-release-status",
+      "status": "live",
       "role": "Frontend Lead",
       "shortDescription": "A school administration platform covering student records, attendance, grades, fee workflows and academic reporting.",
       "overview": "An enterprise K-12 school management system for school administration and academic operations.",
@@ -938,7 +939,7 @@
       "id": "dinki-app",
       "name": "Dinki Platform Suite",
       "category": "mobile",
-      "status": "active",
+      "status": "live",
       "role": "Full-Stack & Mobile Developer",
       "shortDescription": "A product suite spanning cross-platform mobile apps, an operational web app, admin dashboard, and backend services.",
       "overview": "A multi-platform product suite where Muhammed engineered features across the React Native mobile app, web application, administrative dashboard, and Node.js backend APIs.",
@@ -1188,7 +1189,7 @@
       "id": "simplifi-finance",
       "name": "Simplifi Finance",
       "category": "mobile",
-      "status": "active",
+      "status": "live",
       "role": "Mobile Application Developer",
       "shortDescription": "An active personal finance tracking and budgeting mobile application for expense management, wallet balances, and spending analytics.",
       "overview": "An active personal finance tracking and budgeting mobile application. Muhammed engineered the cross-platform React Native mobile apps, wallet expense tracking features, and managed Google Play Store releases.",

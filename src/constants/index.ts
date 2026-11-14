@@ -323,6 +323,7 @@ export const socialLinks = [
 
 export const navLinks = [
   { id: "projects", title: "Work", href: "/#projects", route: "/projects" },
+  { id: "capabilities", title: "Services", href: "/#capabilities" },
   { id: "experience", title: "Experience", href: "/#experience" },
   { id: "cv", title: "CV", href: "/cv", route: "/cv" },
   { id: "contact", title: "Contact", href: "/#contact" },
@@ -331,9 +332,10 @@ export const navLinks = [
 export const chapterStages = [
   { id: "hero", num: "01", label: "Intro" },
   { id: "projects", num: "02", label: "Work" },
-  { id: "experience", num: "03", label: "Experience" },
-  { id: "mentorship", num: "04", label: "Knowledge" },
-  { id: "contact", num: "05", label: "Contact" },
+  { id: "capabilities", num: "03", label: "Services" },
+  { id: "experience", num: "04", label: "Experience" },
+  { id: "mentorship", num: "05", label: "Beyond Builds" },
+  { id: "contact", num: "06", label: "Contact" },
 ];
 
 // -------------------------------------------------------------
@@ -464,7 +466,7 @@ const companyIconMap: Record<string, { icon: string; iconBg: string }> = {
   "schoola": { icon: schoola, iconBg: "#ffffff" },
   "royalstone": { icon: mobile, iconBg: "#1d1836" },
   "travel-plus": { icon: mobile, iconBg: "#1d1836" },
-  "dinki": { icon: backend, iconBg: "#1d1836" },
+  "dinki": { icon: dinki_icon, iconBg: "#E02A09" },
   "dialogue-academy": { icon: dialogue, iconBg: "#ffffff" },
   "krpc": { icon: krpc, iconBg: "#ffffff" },
 };
@@ -489,13 +491,17 @@ export const experiences: ExperienceItem[] = (
 // -------------------------------------------------------------
 // CONTACT SECTION CONTENT (from content JSON contact section)
 // -------------------------------------------------------------
-export const contactContent = homeContactSection || {
-  heading: "Have a project, opportunity or technical challenge?",
+export const contactContent = {
+  eyebrow:
+    (homeContactSection as (ContactContent & { eyebrow?: string }) | undefined)
+      ?.eyebrow || "Get In Touch",
+  heading: homeContactSection?.heading || "Tell Me What You're Building.",
   description:
-    "I'm open to opportunities to contribute to software teams, build digital products, collaborate on technology projects and help organisations improve their digital solutions.",
-  email: portfolioContent.site.contact.email,
-  phone: portfolioContent.site.contact.phone,
-  featuredMedia: null,
+    homeContactSection?.description ||
+    "Starting something new or improving a product you already have? I'd love to hear about it. Send me a message and let's talk through the next step.",
+  email: homeContactSection?.email || portfolioContent.site.contact.email,
+  phone: "+2347036215851",
+  featuredMedia: homeContactSection?.featuredMedia || null,
 };
 
 // -------------------------------------------------------------
@@ -683,9 +689,9 @@ const statusBadgeMap: Record<string, string> = {
   "cross-platform-suite": "Mobile & Web Suite",
   "initial-version-v1": "NAF AWC Portal v1",
   "live-operational": "Live Institutional LMS",
-  "live-platform": "Live Platform",
-  "live": "Live Platform",
-  "active": "Active Platform",
+  "live-platform": "Live",
+  "live": "Live",
+  "active": "Live",
   "active-beta": "Active Beta (Pre-release)",
   "live-site": "Live Website",
   "concluded": "Concluded Event",

@@ -1,283 +1,701 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../components";
 import { projects } from "../constants";
 import {
-  ExternalLinkIcon,
-  WhatsAppIcon,
-  PlayStoreIcon,
   AppStoreIcon,
+  ExternalLinkIcon,
+  PlayStoreIcon,
+  WhatsAppIcon,
 } from "../components/SocialIcons";
 import { track } from "../lib/analytics";
 
 const ProjectDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const lightboxRef = useRef<HTMLDialogElement>(null);
+
   const projectIndex = projects.findIndex((item) => item.id === id);
   const project = projects[projectIndex];
+
+  const screenshots = project
+    ? project.screenshots.length
+      ? project.screenshots
+      : [project.image]
+    : [];
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setActiveImageIndex(0);
-    document.title = project ? `${project.name} | Muhammed Ladan` : "Project not found | Muhammed Ladan";
-    if (project) {
-      track("project_view", { id: project.id, name: project.name, category: project.category });
+    if (lightboxRef.current?.open) {
+      lightboxRef.current.close();
     }
-    return () => { document.title = "Muhammed Ladan"; };
+    document.title = project
+      ? `${project.name} | Muhammed Ladan`
+      : "Project not found | Muhammed Ladan";
+    if (project) {
+      track("project_view", {
+        id: project.id,
+        name: project.name,
+        category: project.category,
+      });
+    }
+    return () => {
+      document.title = "Muhammed Ladan";
+    };
   }, [id, project]);
+
+  // Arrow-key gallery stepping
+  useEffect(() => {
+    if (screenshots.length <= 1) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        setActiveImageIndex((prev) => (prev + 1) % screenshots.length);
+      } else if (e.key === "ArrowLeft") {
+        setActiveImageIndex(
+          (prev) => (prev - 1 + screenshots.length) % screenshots.length
+        );
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [screenshots.length]);
+
+  // Progressive enhancement fallback for browsers without native dialog[closedby="any"]
+  useEffect(() => {
+    const dialog = lightboxRef.current;
+    if (!dialog || "closedBy" in HTMLDialogElement.prototype) return;
+
+    let pressedOutside = false;
+    const isOutside = (e: PointerEvent) => {
+      const r = dialog.getBoundingClientRect();
+      return (
+        e.clientX < r.left ||
+        e.clientX > r.right ||
+        e.clientY < r.top ||
+        e.clientY > r.bottom
+      );
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      pressedOutside = isOutside(e);
+    };
+    const onPointerUp = (e: PointerEvent) => {
+      if (pressedOutside && isOutside(e)) dialog.close();
+    };
+
+    dialog.addEventListener("pointerdown", onPointerDown);
+    dialog.addEventListener("pointerup", onPointerUp);
+    return () => {
+      dialog.removeEventListener("pointerdown", onPointerDown);
+      dialog.removeEventListener("pointerup", onPointerUp);
+    };
+  }, []);
 
   if (!project) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-primary px-6 text-center">
-        <h1 className="text-3xl font-bold text-white">Project not found</h1>
-        <p className="mt-3 text-secondary">This project page is unavailable. Explore the other work in my portfolio.</p>
-        <Link to="/projects" className="mt-7 rounded-xl bg-[#915EFF] px-6 py-3 font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">View all projects</Link>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#050816] px-6 text-center text-white">
+        <Navbar />
+        <p className="font-mono-tech text-xs uppercase tracking-[0.2em] text-[#00cea8]">
+          404 // Not Found
+        </p>
+        <h1 className="type-section mt-2">Project unavailable</h1>
+        <p className="mt-3 max-w-md text-sm text-[#aaa6c3]">
+          Explore the complete engineering archive to browse shipped platforms and systems.
+        </p>
+        <Link
+          to="/projects"
+          className="mt-7 inline-flex min-h-11 items-center rounded-full bg-[#915EFF] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#7d48f5]"
+        >
+          Back to Archive
+        </Link>
       </div>
     );
   }
 
-  const screenshots = project.screenshots.length ? project.screenshots : [project.image];
   const activeImage = screenshots[activeImageIndex] ?? screenshots[0];
   const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
 
+  const actionCells: {
+    key: string;
+    label: string;
+    sublabel: string;
+    href: string;
+    icon: "web" | "whatsapp" | "play" | "apple";
+    targetName: string;
+  }[] = [];
+
+  if (project.project_link) {
+    actionCells.push({
+      key: "live",
+      label: "Open Live Product",
+      sublabel: "Web Deployment",
+      href: project.project_link,
+      icon: "web",
+      targetName: "live_app",
+    });
+  }
+  if (project.whatsapp_link) {
+    actionCells.push({
+      key: "whatsapp",
+      label: "Launch WhatsApp Bot",
+      sublabel: project.whatsapp_number || "WhatsApp Cloud API",
+      href: project.whatsapp_link,
+      icon: "whatsapp",
+      targetName: "whatsapp_bot",
+    });
+  }
+  if (project.play_store_link) {
+    actionCells.push({
+      key: "play",
+      label: "Google Play",
+      sublabel: "Android Build",
+      href: project.play_store_link,
+      icon: "play",
+      targetName: "play_store",
+    });
+  }
+  if (project.app_store_link) {
+    actionCells.push({
+      key: "apple",
+      label: "App Store",
+      sublabel: "iOS Build",
+      href: project.app_store_link,
+      icon: "apple",
+      targetName: "app_store",
+    });
+  }
+
+  const openLightbox = () => {
+    const dialog = lightboxRef.current;
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-primary">
-      <a href="#project-content" className="skip-link">Skip to content</a>
+    <div className="relative min-h-screen bg-[#050816] text-white">
+      <a href="#project-content" className="skip-link">
+        Skip to content
+      </a>
       <Navbar />
 
-      <main id="project-content" className="mx-auto max-w-6xl px-6 pb-20 pt-28 sm:pt-30">
-        <Link to="/projects" className="inline-flex min-h-11 items-center text-sm font-medium text-secondary hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">
-          <span aria-hidden="true" className="mr-2">←</span> All projects
-        </Link>
+      <div
+        aria-hidden="true"
+        className="bg-architectural-grid pointer-events-none fixed inset-0 opacity-25"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed -top-32 left-1/2 h-[30rem] w-[42rem] -translate-x-1/2 rounded-full bg-[#915EFF]/10 blur-[150px]"
+      />
 
-        <header className="mt-7 max-w-4xl">
-          <div className="flex flex-wrap items-center gap-3">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#00cea8]">
-              {project.category}
-            </p>
+      <main
+        id="project-content"
+        className="relative z-10 mx-auto max-w-6xl px-4 pt-24 sm:px-10 sm:pt-32"
+        style={{
+          paddingBottom: "max(4.5rem, env(safe-area-inset-bottom, 0px))",
+        }}
+      >
+        {/* Top Sub-Navigation Utility Strip */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+          <Link
+            to="/projects"
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#aaa6c3] transition-colors hover:text-[#00cea8]"
+          >
+            <span aria-hidden="true">←</span>
+            <span>All Projects</span>
+          </Link>
+
+          <span className="hidden font-mono-tech text-xs text-[#aaa6c3]/80 sm:inline">
+            archive / {project.id}
+          </span>
+
+          <div className="flex items-center gap-2">
+            <span className="font-mono-tech text-xs text-[#dfd9ff]">
+              {String(projectIndex + 1).padStart(2, "0")} /{" "}
+              {String(projects.length).padStart(2, "0")}
+            </span>
+            <Link
+              to={`/projects/${previous.id}`}
+              aria-label={`Previous: ${previous.name}`}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#100d25] text-xs text-white transition-colors hover:border-[#00cea8]"
+            >
+              ←
+            </Link>
+            <Link
+              to={`/projects/${next.id}`}
+              aria-label={`Next: ${next.name}`}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#100d25] text-xs text-white transition-colors hover:border-[#00cea8]"
+            >
+              →
+            </Link>
+          </div>
+        </div>
+
+        {/* Monolith Case Study Title Header */}
+        <header className="mt-8">
+          {/* Hairline-divided specification bar replacing floating pills */}
+          <dl className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b border-white/10 pb-5 font-mono-tech text-xs uppercase tracking-[0.15em]">
+            <div className="flex items-center gap-2">
+              <dt className="text-[#aaa6c3]">Domain</dt>
+              <dd className="text-white">{project.category}</dd>
+            </div>
             {project.role && (
-              <span className="rounded-full border border-[#915EFF]/40 bg-[#915EFF]/10 px-3 py-1 text-xs font-semibold text-[#dfd9ff]">
-                {project.role}
-              </span>
+              <div className="flex items-center gap-2">
+                <dt className="text-[#aaa6c3]">Role</dt>
+                <dd className="text-[#915EFF]">{project.role}</dd>
+              </div>
             )}
             {project.statusBadge && (
-              <span className="rounded-full border border-[#00cea8]/40 bg-[#00cea8]/10 px-3 py-1 text-xs font-semibold text-[#00cea8]">
-                {project.statusBadge}
-              </span>
+              <div className="flex items-center gap-2">
+                <dt className="text-[#aaa6c3]">Status</dt>
+                <dd className="inline-flex items-center gap-1.5 text-[#00cea8]">
+                  <span
+                    aria-hidden="true"
+                    className="h-1.5 w-1.5 rounded-full bg-[#00cea8]"
+                  />
+                  {project.statusBadge}
+                </dd>
+              </div>
             )}
-          </div>
-          <h1 className="mt-3 text-4xl font-black leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          </dl>
+
+          <h1
+            className="mt-6 font-display font-bold tracking-tight text-white"
+            style={{
+              fontSize: "clamp(2.25rem, 1.35rem + 3.4vw, 4.4rem)",
+              lineHeight: 1.04,
+            }}
+          >
             {project.name}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-relaxed text-secondary sm:text-lg">
+
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[#dfd9ff]/85 sm:text-lg">
             {project.description}
           </p>
 
-          {(project.whatsapp_link ||
-            project.project_link ||
-            project.play_store_link ||
-            project.app_store_link ||
-            project.source_code_link) && (
-            <div className="mt-6 flex flex-wrap gap-3">
-              {project.whatsapp_link && (
+          {/* Split-Cell Architectural Launch Dock */}
+          {actionCells.length > 0 && (
+            <div
+              className="mt-7 grid overflow-hidden rounded-2xl border border-white/15 bg-[#100d25]/90 divide-y divide-white/10 sm:divide-x sm:divide-y-0"
+              style={{
+                gridTemplateColumns:
+                  actionCells.length > 1
+                    ? `repeat(${Math.min(actionCells.length, 3)}, minmax(0, 1fr))`
+                    : "minmax(0, 1fr)",
+              }}
+            >
+              {actionCells.map((cell) => (
                 <a
-                  href={project.whatsapp_link}
+                  key={cell.key}
+                  href={cell.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() =>
                     track("outbound_click", {
-                      target: "whatsapp_bot",
+                      target: cell.targetName,
                       project: project.id,
-                      url: project.whatsapp_link ?? "",
+                      url: cell.href,
                     })
                   }
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-[#25D366] px-6 py-3 font-semibold text-[#04180d] transition-colors hover:bg-[#1ebe5b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366]"
+                  className="group flex min-h-16 items-center justify-between gap-4 px-5 py-3.5 transition-colors hover:bg-[#151030]"
                 >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  Chat on WhatsApp ({project.whatsapp_number ?? "Open Bot"})
+                  <div className="flex min-w-0 items-center gap-3.5">
+                    <span
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                        cell.icon === "whatsapp"
+                          ? "bg-[#25D366]/15 text-[#25D366]"
+                          : "bg-[#915EFF]/15 text-[#00cea8]"
+                      }`}
+                    >
+                      {cell.icon === "web" && <ExternalLinkIcon className="h-4 w-4" />}
+                      {cell.icon === "whatsapp" && <WhatsAppIcon className="h-4 w-4" />}
+                      {cell.icon === "play" && <PlayStoreIcon className="h-4 w-4" />}
+                      {cell.icon === "apple" && <AppStoreIcon className="h-4 w-4" />}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-mono-tech truncate text-[10px] uppercase tracking-[0.16em] text-[#aaa6c3]">
+                        {cell.sublabel}
+                      </p>
+                      <p className="truncate font-display text-sm font-bold text-white group-hover:text-[#00cea8] sm:text-base">
+                        {cell.label}
+                      </p>
+                    </div>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="shrink-0 text-sm text-[#aaa6c3] transition-transform group-hover:translate-x-0.5 group-hover:text-white"
+                  >
+                    ↗
+                  </span>
                 </a>
-              )}
-              {project.project_link && (
-                <a
-                  href={project.project_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("outbound_click", {
-                      target: "live_app",
-                      project: project.id,
-                      url: project.project_link,
-                    })
-                  }
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl bg-[#915EFF] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#804dee] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
-                >
-                  <ExternalLinkIcon className="h-5 w-5" />
-                  View live project
-                </a>
-              )}
-              {project.play_store_link && (
-                <a
-                  href={project.play_store_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("outbound_click", {
-                      target: "play_store",
-                      project: project.id,
-                      url: project.play_store_link ?? "",
-                    })
-                  }
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
-                >
-                  <PlayStoreIcon className="h-5 w-5" />
-                  Google Play
-                </a>
-              )}
-              {project.app_store_link && (
-                <a
-                  href={project.app_store_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("outbound_click", {
-                      target: "app_store",
-                      project: project.id,
-                      url: project.app_store_link ?? "",
-                    })
-                  }
-                  className="inline-flex min-h-12 items-center gap-2.5 rounded-xl border border-white/20 bg-tertiary px-6 py-3 font-semibold text-white transition-colors hover:border-[#915EFF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]"
-                >
-                  <AppStoreIcon className="h-5 w-5" />
-                  App Store
-                </a>
-              )}
-            </div>
-          )}
-
-          {project.whatsapp_link && project.whatsapp_number && (
-            <div className="mt-6 rounded-2xl border border-[#25D366]/30 bg-[#25D366]/10 p-4 sm:p-5">
-              <p className="text-sm leading-relaxed text-white/90">
-                Try the chatbot directly on WhatsApp:{" "}
-                <a
-                  href={project.whatsapp_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() =>
-                    track("outbound_click", {
-                      target: "whatsapp_number_link",
-                      project: project.id,
-                      url: project.whatsapp_link ?? "",
-                    })
-                  }
-                  className="font-bold text-[#25D366] underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
-                >
-                  {project.whatsapp_number}
-                </a>{" "}
-                <span className="text-secondary">
-                  — tap to start listing inventory or searching products via chat.
-                </span>
-              </p>
+              ))}
             </div>
           )}
         </header>
 
-        <section aria-label={`${project.name} images`} className="mt-10">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-tertiary p-3 sm:rounded-3xl sm:p-4">
-            <div className="flex h-[240px] items-center justify-center overflow-hidden rounded-xl bg-[#080914] sm:h-[380px] lg:h-[460px]">
+        {/* Studio Light-Table Gallery + Native Dialog Lightbox */}
+        <section aria-label={`${project.name} visuals`} className="mt-10">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(ellipse_at_top,rgba(145,94,255,0.14),rgba(5,8,22,1)_72%)] p-3 sm:p-6">
+            <div className="relative flex aspect-[16/10] max-h-[540px] w-full items-center justify-center overflow-hidden rounded-2xl border border-white/[0.08] bg-[#050816]">
               <img
                 src={activeImage}
-                alt={`${project.name} preview ${activeImageIndex + 1} of ${screenshots.length}`}
-                width={1100}
-                height={580}
+                alt={`${project.name} screenshot ${activeImageIndex + 1} of ${screenshots.length}`}
+                width={1200}
+                height={700}
+                fetchPriority="high"
                 decoding="async"
-                {...({ fetchpriority: "high" } as Record<string, string>)}
                 className="h-full w-full object-contain"
               />
+
+              {/* Expand Fullscreen Lightbox Trigger */}
+              <button
+                type="button"
+                onClick={openLightbox}
+                aria-label="Inspect screenshot fullscreen"
+                className="font-mono-tech absolute right-3 top-3 inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/15 bg-[#050816]/85 px-3.5 text-[11px] font-medium text-white backdrop-blur-md transition-colors hover:border-[#00cea8] hover:text-[#00cea8]"
+              >
+                <span>Expand</span>
+                <span aria-hidden="true">⤢</span>
+              </button>
+
+              {screenshots.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveImageIndex(
+                        (prev) =>
+                          (prev - 1 + screenshots.length) % screenshots.length
+                      )
+                    }
+                    aria-label="Previous screenshot"
+                    className="absolute left-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#050816]/80 text-white backdrop-blur-md transition-colors hover:border-[#00cea8] sm:inline-flex"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setActiveImageIndex(
+                        (prev) => (prev + 1) % screenshots.length
+                      )
+                    }
+                    aria-label="Next screenshot"
+                    className="absolute right-3 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-[#050816]/80 text-white backdrop-blur-md transition-colors hover:border-[#00cea8] sm:inline-flex"
+                  >
+                    →
+                  </button>
+                </>
+              )}
             </div>
-            {project.isPlaceholderImage && activeImageIndex === 0 && (
-              <p className="pt-2.5 text-center text-xs text-secondary">
-                Concept preview placeholder — live product screenshots can be swapped in anytime.
-              </p>
-            )}
+
+            {/* Filmstrip Switcher Bar */}
             {screenshots.length > 1 && (
-                <div className="flex flex-wrap justify-center gap-2 pt-3" role="group" aria-label="Choose project preview">
-                  {screenshots.map((src, index) => (
-                    <button key={`${src}-${index}`} type="button" onClick={() => setActiveImageIndex(index)}
-                      aria-label={`Show preview ${index + 1} of ${screenshots.length}`} aria-pressed={activeImageIndex === index}
-                      className={`h-14 w-20 overflow-hidden rounded-lg border-2 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b79bff] ${activeImageIndex === index ? "border-[#915EFF]" : "border-white/20 hover:border-white/60"}`}>
-                      <img src={src} alt="" width={80} height={56} loading="lazy" decoding="async" className="h-full w-full object-cover" />
-                    </button>
-                  ))}
+              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div
+                  role="group"
+                  aria-label="Project gallery frames"
+                  className="no-scrollbar flex items-center gap-2.5 overflow-x-auto py-1"
+                >
+                  {screenshots.map((src, index) => {
+                    const active = activeImageIndex === index;
+                    return (
+                      <button
+                        key={`${src}-${index}`}
+                        type="button"
+                        onClick={() => setActiveImageIndex(index)}
+                        aria-label={`View frame ${index + 1}`}
+                        aria-pressed={active}
+                        className={`group relative h-14 w-24 shrink-0 overflow-hidden rounded-xl border transition-all ${
+                          active
+                            ? "border-[#00cea8] ring-2 ring-[#00cea8]/30"
+                            : "border-white/10 opacity-55 hover:border-white/40 hover:opacity-100"
+                        }`}
+                      >
+                        <img
+                          src={src}
+                          alt=""
+                          width={96}
+                          height={56}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full object-cover"
+                        />
+                        <span className="font-mono-tech absolute bottom-1 left-1.5 rounded bg-[#050816]/85 px-1 text-[9px] text-white">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
+
+                <div className="flex items-center justify-between gap-3 sm:justify-end">
+                  <span className="font-mono-tech text-xs text-[#aaa6c3]">
+                    Frame {String(activeImageIndex + 1).padStart(2, "0")} of{" "}
+                    {String(screenshots.length).padStart(2, "0")}
+                  </span>
+                  <div className="flex items-center gap-2 sm:hidden">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveImageIndex(
+                          (prev) =>
+                            (prev - 1 + screenshots.length) % screenshots.length
+                        )
+                      }
+                      aria-label="Previous screenshot"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#100d25] text-sm text-white"
+                    >
+                      ←
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setActiveImageIndex(
+                          (prev) => (prev + 1) % screenshots.length
+                        )
+                      }
+                      aria-label="Next screenshot"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[#100d25] text-sm text-white"
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </section>
 
-        {/* Product Overview */}
-        <section aria-labelledby="overview-heading" className="mt-12 max-w-4xl">
-          <h2 id="overview-heading" className="text-2xl font-bold text-white sm:text-3xl">
-            Overview
-          </h2>
-          <div className="mt-4 rounded-2xl bg-tertiary border border-white/10 p-5 sm:p-6">
-            <p className="text-base leading-relaxed text-[#dfd9ff] sm:text-lg">
+        {/* Native Modal Lightbox for Inspecting Screenshots */}
+        <dialog
+          ref={lightboxRef}
+          aria-label={`${project.name} fullscreen image preview`}
+          {...({ closedby: "any" } as Record<string, string>)}
+          className="m-auto w-[min(94dvw,72rem)] max-w-none overflow-hidden rounded-3xl border border-white/15 bg-[#050816] p-3 text-white shadow-2xl sm:p-5"
+        >
+          <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-3">
+            <p className="font-mono-tech text-xs text-[#dfd9ff]">
+              {project.name} — Frame {activeImageIndex + 1} / {screenshots.length}
+            </p>
+            <form method="dialog">
+              <button
+                type="submit"
+                autoFocus
+                aria-label="Close fullscreen preview"
+                className="inline-flex min-h-10 items-center gap-1.5 rounded-full border border-white/15 bg-[#100d25] px-4 text-xs font-semibold text-white hover:border-[#00cea8]"
+              >
+                <span>Close</span>
+                <span aria-hidden="true">✕</span>
+              </button>
+            </form>
+          </div>
+
+          <div className="mt-3 flex max-h-[75dvh] items-center justify-center overflow-hidden rounded-2xl bg-[#070a1c]">
+            <img
+              src={activeImage}
+              alt={`${project.name} fullscreen frame ${activeImageIndex + 1}`}
+              className="max-h-[75dvh] w-full object-contain"
+            />
+          </div>
+
+          {screenshots.length > 1 && (
+            <div className="mt-3 flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveImageIndex(
+                    (prev) =>
+                      (prev - 1 + screenshots.length) % screenshots.length
+                  )
+                }
+                aria-label="Previous fullscreen frame"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-[#100d25] px-5 text-xs font-semibold text-white hover:border-[#00cea8]"
+              >
+                ← Prev
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveImageIndex((prev) => (prev + 1) % screenshots.length)
+                }
+                aria-label="Next fullscreen frame"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-[#100d25] px-5 text-xs font-semibold text-white hover:border-[#00cea8]"
+              >
+                Next →
+              </button>
+            </div>
+          )}
+        </dialog>
+
+        {/* Section 01: Editorial Split Overview */}
+        <section
+          aria-labelledby="overview-heading"
+          className="mt-14 grid grid-cols-1 gap-6 border-t border-white/10 pt-12 lg:grid-cols-12 lg:gap-10"
+        >
+          <div className="lg:col-span-4">
+            <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
+              01 // Overview
+            </span>
+            <h2
+              id="overview-heading"
+              className="type-section mt-2 text-white"
+            >
+              Product Context
+            </h2>
+            {project.result && (
+              <p className="font-mono-tech mt-3 text-xs text-[#aaa6c3]">
+                {project.result}
+              </p>
+            )}
+          </div>
+
+          <div className="lg:col-span-8">
+            <p className="border-l-2 border-[#00cea8] pl-5 text-lg leading-[1.7] text-[#dfd9ff] sm:pl-7 sm:text-xl">
               {project.longDescription || project.description}
             </p>
           </div>
         </section>
 
-        {/* Technologies Used */}
-        {project.technologies && project.technologies.length > 0 && (
-          <section aria-labelledby="tech-heading" className="mt-10 max-w-4xl">
-            <h2 id="tech-heading" className="text-lg font-bold uppercase tracking-wider text-secondary">
-              Technologies & Tools
-            </h2>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {project.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="rounded-xl bg-tertiary border border-white/10 px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white/90"
-                >
-                  {tech}
+        {/* Section 02: Blueprint Contributions Grid */}
+        {project.contributions && project.contributions.length > 0 && (
+          <section
+            aria-labelledby="contributions-heading"
+            className="mt-14 border-t border-white/10 pt-12"
+          >
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
+                  02 // Engineering Execution
                 </span>
+                <h2
+                  id="contributions-heading"
+                  className="type-section mt-2 text-white"
+                >
+                  What I Built &amp; Shipped
+                </h2>
+              </div>
+              <span className="font-mono-tech text-xs text-[#aaa6c3]">
+                {String(project.contributions.length).padStart(2, "0")} Key Deliverables
+              </span>
+            </div>
+
+            <ol className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+              {project.contributions.map((item, idx) => (
+                <li
+                  key={item}
+                  className="flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#100d25]/70 p-5 transition-colors hover:border-[#915EFF]/50 sm:p-6"
+                >
+                  <div className="flex items-center justify-between gap-3 border-b border-white/[0.07] pb-3">
+                    <span className="font-mono-tech text-sm font-bold text-[#915EFF]">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="h-1.5 w-1.5 rounded-full bg-[#00cea8]"
+                    />
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-[#dfd9ff]/95 sm:text-base">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {/* Section 03: Architectural Stack Matrix */}
+        {project.technologies && project.technologies.length > 0 && (
+          <section
+            aria-labelledby="tech-heading"
+            className="mt-14 border-t border-white/10 pt-12"
+          >
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <span className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
+                  03 // Stack &amp; Infrastructure
+                </span>
+                <h2
+                  id="tech-heading"
+                  className="type-section mt-2 text-white"
+                >
+                  Technologies Used
+                </h2>
+              </div>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              {project.technologies.map((tech, idx) => (
+                <div
+                  key={tech}
+                  className="flex items-center justify-between gap-3 rounded-2xl border border-white/[0.08] bg-[#100d25]/85 px-4 py-3.5 transition-colors hover:border-[#00cea8]/45"
+                >
+                  <div className="flex min-w-0 items-center gap-2.5">
+                    <span
+                      aria-hidden="true"
+                      className="h-2 w-2 shrink-0 rounded-sm bg-[#915EFF]"
+                    />
+                    <span className="truncate font-display text-sm font-semibold text-white">
+                      {tech}
+                    </span>
+                  </div>
+                  <span className="font-mono-tech shrink-0 text-[10px] text-[#aaa6c3]">
+                    T-{String(idx + 1).padStart(2, "0")}
+                  </span>
+                </div>
               ))}
             </div>
           </section>
         )}
 
-        {/* Key Engineering Contributions */}
-        {project.contributions && project.contributions.length > 0 && (
-          <section aria-labelledby="contributions-heading" className="mt-12 max-w-4xl">
-            <h2 id="contributions-heading" className="text-2xl font-bold text-white sm:text-3xl">
-              Key Engineering Contributions
-            </h2>
-            <ul className="mt-4 space-y-3">
-              {project.contributions.map((c, i) => (
-                <li key={i} className="flex items-start gap-3 rounded-xl bg-tertiary/70 border border-white/5 p-4 text-white/90">
-                  <span className="text-[#00cea8] font-bold mt-0.5">▸</span>
-                  <span className="leading-relaxed text-sm sm:text-base">{c}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-
-        <div className="mt-10 flex max-w-4xl flex-col items-start gap-1 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <p className="text-lg font-semibold text-white">Have a project in mind?</p>
-          <a href="/#contact" className="inline-flex min-h-11 items-center font-semibold text-[#b79bff] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">
-            Let’s talk <span aria-hidden="true" className="ml-2">→</span>
-          </a>
-        </div>
-
-        <nav aria-label="More projects" className="mt-10">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Link to={`/projects/${previous.id}`} className="group rounded-2xl border border-white/10 bg-tertiary p-6 transition-colors hover:border-[#915EFF]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff]">
-              <span className="text-xs font-semibold uppercase tracking-wider text-secondary">← Previous</span>
-              <span className="mt-2 block text-xl font-bold text-white group-hover:text-[#b79bff]">{previous.name}</span>
+        {/* Visual Case-Study Pager */}
+        <nav
+          aria-label="More projects"
+          className="mt-16 border-t border-white/10 pt-10"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <Link
+              to={`/projects/${previous.id}`}
+              className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-[#100d25]/80 p-4 transition-colors hover:border-[#915EFF]/60 sm:p-5"
+            >
+              <img
+                src={previous.image}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="h-14 w-20 shrink-0 rounded-xl border border-white/10 object-cover object-top"
+              />
+              <div className="min-w-0">
+                <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#aaa6c3]">
+                  ← Previous Case
+                </span>
+                <span className="mt-1 block truncate font-display text-base font-bold text-white group-hover:text-[#00cea8] sm:text-lg">
+                  {previous.name}
+                </span>
+              </div>
             </Link>
-            <Link to={`/projects/${next.id}`} className="group rounded-2xl border border-white/10 bg-tertiary p-6 transition-colors hover:border-[#915EFF]/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b79bff] sm:text-right">
-              <span className="text-xs font-semibold uppercase tracking-wider text-secondary">Next →</span>
-              <span className="mt-2 block text-xl font-bold text-white group-hover:text-[#b79bff]">{next.name}</span>
+
+            <Link
+              to={`/projects/${next.id}`}
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-[#100d25]/80 p-4 text-right transition-colors hover:border-[#915EFF]/60 sm:p-5"
+            >
+              <div className="min-w-0 flex-1">
+                <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#aaa6c3]">
+                  Next Case →
+                </span>
+                <span className="mt-1 block truncate font-display text-base font-bold text-white group-hover:text-[#00cea8] sm:text-lg">
+                  {next.name}
+                </span>
+              </div>
+              <img
+                src={next.image}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="h-14 w-20 shrink-0 rounded-xl border border-white/10 object-cover object-top"
+              />
             </Link>
           </div>
         </nav>

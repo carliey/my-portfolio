@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { capabilities, experiences } from "../constants";
+import { experiences } from "../constants";
 import { track } from "../lib/analytics";
 
 const Experience = () => {
@@ -7,22 +7,22 @@ const Experience = () => {
     <section
       id="experience"
       tabIndex={-1}
-      className="snap-stage relative flex min-h-[100dvh] w-full flex-col justify-center border-t border-white/[0.06] bg-gradient-to-b from-[#050816] via-[#090325] to-[#050816] py-20 outline-none sm:py-24"
+      className="relative w-full border-t border-white/[0.06] bg-[#050816] py-16 outline-none sm:py-24"
     >
       <div
         aria-hidden="true"
-        data-parallax-speed="18"
-        className="parallax-layer-slow pointer-events-none absolute right-0 top-1/4 h-80 w-80 rounded-full bg-[#915EFF]/10 blur-[110px]"
+        className="pointer-events-none absolute -left-24 bottom-1/4 h-80 w-80 rounded-full bg-[#00cea8]/8 blur-[110px]"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-10">
-        <div className="stage-reveal flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-10">
+        {/* Section Header */}
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-mono-tech text-xs font-semibold uppercase tracking-[0.22em] text-[#00cea8]">
-              03 // Track Record
+              04 // Experience
             </p>
             <h2 className="type-section mt-2 text-white">
-              Experience &amp; Capabilities
+              Where I&apos;ve Built &amp; Contributed
             </h2>
           </div>
 
@@ -36,93 +36,58 @@ const Experience = () => {
           </Link>
         </div>
 
-        {/* Asymmetric 12-Col Dossier */}
-        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
-          {/* Left: Clean Experience Ledger (Organisation · Role · Period ONLY) */}
-          <div className="lg:col-span-7">
-            <div className="flex items-center justify-between border-b border-white/10 pb-3">
-              <h3 className="font-mono-tech text-xs uppercase tracking-[0.18em] text-[#aaa6c3]">
-                Roles &amp; Organisations
-              </h3>
-              <span className="font-mono-tech text-[11px] text-[#00cea8]">
-                {experiences.length} Positions
-              </span>
-            </div>
+        {/* Redesigned Architectural Career Grid — Organisation · Role · Period cleanly */}
+        <ol className="mt-8 grid grid-cols-1 gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          {experiences.map((exp, idx) => (
+            <li
+              key={exp.id}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.09] bg-[#100d25]/85 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#915EFF]/55 hover:bg-[#151030] sm:p-6"
+            >
+              {/* Subtle top accent bar */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#915EFF]/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
 
-            <ol className="divide-y divide-white/[0.08]">
-              {experiences.map((exp, idx) => (
-                <li
-                  key={exp.id}
-                  className="group grid grid-cols-1 gap-2 py-4 transition-colors sm:grid-cols-12 sm:items-center sm:gap-4 sm:py-5"
-                >
-                  <div className="flex items-center gap-3.5 sm:col-span-6">
-                    <span className="font-mono-tech hidden text-xs text-white/30 sm:inline">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                    <div
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 p-1.5"
-                      style={{ backgroundColor: exp.iconBg }}
-                    >
-                      <img
-                        src={exp.icon}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                    <p className="font-display text-base font-semibold text-white">
-                      {exp.company_name}
-                    </p>
+              <div>
+                <div className="flex items-start justify-between gap-3">
+                  <div
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 p-2"
+                    style={{ backgroundColor: exp.iconBg }}
+                  >
+                    <img
+                      src={exp.icon}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      className="h-full w-full object-contain"
+                    />
                   </div>
 
-                  <p className="text-sm font-medium text-[#dfd9ff] sm:col-span-4">
-                    {exp.title}
-                  </p>
-
-                  <p className="font-mono-tech text-xs text-[#aaa6c3] sm:col-span-2 sm:text-right">
+                  <span className="font-mono-tech rounded-full border border-white/10 bg-[#050816]/80 px-3 py-1 text-[11px] font-medium text-[#00cea8]">
                     {exp.date}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </div>
+                  </span>
+                </div>
 
-          {/* Right: Architectural Capabilities Index */}
-          <div className="lg:col-span-5">
-            <div className="rounded-3xl border border-white/10 bg-[#100d25]/85 p-6 sm:p-7">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <h3 className="font-mono-tech text-xs uppercase tracking-[0.18em] text-[#aaa6c3]">
-                  What I Bring
+                <h3 className="mt-5 font-display text-lg font-bold leading-snug text-white sm:text-xl">
+                  {exp.company_name}
                 </h3>
-                <span className="font-mono-tech text-[11px] text-[#915EFF]">
-                  Core Systems
+                <p className="mt-1.5 text-sm font-medium text-[#dfd9ff]/85">
+                  {exp.title}
+                </p>
+              </div>
+
+              <div className="mt-5 flex items-center justify-between border-t border-white/[0.07] pt-3.5">
+                <span className="font-mono-tech text-[10px] uppercase tracking-[0.18em] text-[#aaa6c3]">
+                  Role {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span className="font-mono-tech text-[10px] uppercase tracking-[0.14em] text-[#915EFF]">
+                  {/present/i.test(exp.date) ? "Current" : "Completed"}
                 </span>
               </div>
-
-              <div className="mt-5 space-y-5">
-                {capabilities.slice(0, 4).map((pillar, idx) => (
-                  <div
-                    key={pillar.id}
-                    className="border-b border-white/[0.06] pb-4 last:border-b-0 last:pb-0"
-                  >
-                    <div className="flex items-baseline gap-3">
-                      <span className="font-mono-tech text-xs font-semibold text-[#00cea8]">
-                        0{idx + 1}
-                      </span>
-                      <h4 className="font-display text-base font-semibold text-white">
-                        {pillar.title}
-                      </h4>
-                    </div>
-                    <p className="mt-1.5 pl-7 text-sm leading-relaxed text-[#aaa6c3]">
-                      {pillar.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

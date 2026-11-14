@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import {
+  Capabilities,
   ChapterRail,
   Contact,
   Experience,
@@ -12,7 +13,6 @@ import {
 import CvPage from "./pages/CvPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import ProjectsPage from "./pages/ProjectsPage";
-import { useParallaxFallback } from "./hooks/useParallaxFallback";
 import usePageView from "./hooks/usePageView";
 
 /** Captures a pageview for every client-side route change. */
@@ -23,14 +23,6 @@ const AnalyticsTracker = () => {
 
 const LandingPage = () => {
   const location = useLocation();
-  useParallaxFallback();
-
-  useEffect(() => {
-    document.documentElement.classList.add("snap-stage-container");
-    return () => {
-      document.documentElement.classList.remove("snap-stage-container");
-    };
-  }, []);
 
   useEffect(() => {
     if (location.hash) {
@@ -58,6 +50,7 @@ const LandingPage = () => {
       <main id="main-content">
         <Hero />
         <Works />
+        <Capabilities />
         <Experience />
         <Leadership />
         <Contact />

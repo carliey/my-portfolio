@@ -14,9 +14,16 @@
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(145, 94, 255, 0.35);
 
+  --target-size: 24px;
   --font-display: "Space Grotesk", "Poppins", sans-serif;
   --font-sans: "Poppins", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (pointer: coarse) {
+  :root {
+    --target-size: 44px;
+  }
 }
 
 * {
@@ -31,18 +38,24 @@ html {
   color: var(--text-primary);
   font-family: var(--font-sans);
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
-}
-
-/* Activated only on landing page route for 1-section-at-a-time proximity snap */
-html.snap-stage-container {
-  scroll-snap-type: y proximity;
+  scroll-padding-top: 4.75rem;
 }
 
 body {
   background-color: var(--bg-obsidian);
   overflow-x: clip;
+  overflow-wrap: anywhere;
   text-rendering: optimizeLegibility;
+}
+
+img,
+video {
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+:where(button, select, textarea, input:not([type="checkbox"], [type="radio"]), [role="button"], nav a) {
+  min-block-size: var(--target-size);
 }
 
 :focus-visible {
@@ -53,8 +66,8 @@ body {
 /* Skip navigation link */
 .skip-link {
   position: fixed;
-  top: 0.75rem;
-  left: 0.75rem;
+  top: max(0.75rem, env(safe-area-inset-top, 0px));
+  left: max(0.75rem, env(safe-area-inset-left, 0px));
   z-index: 100;
   transform: translateY(-160%);
   border-radius: 0.5rem;
@@ -80,16 +93,16 @@ body {
 
 .type-hero {
   font-family: var(--font-display);
-  font-size: clamp(2.15rem, 1.45rem + 2.8vw, 4.1rem);
+  font-size: clamp(2rem, 1.35rem + 2.8vw, 4.1rem);
   font-weight: 700;
-  line-height: 1.06;
+  line-height: 1.07;
   letter-spacing: -0.025em;
   text-wrap: balance;
 }
 
 .type-section {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.95rem);
+  font-size: clamp(1.65rem, 1.3rem + 1.6vw, 2.9rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -97,18 +110,10 @@ body {
 }
 
 .type-prose {
-  font-size: clamp(0.95rem, 0.92rem + 0.25vw, 1.075rem);
+  font-size: clamp(0.95rem, 0.92rem + 0.22vw, 1.075rem);
   line-height: 1.65;
   max-inline-size: 62ch;
   text-wrap: pretty;
-}
-
-/* Full-Stage Snap Architecture */
-.snap-stage {
-  scroll-snap-align: start;
-  scroll-snap-stop: normal;
-  min-block-size: 100dvh;
-  position: relative;
 }
 
 /* Architectural Grid Surface Texture */
@@ -117,6 +122,40 @@ body {
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+/* Hide scrollbars cleanly for horizontal mobile decks and thumbnail rails */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Container-query aware project card shell */
+.project-card-shell {
+  container: project-card / inline-size;
+}
+
+@container project-card (inline-size > 40rem) {
+  .project-bento-inner {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: stretch;
+  }
+}
+
+/* Native <dialog> modal scroll containment (lightbox) */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background: rgba(5, 8, 22, 0.9);
+  backdrop-filter: blur(10px);
 }
 
 /* Gradient helper classes preserved for inner routes */
@@ -144,67 +183,6 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Native CSS Scroll-Driven Parallax & Stage Reveals */
-@keyframes parallaxShiftSlow {
-  from {
-    transform: translate3d(0, -32px, 0);
-  }
-  to {
-    transform: translate3d(0, 32px, 0);
-  }
-}
-
-@keyframes parallaxShiftBackdrop {
-  from {
-    transform: translate3d(0, 0, 0) scale(1.04);
-  }
-  to {
-    transform: translate3d(0, 56px, 0) scale(1.1);
-  }
-}
-
-@keyframes stageRevealUp {
-  from {
-    opacity: 0.15;
-    transform: translate3d(0, 28px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports ((animation-timeline: view()) and (animation-range: entry)) {
-    .parallax-layer-slow {
-      will-change: transform;
-      animation: parallaxShiftSlow linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-    }
-
-    .parallax-hero-bg {
-      will-change: transform;
-      animation: parallaxShiftBackdrop linear both;
-      animation-timeline: view();
-      animation-range: exit-crossing 0% exit 100%;
-    }
-
-    .stage-reveal {
-      will-change: transform, opacity;
-      animation: stageRevealUp ease-out both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 36%;
-    }
-  }
-}
-
-/* JS fallback support when CSS scroll-driven animation timeline is unsupported */
-.parallax-fallback-active {
-  transform: translate3d(0, var(--parallax-y, 0px), 0);
-  will-change: transform;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -213,14 +191,5 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .parallax-layer-slow,
-  .parallax-hero-bg,
-  .stage-reveal,
-  .parallax-fallback-active {
-    animation: none !important;
-    transform: none !important;
-    opacity: 1 !important;
   }
 }
